@@ -6,7 +6,7 @@
 <title>Ranking - Poker de Quinta</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
 
 :root {
     --gold: #FFD700;
@@ -18,12 +18,16 @@
     --bg-card: #0f1f0f;
     --bg-row: #122012;
     --bg-row-alt: #0f1a0f;
+    --top10-row: #0d180d;
+    --top10-row-alt: #0b150b;
+    --other-row: #101f10;
+    --other-row-alt: #0e1a0e;
     --success: #4CAF50;
     --danger: #FF4757;
     --text: #ffffff;
     --text-muted: #aaaaaa;
-    --border: #2a402a;
-    --border-light: #1a2a1a;
+    --border: #1a2a1a;
+    --border-light: #152015;
 }
 
 * {
@@ -43,46 +47,35 @@ body {
 /* Logo e Cabeçalho */
 .logo-container {
     text-align: center;
-    padding: 15px;
+    padding: 12px;
     background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border);
 }
 
 .logo-container img {
-    max-width: 250px;
+    max-width: 220px;
     height: auto;
-    filter: drop-shadow(0 0 8px rgba(212, 161, 33, 0.2));
+    filter: drop-shadow(0 0 5px rgba(212, 161, 33, 0.2));
 }
 
 .header {
     text-align: center;
-    padding: 20px 15px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    padding: 18px 12px;
+    margin-bottom: 15px;
 }
 
 .header h1 {
     font-family: 'Anton', sans-serif;
-    font-size: 2.4rem;
+    font-size: 2rem;
     color: var(--primary);
-    letter-spacing: 1.5px;
-    margin-bottom: 5px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
     text-transform: uppercase;
 }
 
 .header .subtitle {
-    font-size: 0.95rem;
-    opacity: 0.8;
+    font-size: 0.85rem;
+    opacity: 0.7;
     font-weight: 300;
 }
 
@@ -90,35 +83,35 @@ body {
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 8px;
 }
 
 /* Botões de Visualização */
 .view-toggle {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
 .view-btn {
-    padding: 10px 24px;
+    padding: 8px 20px;
     background: var(--bg-card);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     color: var(--primary);
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
 }
 
 .view-btn:hover {
-    background: rgba(212, 161, 33, 0.1);
+    background: rgba(212, 161, 33, 0.05);
     border-color: var(--primary);
 }
 
@@ -131,39 +124,38 @@ body {
 /* SEÇÃO RANKING - VISUAL TABELA FINA */
 .ranking-section {
     background: var(--bg-card);
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    border: 1px solid var(--border);
     overflow: hidden;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
 }
 
 .section-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--border-light);
-    background: rgba(18, 32, 18, 0.9);
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-row);
 }
 
 .section-header h2 {
     font-family: 'Anton', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--primary);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .g10-badge {
     background: linear-gradient(135deg, var(--gold), var(--primary));
     color: #000;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin-left: 8px;
+    gap: 3px;
+    margin-left: 6px;
 }
 
 /* TABELA DE RANKING - LINHAS FINAS */
@@ -176,8 +168,8 @@ body {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    min-width: 800px;
-    font-size: 0.9rem;
+    min-width: 700px;
+    font-size: 0.85rem;
 }
 
 .ranking-table thead {
@@ -188,91 +180,74 @@ body {
 }
 
 .ranking-table th {
-    padding: 12px 10px;
+    padding: 10px 8px;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom: 2px solid var(--primary);
+    border-bottom: 1px solid var(--primary);
     white-space: nowrap;
 }
 
 .ranking-table th:first-child {
-    padding-left: 20px;
+    padding-left: 15px;
 }
 
 .ranking-table th:last-child {
-    padding-right: 20px;
+    padding-right: 15px;
 }
 
-/* LINHAS DO RANKING - FINAS E COMPACTAS */
+/* LINHAS DO RANKING - DIFERENCIAÇÃO TOP 10 vs OUTROS */
 .ranking-row {
     transition: all 0.2s ease;
     border-bottom: 1px solid var(--border-light);
-    height: 48px;
-    background: var(--bg-row);
+    height: 42px;
 }
 
-.ranking-row:nth-child(even) {
-    background: var(--bg-row-alt);
-}
-
-.ranking-row:hover {
-    background: rgba(212, 161, 33, 0.05);
-}
-
-/* TOP 10 - DESTAQUE MÁXIMO COM LINHA FINA */
+/* TOP 10 - CORES MAIS ESCURAS/DESTACADAS */
 .ranking-row.top10 {
-    position: relative;
-    background: linear-gradient(90deg, rgba(255, 215, 0, 0.03) 0%, transparent 100%);
-    border-left: 4px solid transparent;
+    background: var(--top10-row);
+    border-left: 3px solid var(--gold);
 }
 
-.ranking-row.top10::before {
-    content: 'G10';
-    position: absolute;
-    left: -30px;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    color: var(--gold);
-    font-family: 'Anton', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.5px;
-    opacity: 0.6;
+.ranking-row.top10:nth-child(even) {
+    background: var(--top10-row-alt);
 }
 
-/* DESTAQUES POR POSIÇÃO - BORDAS FINAS */
+.ranking-row.top10:hover {
+    background: rgba(212, 161, 33, 0.03);
+}
+
+/* APÓS O 10º - CORES MAIS CLARAS */
+.ranking-row.other {
+    background: var(--other-row);
+}
+
+.ranking-row.other:nth-child(even) {
+    background: var(--other-row-alt);
+}
+
+.ranking-row.other:hover {
+    background: rgba(212, 161, 33, 0.02);
+}
+
+/* DESTAQUES POR POSIÇÃO */
 .ranking-row.pos-1 {
-    background: linear-gradient(90deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.02) 100%) !important;
-    border-left: 4px solid var(--gold) !important;
-}
-
-.ranking-row.pos-1 .rank-number {
-    background: var(--gold);
-    color: #000;
+    border-left: 3px solid var(--gold) !important;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.03) 0%, transparent 100%) !important;
 }
 
 .ranking-row.pos-2 {
-    background: linear-gradient(90deg, rgba(192, 192, 192, 0.08) 0%, rgba(192, 192, 192, 0.02) 100%) !important;
-    border-left: 4px solid var(--silver) !important;
-}
-
-.ranking-row.pos-2 .rank-number {
-    background: var(--silver);
-    color: #000;
+    border-left: 3px solid var(--silver) !important;
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.03) 0%, transparent 100%) !important;
 }
 
 .ranking-row.pos-3 {
-    background: linear-gradient(90deg, rgba(205, 127, 50, 0.08) 0%, rgba(205, 127, 50, 0.02) 100%) !important;
-    border-left: 4px solid var(--bronze) !important;
-}
-
-.ranking-row.pos-3 .rank-number {
-    background: var(--bronze);
-    color: #000;
+    border-left: 3px solid var(--bronze) !important;
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.03) 0%, transparent 100%) !important;
 }
 
 .ranking-row.pos-4,
@@ -282,31 +257,26 @@ body {
 .ranking-row.pos-8,
 .ranking-row.pos-9,
 .ranking-row.pos-10 {
-    border-left: 4px solid #4CAF50 !important;
-    background: linear-gradient(90deg, rgba(76, 175, 80, 0.05) 0%, transparent 100%) !important;
-}
-
-.ranking-row.top10 .rank-number {
-    font-weight: 700;
+    border-left: 3px solid #4CAF50 !important;
 }
 
 /* CÉLULAS DA TABELA - COMPACTAS */
 .ranking-table td {
-    padding: 8px 10px;
+    padding: 6px 8px;
     vertical-align: middle;
     border-bottom: 1px solid var(--border-light);
 }
 
 .ranking-table td:first-child {
-    padding-left: 20px;
+    padding-left: 15px;
     position: relative;
 }
 
 .ranking-table td:last-child {
-    padding-right: 20px;
+    padding-right: 15px;
 }
 
-/* NÚMERO DO RANKING - COMPACTO */
+/* NÚMERO DO RANKING - SIMPLES */
 .rank-cell {
     display: flex;
     align-items: center;
@@ -314,8 +284,8 @@ body {
 }
 
 .rank-number {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     background: var(--bg-card);
     color: var(--primary);
@@ -323,40 +293,9 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Anton', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    border: 1px solid var(--border-light);
-}
-
-/* INDICADOR DE MOVIMENTAÇÃO - PEQUENO */
-.rank-movement {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 8px;
-    min-width: 45px;
-    justify-content: center;
-}
-
-.rank-movement.up {
-    background: rgba(76, 175, 80, 0.15);
-    color: #4CAF50;
-    border: 1px solid rgba(76, 175, 80, 0.2);
-}
-
-.rank-movement.down {
-    background: rgba(255, 71, 87, 0.15);
-    color: #FF4757;
-    border: 1px solid rgba(255, 71, 87, 0.2);
-}
-
-.rank-movement.stable {
-    background: rgba(170, 170, 170, 0.15);
-    color: var(--text-muted);
-    border: 1px solid rgba(170, 170, 170, 0.2);
+    border: 1px solid var(--border);
 }
 
 /* JOGADOR - COMPACTO */
@@ -367,8 +306,8 @@ body {
 }
 
 .player-avatar {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--primary);
@@ -377,7 +316,7 @@ body {
 
 .player-name {
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text);
 }
 
@@ -388,21 +327,17 @@ body {
 
 .points {
     font-family: 'Anton', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--primary);
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 15px;
-    background: rgba(212, 161, 33, 0.08);
-    border: 1px solid rgba(212, 161, 33, 0.1);
 }
 
 .points.pos-1 { color: var(--gold); }
 .points.pos-2 { color: var(--silver); }
 .points.pos-3 { color: var(--bronze); }
 
-/* DIFERENÇA PARA O LÍDER - COMPACTA */
+/* DIFERENÇA PARA O LÍDER - VERMELHA */
 .diff-cell {
     text-align: center;
 }
@@ -410,53 +345,39 @@ body {
 .diff {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 0.8rem;
-    padding: 4px 8px;
-    border-radius: 10px;
+    font-size: 0.75rem;
+    color: #FF4757;
     display: inline-block;
-    min-width: 60px;
 }
 
 .diff.leader {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
-}
-
-.diff.close {
-    background: rgba(76, 175, 80, 0.15);
     color: #4CAF50;
-    border: 1px solid rgba(76, 175, 80, 0.2);
+    font-weight: 700;
 }
 
-.diff.medium {
-    background: rgba(255, 193, 7, 0.15);
-    color: #FFC107;
-    border: 1px solid rgba(255, 193, 7, 0.2);
+/* ETAPAS - NUMERADAS 1-12 NO HEADER APENAS */
+.ranking-table th:nth-child(n+5) {
+    text-align: center;
+    min-width: 35px;
+    padding: 10px 4px;
 }
 
-.diff.large {
-    background: rgba(255, 71, 87, 0.15);
-    color: #FF4757;
-    border: 1px solid rgba(255, 71, 87, 0.2);
-}
-
-/* ETAPAS - COMPACTAS */
 .etapas-cell {
     display: flex;
-    gap: 3px;
+    gap: 2px;
     flex-wrap: wrap;
 }
 
 .etapa-pill {
-    padding: 2px 6px;
-    border-radius: 8px;
-    font-size: 0.7rem;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 0.65rem;
     font-weight: 600;
-    min-width: 26px;
+    min-width: 24px;
     text-align: center;
     background: var(--bg-dark);
     color: var(--text);
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border);
 }
 
 .etapa-pill.present {
@@ -472,61 +393,60 @@ body {
 }
 
 .etapa-pill.empty {
-    opacity: 0.2;
+    opacity: 0.15;
     background: transparent;
 }
 
-/* PAINEL ADMINISTRATIVO - COMPACTO */
+/* PAINEL ADMINISTRATIVO - SIMPLIFICADO */
 .admin-section {
     background: var(--bg-card);
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    border: 1px solid var(--border);
     overflow: hidden;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
 }
 
 .admin-header {
-    padding: 15px 20px;
+    padding: 12px 15px;
     background: linear-gradient(135deg, #1a1a1a, #222);
     border-bottom: 1px solid #8b0000;
 }
 
 .admin-header h2 {
     font-family: 'Anton', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #8b0000;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
-/* SISTEMA DE PONTUAÇÃO - COMPACTO */
+/* SISTEMA DE PONTUAÇÃO - SIMPLES */
 .points-system {
     display: grid;
-    gap: 15px;
-    padding: 15px;
+    gap: 12px;
+    padding: 12px;
 }
 
 .stage-selector {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .stage-btn {
-    padding: 8px 15px;
+    padding: 6px 12px;
     background: var(--bg-row);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     color: var(--text);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-width: 70px;
+    min-width: 60px;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .stage-btn:hover {
@@ -540,232 +460,221 @@ body {
     border-color: var(--primary);
 }
 
-/* QUICK POINTS SYSTEM - COMPACTO */
-.quick-points-system {
-    background: var(--bg-row);
-    border-radius: 8px;
-    padding: 12px;
+/* Etapa Atual */
+.etapa-atual {
+    text-align: center;
     margin: 10px 0;
-    border: 1px solid var(--border-light);
-}
-
-.quick-points-system h4 {
-    color: var(--primary);
-    margin-bottom: 12px;
-    font-size: 1rem;
-}
-
-.quick-points-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 8px;
-}
-
-.quick-point {
-    padding: 10px;
-    background: var(--bg-dark);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    color: var(--text);
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    font-size: 0.85rem;
-    transition: all 0.2s ease;
-}
-
-.quick-point:hover {
-    border-color: var(--primary);
-    background: rgba(212, 161, 33, 0.1);
-}
-
-.quick-point.active {
-    background: var(--primary);
-    color: #000;
-    border-color: var(--primary);
-}
-
-/* PLAYERS POINTS GRID - COMPACTO */
-.players-points-grid {
-    display: grid;
-    gap: 8px;
-    margin-top: 15px;
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-
-.player-points-card {
-    background: var(--bg-row);
-    border-radius: 6px;
-    padding: 12px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 12px;
-    align-items: center;
-    border: 1px solid var(--border-light);
-    transition: all 0.2s ease;
-}
-
-.player-points-card:hover {
-    border-color: var(--primary);
-}
-
-.player-info-compact {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 180px;
-}
-
-.player-info-compact .player-avatar {
-    width: 30px;
-    height: 30px;
-}
-
-.points-input-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: flex-end;
-}
-
-.points-input {
-    width: 80px;
     padding: 8px;
+    background: var(--bg-row);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+.etapa-atual .numero {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0 4px;
+}
+
+/* LISTA DE JOGADORES PARA PONTUAÇÃO - ORDEM ALFABÉTICA */
+.players-points-list {
+    margin-top: 12px;
+}
+
+.points-list-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg-row);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--primary);
+}
+
+.points-list-items {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.point-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-light);
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.point-item:nth-child(odd) {
+    background: var(--bg-row);
+}
+
+.point-item:nth-child(even) {
+    background: var(--bg-row-alt);
+}
+
+.point-item:hover {
+    background: rgba(212, 161, 33, 0.03);
+}
+
+.player-info-admin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-info-admin .player-avatar {
+    width: 26px;
+    height: 26px;
+}
+
+.points-input-admin {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.points-input-admin input {
+    width: 80px;
+    padding: 6px 8px;
     background: var(--bg-dark);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     color: var(--text);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-align: center;
     transition: all 0.2s ease;
 }
 
-.points-input:focus {
+.points-input-admin input:focus {
     outline: none;
     border-color: var(--primary);
 }
 
-.points-input.NJ {
+.points-input-admin input.NJ {
     color: #FF4757;
     border-color: #FF4757;
 }
 
-.quick-buttons {
+.quick-actions {
     display: flex;
-    gap: 4px;
+    gap: 3px;
+    margin-left: 5px;
 }
 
-.quick-btn {
-    padding: 6px 10px;
+.quick-action-btn {
+    padding: 4px 6px;
     background: var(--bg-dark);
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
     color: var(--text);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.quick-btn:hover {
+.quick-action-btn:hover {
     background: var(--primary);
     color: #000;
 }
 
-/* ADMIN ACTIONS - COMPACTO */
+/* ADMIN ACTIONS - SIMPLES */
 .admin-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 15px;
+    padding: 12px;
     background: var(--bg-row);
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .admin-btn {
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 6px;
-    min-width: 140px;
+    gap: 5px;
+    min-width: 120px;
     justify-content: center;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .save-btn {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+    background: #4CAF50;
     color: white;
 }
 
 .save-btn:hover {
-    transform: translateY(-1px);
+    background: #45a049;
 }
 
 .clear-btn {
-    background: linear-gradient(135deg, #FF4757, #ff3742);
+    background: #FF4757;
     color: white;
 }
 
 .clear-btn:hover {
-    transform: translateY(-1px);
+    background: #ff3742;
 }
 
 .next-btn {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--primary);
     color: #000;
 }
 
 .next-btn:hover {
-    transform: translateY(-1px);
+    background: var(--primary-dark);
 }
 
-/* GERENCIAMENTO DE JOGADORES - COMPACTO */
+/* GERENCIAMENTO DE JOGADORES */
 .players-management {
     background: var(--bg-card);
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 20px;
-    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 15px;
+    border: 1px solid var(--border);
 }
 
 .add-player-form {
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 15px;
     background: var(--bg-row);
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
 }
 
 .form-group label {
     color: var(--primary);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .form-group input {
-    padding: 10px;
+    padding: 8px;
     background: var(--bg-dark);
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     color: var(--text);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: all 0.2s ease;
 }
 
@@ -777,16 +686,16 @@ body {
 /* STATUS INDICATOR */
 .status-indicator {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 0.75rem;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
     font-weight: 600;
     z-index: 1000;
     background: rgba(26, 61, 26, 0.9);
-    border: 1px solid var(--border-light);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(5px);
 }
 
 .status-indicator.connected {
@@ -794,33 +703,34 @@ body {
     border-color: #4CAF50;
 }
 
-/* ADMIN TOGGLE BUTTON */
+/* ADMIN TOGGLE BUTTON - TRANSLÚCIDO */
 .admin-toggle-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(212, 161, 33, 0.9);
-    border: 1px solid var(--primary);
-    color: #000;
-    font-size: 1.3rem;
+    background: rgba(212, 161, 33, 0.1);
+    border: 1px solid rgba(212, 161, 33, 0.2);
+    color: rgba(212, 161, 33, 0.3);
+    font-size: 1rem;
     cursor: pointer;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
 }
 
 .admin-toggle-btn:hover {
-    transform: scale(1.05);
+    background: rgba(212, 161, 33, 0.3);
+    border-color: rgba(212, 161, 33, 0.4);
+    color: rgba(212, 161, 33, 0.8);
 }
 
 .admin-toggle-btn.active {
-    background: #4CAF50;
+    background: rgba(76, 175, 80, 0.9);
     border-color: #4CAF50;
     color: white;
 }
@@ -831,7 +741,7 @@ body {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
     justify-content: center;
     align-items: center;
     z-index: 2000;
@@ -844,17 +754,17 @@ body {
 .modal-content {
     background: var(--bg-card);
     border: 1px solid var(--primary);
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 6px;
+    padding: 15px;
     width: 90%;
-    max-width: 350px;
+    max-width: 300px;
     animation: modalSlideIn 0.2s ease;
 }
 
 @keyframes modalSlideIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
     to {
         opacity: 1;
@@ -864,59 +774,46 @@ body {
 
 .modal-buttons {
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+/* BOTÃO EXPORTAR CSV */
+.export-btn {
     margin-top: 15px;
+    text-align: center;
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-    .add-player-form {
-        grid-template-columns: 1fr;
-    }
-    
-    .player-points-card {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-    
-    .points-input-container {
-        justify-content: flex-start;
-    }
-}
-
 @media (max-width: 768px) {
     .header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .view-btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+        font-size: 1.5rem;
     }
     
     .ranking-table th,
     .ranking-table td {
-        padding: 8px 6px;
+        padding: 6px 4px;
     }
     
     .rank-number {
-        width: 26px;
-        height: 26px;
-        font-size: 0.8rem;
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
     }
     
     .player-avatar {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
     }
     
-    .quick-points-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .add-player-form {
+        grid-template-columns: 1fr;
+        gap: 8px;
     }
     
     .admin-actions {
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
     
     .admin-btn {
@@ -928,55 +825,39 @@ body {
 @media (max-width: 480px) {
     .stage-selector {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
     
     .stage-btn {
-        padding: 6px 8px;
+        padding: 5px 8px;
         font-size: 0.75rem;
         min-width: auto;
     }
     
-    .ranking-row.top10::before {
-        display: none;
+    .points-input-admin input {
+        width: 70px;
     }
 }
 
 /* SCROLLBAR STYLING - FINA */
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
 }
 
 ::-webkit-scrollbar-track {
     background: var(--bg-row);
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--primary);
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
 }
-
-/* ANIMAÇÕES SUAVES */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.ranking-row {
-    animation: fadeIn 0.2s ease forwards;
-}
-
-.ranking-row:nth-child(1) { animation-delay: 0.05s; }
-.ranking-row:nth-child(2) { animation-delay: 0.1s; }
-.ranking-row:nth-child(3) { animation-delay: 0.15s; }
-.ranking-row:nth-child(4) { animation-delay: 0.2s; }
-.ranking-row:nth-child(5) { animation-delay: 0.25s; }
 </style>
 </head>
 
@@ -1000,10 +881,6 @@ body {
             <span>📊</span>
             <span>Ranking</span>
         </button>
-        <button class="view-btn" id="btnViewAdmin">
-            <span>⚙️</span>
-            <span>Admin</span>
-        </button>
     </div>
 
     <!-- VIEW RANKING -->
@@ -1014,8 +891,8 @@ body {
                     <span>CLASSIFICAÇÃO GERAL</span>
                     <span class="g10-badge">🏆 G10</span>
                 </h2>
-                <div style="color: var(--text-muted); font-size: 0.8rem;">
-                    Atualizado em tempo real
+                <div style="color: var(--text-muted); font-size: 0.75rem;">
+                    Atualizado após salvar na aba Admin
                 </div>
             </div>
             
@@ -1023,16 +900,27 @@ body {
                 <table class="ranking-table" id="rankingTable">
                     <thead id="rankingTableHead">
                         <tr>
-                            <th style="width: 70px;">POS</th>
+                            <th style="width: 60px;">POS</th>
                             <th>JOGADOR</th>
-                            <th style="width: 100px; text-align: center;">PONTOS</th>
-                            <th style="width: 110px; text-align: center;">DIF. LÍDER</th>
-                            <th style="min-width: 180px;">ETAPAS</th>
+                            <th style="width: 80px; text-align: center;">PONTOS</th>
+                            <th style="width: 90px; text-align: center;">DIF. LÍDER</th>
+                            <th style="min-width: 30px; text-align: center;">1</th>
+                            <th style="min-width: 30px; text-align: center;">2</th>
+                            <th style="min-width: 30px; text-align: center;">3</th>
+                            <th style="min-width: 30px; text-align: center;">4</th>
+                            <th style="min-width: 30px; text-align: center;">5</th>
+                            <th style="min-width: 30px; text-align: center;">6</th>
+                            <th style="min-width: 30px; text-align: center;">7</th>
+                            <th style="min-width: 30px; text-align: center;">8</th>
+                            <th style="min-width: 30px; text-align: center;">9</th>
+                            <th style="min-width: 30px; text-align: center;">10</th>
+                            <th style="min-width: 30px; text-align: center;">11</th>
+                            <th style="min-width: 30px; text-align: center;">12</th>
                         </tr>
                     </thead>
                     <tbody id="rankingTableBody">
                         <tr>
-                            <td colspan="5" style="text-align: center; padding: 30px; color: var(--text-muted);">
+                            <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
                                 Carregando ranking...
                             </td>
                         </tr>
@@ -1041,8 +929,8 @@ body {
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 15px; color: var(--text-muted); font-size: 0.8rem; padding: 12px; background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border-light);">
-            ℹ️ As 10 melhores pontuações de cada jogador são consideradas para a classificação geral.
+        <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
+            ℹ️ Os 5 melhores do Ranking Geral ganham premiação em Dinheiro.
         </div>
     </div>
 
@@ -1054,56 +942,38 @@ body {
                     <span>⚙️</span>
                     <span>PAINEL ADMINISTRATIVO</span>
                 </h2>
-                <div style="color: #aaaaaa; font-size: 0.8rem; margin-top: 4px;">
-                    Modo de edição ativado - Gerencie jogadores e pontuações
+                <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">
+                    Gerencie jogadores e pontuações das etapas
                 </div>
             </div>
 
             <div class="points-system">
                 <!-- Seletor de Etapas -->
-                <div style="text-align: center; margin-bottom: 10px;">
-                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 12px; font-size: 1rem;">
+                <div style="text-align: center; margin-bottom: 8px;">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">
                         SELECIONE A ETAPA:
                     </div>
-                    <div class="stage-selector" id="etapaSelector">
-                        <!-- Etapas serão geradas dinamicamente -->
-                    </div>
+                    <div class="stage-selector" id="etapaSelector"></div>
                 </div>
 
                 <!-- Etapa Atual -->
-                <div style="text-align: center; margin: 15px 0;">
-                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">
-                        ETAPA <span id="etapaAtualNumero">1</span>
+                <div class="etapa-atual">
+                    <div style="font-size: 0.9rem; font-weight: 700; color: var(--gold);">
+                        ETAPA <span class="numero" id="etapaAtualNumero">1</span>
                     </div>
-                    <div style="color: var(--text-muted); font-size: 0.8rem;">
+                    <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">
                         Atualize as pontuações dos jogadores
                     </div>
                 </div>
 
-                <!-- Sistema de Pontuação Rápida -->
-                <div class="quick-points-system">
-                    <h4>🏃 PONTUAÇÃO RÁPIDA</h4>
-                    <div class="quick-points-grid">
-                        <div class="quick-point" onclick="aplicarPontuacaoRapida('NJ')">NJ</div>
-                        <div class="quick-point" onclick="aplicarPontuacaoRapida(0)">0 pts</div>
-                        <div class="quick-point" onclick="aplicarPontuacaoRapida(10)">10 pts</div>
-                        <div class="quick-point" onclick="aplicarPontuacaoRapida(20)">20 pts</div>
-                        <div class="quick-point" onclick="aplicarPontuacaoRapida(30)">30 pts</div>
-                        <div class="quick-point" onclick="aplicarPontuacaoRapida(50)">50 pts</div>
+                <!-- Lista de Jogadores para Pontuação (ORDEM ALFABÉTICA) -->
+                <div class="players-points-list">
+                    <div class="points-list-header">
+                        <div>JOGADOR</div>
+                        <div>PONTOS</div>
                     </div>
-                </div>
-
-                <!-- Lista de Jogadores para Pontuação -->
-                <div style="margin-top: 15px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <div style="color: var(--primary); font-weight: 600; font-size: 0.9rem;">JOGADORES</div>
-                        <div style="color: var(--text-muted); font-size: 0.8rem;">
-                            Total: <span id="totalJogadores">0</span> jogadores
-                        </div>
-                    </div>
-                    
-                    <div class="players-points-grid" id="playersPointsGrid">
-                        <!-- Jogadores serão carregados dinamicamente -->
+                    <div class="points-list-items" id="playersPointsList">
+                        <!-- Jogadores serão carregados dinamicamente em ordem alfabética -->
                     </div>
                 </div>
 
@@ -1117,31 +987,27 @@ body {
                         <span>💾</span>
                         <span>Salvar Etapa</span>
                     </button>
-                    <button class="admin-btn next-btn" onclick="proximaEtapa()">
-                        <span>⏭️</span>
-                        <span>Salvar & Próxima</span>
-                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Gerenciamento de Jogadores -->
         <div class="players-management">
-            <h3 style="color: var(--primary); margin-bottom: 15px; font-family: 'Anton', sans-serif; font-size: 1.3rem;">
+            <h3 style="color: var(--primary); margin-bottom: 12px; font-family: 'Anton', sans-serif; font-size: 1.2rem;">
                 👥 GERENCIAR JOGADORES
             </h3>
 
             <div class="add-player-form">
                 <div class="form-group">
                     <label>Nome do Jogador</label>
-                    <input type="text" id="novoJogadorNome" placeholder="Digite o nome completo">
+                    <input type="text" id="novoJogadorNome" placeholder="Nome completo">
                 </div>
                 <div class="form-group">
                     <label>URL da Foto (opcional)</label>
                     <input type="text" id="novoJogadorFoto" placeholder="https://exemplo.com/foto.jpg">
                 </div>
                 <div style="display: flex; align-items: flex-end;">
-                    <button class="admin-btn save-btn" id="btnAdicionarJogador" style="height: 40px; font-size: 0.85rem;">
+                    <button class="admin-btn save-btn" id="btnAdicionarJogador" style="height: 36px; font-size: 0.8rem;">
                         <span>➕</span>
                         <span>Adicionar</span>
                     </button>
@@ -1154,8 +1020,8 @@ body {
         </div>
         
         <!-- Botão de Exportação CSV -->
-        <div style="margin-top: 20px; text-align: center;">
-            <button class="admin-btn save-btn" id="btnExportarCSV" style="width: 100%; max-width: 250px; margin: 0 auto; font-size: 0.85rem;">
+        <div class="export-btn">
+            <button class="admin-btn save-btn" id="btnExportarCSV" style="width: 100%; max-width: 220px; margin: 0 auto; font-size: 0.8rem;">
                 <span>📊</span>
                 <span>Exportar Ranking CSV</span>
             </button>
@@ -1167,21 +1033,21 @@ body {
 
 <div class="modal" id="modalAdmin">
     <div class="modal-content">
-        <h2 style="color: #8b0000; font-size: 1.3rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+        <h2 style="color: #8b0000; font-size: 1.1rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
             <span>🔐</span>
             <span>Acesso Administrativo</span>
         </h2>
-        <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">
-            Digite a senha de administrador para acessar o painel:
+        <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.8rem;">
+            Digite a senha de administrador:
         </p>
         <div class="form-group">
             <input type="password" id="senhaAdmin" placeholder="Digite a senha" style="width: 100%;">
         </div>
         <div class="modal-buttons">
-            <button class="admin-btn clear-btn" id="btnFecharAdmin" style="flex: 1; font-size: 0.85rem;">
+            <button class="admin-btn clear-btn" id="btnFecharAdmin" style="flex: 1; font-size: 0.8rem;">
                 Cancelar
             </button>
-            <button class="admin-btn save-btn" id="btnAcessarAdmin" style="flex: 1; font-size: 0.85rem;">
+            <button class="admin-btn save-btn" id="btnAcessarAdmin" style="flex: 1; font-size: 0.8rem;">
                 Acessar
             </button>
         </div>
@@ -1211,7 +1077,6 @@ let rankingAtual = [];
 class FirebaseDB {
     constructor(config) {
         this.dbUrl = config.databaseURL;
-        this.listeners = {};
     }
 
     async get(path) {
@@ -1283,19 +1148,6 @@ class FirebaseDB {
             throw error;
         }
     }
-
-    onValue(path, callback) {
-        const poll = async () => {
-            const data = await this.get(path);
-            callback(data);
-        };
-        
-        poll();
-        const interval = setInterval(poll, 3000);
-        
-        this.listeners[path] = interval;
-        return () => clearInterval(interval);
-    }
 }
 
 const db = new FirebaseDB(FIREBASE_CONFIG);
@@ -1303,7 +1155,6 @@ const db = new FirebaseDB(FIREBASE_CONFIG);
 // Elementos DOM
 const statusIndicator = document.getElementById('statusIndicator');
 const btnViewRanking = document.getElementById('btnViewRanking');
-const btnViewAdmin = document.getElementById('btnViewAdmin');
 const viewRanking = document.getElementById('viewRanking');
 const viewAdmin = document.getElementById('viewAdmin');
 const btnAdminToggle = document.getElementById('btnAdminToggle');
@@ -1316,11 +1167,9 @@ const novoJogadorNome = document.getElementById('novoJogadorNome');
 const novoJogadorFoto = document.getElementById('novoJogadorFoto');
 const btnExportarCSV = document.getElementById('btnExportarCSV');
 
-async function inicializar() {
+async function carregarDados() {
     try {
-        statusIndicator.textContent = '🔄 Conectando...';
-        
-        // Carregar dados iniciais
+        // Carregar dados uma vez
         const dadosJogadores = await db.get('rankingJogadores');
         const dadosEtapas = await db.get('rankingEtapas');
         
@@ -1338,61 +1187,13 @@ async function inicializar() {
         statusIndicator.textContent = '✅ Conectado';
         statusIndicator.classList.add('connected');
         
-        // Configurar listeners em tempo real
-        db.onValue('rankingJogadores', (data) => {
-            if (data) {
-                jogadores = Object.keys(data).map(key => ({
-                    ...data[key],
-                    id: key
-                }));
-                atualizarRanking();
-                if (modoAdmin) {
-                    renderizarPlayersPoints();
-                    renderizarAdminJogadores();
-                }
-            }
-        });
-        
-        db.onValue('rankingEtapas', (data) => {
-            if (data) {
-                etapas = data;
-                atualizarRanking();
-                if (modoAdmin && etapaAtualSelecionada) {
-                    renderizarPlayersPoints();
-                }
-            }
-        });
-        
         atualizarRanking();
         
     } catch (e) {
-        console.error('Erro na inicialização:', e);
+        console.error('Erro ao carregar dados:', e);
         statusIndicator.textContent = '❌ Erro de conexão';
     }
 }
-
-// Sistema de Navegação
-btnViewRanking.onclick = () => {
-    btnViewRanking.classList.add('active');
-    btnViewAdmin.classList.remove('active');
-    viewRanking.style.display = 'block';
-    viewAdmin.style.display = 'none';
-};
-
-btnViewAdmin.onclick = () => {
-    if (!modoAdmin) {
-        modalAdmin.classList.add('active');
-        senhaAdmin.focus();
-    } else {
-        btnViewRanking.classList.remove('active');
-        btnViewAdmin.classList.add('active');
-        viewRanking.style.display = 'none';
-        viewAdmin.style.display = 'block';
-        renderizarSeletorEtapas();
-        renderizarPlayersPoints();
-        renderizarAdminJogadores();
-    }
-};
 
 // Sistema de Autenticação
 btnAdminToggle.onclick = () => {
@@ -1414,8 +1215,6 @@ btnAcessarAdmin.onclick = () => {
         senhaAdmin.value = '';
         
         // Mudar para view admin
-        btnViewRanking.classList.remove('active');
-        btnViewAdmin.classList.add('active');
         viewRanking.style.display = 'none';
         viewAdmin.style.display = 'block';
         
@@ -1432,6 +1231,15 @@ btnAcessarAdmin.onclick = () => {
         alert('❌ Senha incorreta!');
         senhaAdmin.value = '';
         senhaAdmin.focus();
+    }
+};
+
+// Voltar para o ranking
+btnViewRanking.onclick = () => {
+    if (modoAdmin) {
+        viewRanking.style.display = 'block';
+        viewAdmin.style.display = 'none';
+        carregarDados(); // Recarregar dados ao voltar
     }
 };
 
@@ -1459,6 +1267,13 @@ btnAdicionarJogador.onclick = async () => {
         novoJogadorFoto.value = '';
         
         alert('✅ Jogador adicionado com sucesso!');
+        
+        // Recarregar dados
+        await carregarDados();
+        if (modoAdmin) {
+            renderizarPlayersPoints();
+            renderizarAdminJogadores();
+        }
         
     } catch (e) {
         alert('❌ Erro ao adicionar jogador: ' + e.message);
@@ -1502,23 +1317,10 @@ function calcularRanking() {
         return a.nome.localeCompare(b.nome);
     });
     
-    // Calcular mudanças de ranking e atualizar no banco
+    // Calcular mudanças de ranking
     rankingCalculado.forEach((jogador, index) => {
         const novoRank = index + 1;
-        const rankAnterior = jogador.previousRank || 0;
-        
         jogador.posicaoAtual = novoRank;
-        
-        if (rankAnterior === 0) {
-            jogador.mudancaRank = 0;
-        } else {
-            jogador.mudancaRank = rankAnterior - novoRank;
-        }
-        
-        // Atualizar previousRank no banco se mudou
-        if (jogador.previousRank !== novoRank) {
-            db.update(`rankingJogadores/${jogador.id}`, { previousRank: novoRank });
-        }
     });
     
     rankingAtual = rankingCalculado;
@@ -1527,13 +1329,12 @@ function calcularRanking() {
 
 function atualizarRanking() {
     const ranking = calcularRanking();
-    const thead = document.getElementById('rankingTableHead');
     const tbody = document.getElementById('rankingTableBody');
     
     if (ranking.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="5" style="text-align: center; padding: 30px; color: var(--text-muted);">
+                <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
                     Nenhum jogador cadastrado
                 </td>
             </tr>
@@ -1552,25 +1353,7 @@ function atualizarRanking() {
         
         // Calcular diferença para o líder
         const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
-        let diffClass = 'close';
-        if (rank === 1) {
-            diffClass = 'leader';
-        } else if (diferencaPontos > 100) {
-            diffClass = 'large';
-        } else if (diferencaPontos > 50) {
-            diffClass = 'medium';
-        }
-        
-        // Determinar movimento
-        let movementClass = 'stable';
-        let movementText = '—';
-        if (jogador.mudancaRank > 0) {
-            movementClass = 'up';
-            movementText = `+${jogador.mudancaRank}`;
-        } else if (jogador.mudancaRank < 0) {
-            movementClass = 'down';
-            movementText = `${jogador.mudancaRank}`;
-        }
+        const diffClass = rank === 1 ? 'leader' : '';
         
         // Gerar células de etapas
         let etapasHTML = '';
@@ -1593,14 +1376,11 @@ function atualizarRanking() {
         }
         
         const tr = document.createElement('tr');
-        tr.className = `ranking-row ${isTop10 ? 'top10' : ''} pos-${rank <= 10 ? rank : ''}`;
+        tr.className = `ranking-row ${isTop10 ? 'top10' : 'other'} pos-${rank <= 10 ? rank : ''}`;
         tr.innerHTML = `
             <td>
                 <div class="rank-cell">
                     <div class="rank-number">${rank}</div>
-                    <div class="rank-movement ${movementClass}">
-                        ${movementText}
-                    </div>
                 </div>
             </td>
             <td>
@@ -1619,14 +1399,10 @@ function atualizarRanking() {
             </td>
             <td class="diff-cell">
                 <div class="diff ${diffClass}">
-                    ${rank === 1 ? 'LÍDER' : `-${diferencaPontos}`}
+                    ${rank === 1 ? '—' : `-${diferencaPontos}`}
                 </div>
             </td>
-            <td>
-                <div class="etapas-cell">
-                    ${etapasHTML}
-                </div>
-            </td>
+            ${etapasHTML}
         `;
         
         tbody.appendChild(tr);
@@ -1656,54 +1432,44 @@ function renderizarSeletorEtapas() {
 }
 
 function renderizarPlayersPoints() {
-    const container = document.getElementById('playersPointsGrid');
-    const totalJogadores = document.getElementById('totalJogadores');
+    const container = document.getElementById('playersPointsList');
     
     if (!container) return;
     
     container.innerHTML = '';
-    totalJogadores.textContent = jogadores.length;
     
-    // Ordenar jogadores pela posição no ranking
-    const jogadoresOrdenados = [...jogadores].sort((a, b) => {
-        const rankA = rankingAtual.findIndex(j => j.id === a.id);
-        const rankB = rankingAtual.findIndex(j => j.id === b.id);
-        return (rankA === -1 ? 999 : rankA) - (rankB === -1 ? 999 : rankB);
-    });
+    // Ordenar jogadores por ordem alfabética
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
+        a.nome.localeCompare(b.nome)
+    );
     
     jogadoresOrdenados.forEach(jogador => {
         const scoreAtual = etapas[etapaAtualSelecionada]?.[jogador.id] || '';
-        const posicao = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
         
-        const card = document.createElement('div');
-        card.className = 'player-points-card';
-        card.innerHTML = `
-            <div class="player-info-compact">
+        const item = document.createElement('div');
+        item.className = 'point-item';
+        item.innerHTML = `
+            <div class="player-info-admin">
                 <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
                      class="player-avatar"
                      alt="${jogador.nome}">
-                <div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">${jogador.nome}</div>
-                    <div style="color: var(--text-muted); font-size: 0.75rem;">Rank: #${posicao}</div>
-                </div>
+                <div style="font-weight: 600; font-size: 0.8rem;">${jogador.nome}</div>
             </div>
-            <div class="points-input-container">
+            <div class="points-input-admin">
                 <input type="text" 
-                       class="points-input ${scoreAtual === 'NJ' ? 'NJ' : ''}"
                        id="score_${etapaAtualSelecionada}_${jogador.id}"
                        value="${scoreAtual}"
                        placeholder="Pts ou NJ"
                        oninput="formatarInputPontos(this)">
-            </div>
-            <div class="quick-buttons">
-                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 'NJ')">NJ</button>
-                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 0)">0</button>
-                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 10)">10</button>
-                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 30)">30</button>
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="setPontuacao('${jogador.id}', 'NJ')">NJ</button>
+                    <button class="quick-action-btn" onclick="setPontuacao('${jogador.id}', 0)">0</button>
+                    <button class="quick-action-btn" onclick="setPontuacao('${jogador.id}', 10)">10</button>
+                </div>
             </div>
         `;
         
-        container.appendChild(card);
+        container.appendChild(item);
     });
 }
 
@@ -1714,13 +1480,11 @@ window.formatarInputPontos = function(input) {
     if (valor === 'NJ') {
         input.value = 'NJ';
         input.classList.add('NJ');
-        input.classList.remove('points-input');
     } else {
         // Remover caracteres não numéricos
         valor = valor.replace(/[^0-9]/g, '');
         input.value = valor;
         input.classList.remove('NJ');
-        input.classList.add('points-input');
     }
 };
 
@@ -1730,12 +1494,6 @@ window.setPontuacao = function(jogadorId, pontos) {
         input.value = pontos;
         formatarInputPontos(input);
     }
-};
-
-window.aplicarPontuacaoRapida = function(pontos) {
-    jogadores.forEach(jogador => {
-        setPontuacao(jogador.id, pontos);
-    });
 };
 
 window.limparPontuacoes = function() {
@@ -1777,20 +1535,11 @@ window.salvarEtapa = async function() {
         await db.set(`rankingEtapas/${etapaAtualSelecionada}`, novosScores);
         alert('✅ Etapa salva com sucesso!');
         
+        // Recarregar dados para atualizar o ranking
+        await carregarDados();
+        
     } catch (e) {
         alert('❌ Erro ao salvar etapa: ' + e.message);
-    }
-};
-
-window.proximaEtapa = async function() {
-    await salvarEtapa();
-    if (etapaAtualSelecionada < TOTAL_ETAPAS) {
-        etapaAtualSelecionada++;
-        document.getElementById('etapaAtualNumero').textContent = etapaAtualSelecionada;
-        renderizarSeletorEtapas();
-        renderizarPlayersPoints();
-    } else {
-        alert('🎉 Esta é a última etapa!');
     }
 };
 
@@ -1802,22 +1551,20 @@ function renderizarAdminJogadores() {
     
     if (jogadores.length === 0) {
         container.innerHTML = `
-            <div style="text-align: center; padding: 20px; color: var(--text-muted); background: var(--bg-row); border-radius: 6px;">
+            <div style="text-align: center; padding: 15px; color: var(--text-muted); background: var(--bg-row); border-radius: 4px;">
                 Nenhum jogador cadastrado
             </div>
         `;
         return;
     }
     
-    // Ordenar por posição no ranking
-    const jogadoresOrdenados = [...jogadores].sort((a, b) => {
-        const rankA = rankingAtual.findIndex(j => j.id === a.id);
-        const rankB = rankingAtual.findIndex(j => j.id === b.id);
-        return (rankA === -1 ? 999 : rankA) - (rankB === -1 ? 999 : rankB);
-    });
+    // Ordenar por ordem alfabética
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
+        a.nome.localeCompare(b.nome)
+    );
     
     let html = `
-        <div style="display: grid; gap: 8px; margin-top: 15px;">
+        <div style="display: grid; gap: 6px; margin-top: 12px;">
     `;
     
     jogadoresOrdenados.forEach(jogador => {
@@ -1825,22 +1572,22 @@ function renderizarAdminJogadores() {
         const totalPontos = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
         
         html += `
-            <div style="background: var(--bg-row); padding: 12px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-light);">
-                <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="background: var(--bg-row); padding: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border);">
+                <div style="display: flex; align-items: center; gap: 8px;">
                     <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
-                         style="width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--primary);"
+                         style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--primary);"
                          alt="${jogador.nome}">
                     <div>
-                        <div style="font-weight: 600; font-size: 0.9rem;">${jogador.nome}</div>
-                        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">
-                            <span>Rank: #${posicao}</span>
+                        <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}</div>
+                        <div style="display: flex; gap: 10px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
+                            <span>Posição: #${posicao}</span>
                             <span>Pontos: ${totalPontos}</span>
                         </div>
                     </div>
                 </div>
                 <button onclick="removerJogador('${jogador.id}', '${jogador.nome.replace(/'/g, "\\'")}')" 
-                        style="background: linear-gradient(135deg, #FF4757, #ff3742); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.8rem;">
-                    🗑️ Remover
+                        style="background: #FF4757; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.75rem;">
+                    🗑️
                 </button>
             </div>
         `;
@@ -1865,6 +1612,13 @@ window.removerJogador = async function(id, nome) {
         }
         
         alert('✅ Jogador removido com sucesso!');
+        
+        // Recarregar dados
+        await carregarDados();
+        if (modoAdmin) {
+            renderizarPlayersPoints();
+            renderizarAdminJogadores();
+        }
         
     } catch (e) {
         alert('❌ Erro ao remover jogador: ' + e.message);
@@ -1911,11 +1665,6 @@ btnExportarCSV.onclick = function() {
 
 // Event Listeners para teclado
 document.addEventListener('keydown', (e) => {
-    // Ctrl + Enter para salvar etapa (no modo admin)
-    if (modoAdmin && e.ctrlKey && e.key === 'Enter') {
-        salvarEtapa();
-    }
-    
     // Esc para fechar modal
     if (e.key === 'Escape' && modalAdmin.classList.contains('active')) {
         modalAdmin.classList.remove('active');
@@ -1933,16 +1682,7 @@ modalAdmin.addEventListener('click', (e) => {
 
 // Inicializar aplicação
 document.addEventListener('DOMContentLoaded', () => {
-    inicializar();
-});
-
-// Prevenir envio do formulário com Enter
-document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-        }
-    });
+    carregarDados();
 });
 
 // Permitir Enter no modal de senha
