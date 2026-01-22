@@ -937,11 +937,15 @@ body {
     <div class="view-toggle">
         <button class="view-btn active" id="btnViewRanking">
             <span>📊</span>
-            <span>Ranking</span>
+            <span>Ranking Geral</span>
+        </button>
+        <button class="view-btn" id="btnViewRankingKO">
+            <span>🥊</span>
+            <span>Ranking KO</span>
         </button>
     </div>
 
-    <!-- VIEW RANKING -->
+    <!-- VIEW RANKING GERAL -->
     <div id="viewRanking">
         <div class="ranking-section">
             <div class="section-header">
@@ -989,6 +993,57 @@ body {
 
         <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
             ℹ️ As 10 melhores pontuações de cada jogador são consideradas para a classificação geral.
+        </div>
+    </div>
+
+    <!-- VIEW RANKING KO (Inicialmente oculta) -->
+    <div id="viewRankingKO" style="display: none;">
+        <div class="ranking-section">
+            <div class="section-header">
+                <h2>
+                    <span>CLASSIFICAÇÃO KO</span>
+                    <span class="g10-badge">🥊 KO</span>
+                </h2>
+                <div style="color: var(--text-muted); font-size: 0.75rem;">
+                    Ranking baseado nas pontuações de KO
+                </div>
+            </div>
+            
+            <div class="ranking-container">
+                <table class="ranking-table" id="rankingTableKO">
+                    <thead id="rankingTableHeadKO">
+                        <tr>
+                            <th style="width: 60px;">POS</th>
+                            <th>JOGADOR</th>
+                            <th style="width: 90px; text-align: center;">PONTOS KO</th>
+                            <th style="width: 90px; text-align: center;">DIF. LÍDER</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingTableBodyKO">
+                        <tr>
+                            <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
+                                Carregando ranking KO...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
+            ℹ️ Este ranking contabiliza apenas as pontuações de KO das etapas.
         </div>
     </div>
 
@@ -1131,6 +1186,8 @@ let etapas = {};
 let modoAdmin = false;
 let etapaAtualSelecionada = 1;
 let rankingAtual = [];
+let rankingKO = [];
+let viewAtual = 'rankingGeral'; // 'rankingGeral' ou 'rankingKO'
 
 class FirebaseDB {
     constructor(config) {
@@ -1213,7 +1270,9 @@ const db = new FirebaseDB(FIREBASE_CONFIG);
 // Elementos DOM
 const statusIndicator = document.getElementById('statusIndicator');
 const btnViewRanking = document.getElementById('btnViewRanking');
+const btnViewRankingKO = document.getElementById('btnViewRankingKO');
 const viewRanking = document.getElementById('viewRanking');
+const viewRankingKO = document.getElementById('viewRankingKO');
 const viewAdmin = document.getElementById('viewAdmin');
 const btnAdminToggle = document.getElementById('btnAdminToggle');
 const modalAdmin = document.getElementById('modalAdmin');
@@ -1244,7 +1303,7 @@ async function carregarDados() {
         statusIndicator.textContent = '✅ Conectado';
         statusIndicator.classList.add('connected');
         
-        atualizarRanking();
+        calcularRankings();
         
     } catch (e) {
         console.error('Erro ao carregar dados:', e);
@@ -1272,6 +1331,7 @@ btnAcessarAdmin.onclick = () => {
         senhaAdmin.value = '';
         
         viewRanking.style.display = 'none';
+        viewRankingKO.style.display = 'none';
         viewAdmin.style.display = 'block';
         
         renderizarSeletorEtapas();
@@ -1289,12 +1349,43 @@ btnAcessarAdmin.onclick = () => {
     }
 };
 
-// Voltar para o ranking
+// Alternar entre Rankings
+btnViewRanking.onclick = () => {
+    if (!modoAdmin) {
+        viewAtual = 'rankingGeral';
+        btnViewRanking.classList.add('active');
+        btnViewRankingKO.classList.remove('active');
+        viewRanking.style.display = 'block';
+        viewRankingKO.style.display = 'none';
+        atualizarRankingGeral();
+    }
+};
+
+btnViewRankingKO.onclick = () => {
+    if (!modoAdmin) {
+        viewAtual = 'rankingKO';
+        btnViewRankingKO.classList.add('active');
+        btnViewRanking.classList.remove('active');
+        viewRanking.style.display = 'none';
+        viewRankingKO.style.display = 'block';
+        atualizarRankingKO();
+    }
+};
+
+// Voltar para o ranking do admin
 btnViewRanking.onclick = () => {
     if (modoAdmin) {
         viewRanking.style.display = 'block';
+        viewRankingKO.style.display = 'none';
         viewAdmin.style.display = 'none';
         carregarDados();
+    } else {
+        viewAtual = 'rankingGeral';
+        btnViewRanking.classList.add('active');
+        btnViewRankingKO.classList.remove('active');
+        viewRanking.style.display = 'block';
+        viewRankingKO.style.display = 'none';
+        atualizarRankingGeral();
     }
 };
 
@@ -1334,8 +1425,8 @@ btnAdicionarJogador.onclick = async () => {
     }
 };
 
-// Funções de Ranking
-function calcularRanking() {
+// Funções de Ranking Geral
+function calcularRankingGeral() {
     const rankingCalculado = jogadores.map(jogador => {
         const pontuacoes = [];
         let participacoes = 0;
@@ -1376,11 +1467,64 @@ function calcularRanking() {
     return rankingCalculado;
 }
 
-function atualizarRanking() {
-    const ranking = calcularRanking();
+// Funções de Ranking KO
+function calcularRankingKO() {
+    const rankingCalculado = jogadores.map(jogador => {
+        const pontuacoesKO = [];
+        let participacoesKO = 0;
+        
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            const score = etapas[i]?.[jogador.id];
+            if (score !== undefined && score !== null && score !== 'NJ') {
+                const pontos = parseInt(score);
+                if (!isNaN(pontos) && pontos > 0) {
+                    // Para o ranking KO, usamos TODAS as pontuações, não apenas as 10 melhores
+                    pontuacoesKO.push(pontos);
+                    participacoesKO++;
+                }
+            }
+        }
+        
+        // Soma de TODAS as pontuações de KO
+        const totalPontosKO = pontuacoesKO.reduce((sum, p) => sum + p, 0);
+        
+        return {
+            ...jogador,
+            totalPontosKO: totalPontosKO,
+            participacoesKO: participacoesKO,
+            pontuacoesKO: pontuacoesKO
+        };
+    });
+    
+    rankingCalculado.sort((a, b) => {
+        if (b.totalPontosKO !== a.totalPontosKO) return b.totalPontosKO - a.totalPontosKO;
+        if (b.participacoesKO !== a.participacoesKO) return b.participacoesKO - a.participacoesKO;
+        return a.nome.localeCompare(b.nome);
+    });
+    
+    rankingCalculado.forEach((jogador, index) => {
+        jogador.posicaoAtualKO = index + 1;
+    });
+    
+    rankingKO = rankingCalculado;
+    return rankingCalculado;
+}
+
+function calcularRankings() {
+    calcularRankingGeral();
+    calcularRankingKO();
+    
+    if (viewAtual === 'rankingGeral') {
+        atualizarRankingGeral();
+    } else {
+        atualizarRankingKO();
+    }
+}
+
+function atualizarRankingGeral() {
     const tbody = document.getElementById('rankingTableBody');
     
-    if (ranking.length === 0) {
+    if (rankingAtual.length === 0) {
         tbody.innerHTML = `
             <tr>
                 <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
@@ -1391,11 +1535,11 @@ function atualizarRanking() {
         return;
     }
     
-    const primeiroColocadoPontos = ranking[0]?.totalPontos || 0;
+    const primeiroColocadoPontos = rankingAtual[0]?.totalPontos || 0;
     
     tbody.innerHTML = '';
     
-    ranking.forEach((jogador, index) => {
+    rankingAtual.forEach((jogador, index) => {
         const rank = index + 1;
         const isTop10 = rank <= 10;
         
@@ -1442,6 +1586,85 @@ function atualizarRanking() {
             <td class="points-cell">
                 <div class="points pos-${rank <= 3 ? rank : ''}">
                     ${jogador.totalPontos}
+                </div>
+            </td>
+            <td class="diff-cell">
+                <div class="diff ${diffClass}">
+                    ${rank === 1 ? '—' : `-${diferencaPontos}`}
+                </div>
+            </td>
+            ${etapasHTML}
+        `;
+        
+        tbody.appendChild(tr);
+    });
+}
+
+function atualizarRankingKO() {
+    const tbody = document.getElementById('rankingTableBodyKO');
+    
+    if (rankingKO.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
+                    Nenhum jogador cadastrado
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    const primeiroColocadoPontosKO = rankingKO[0]?.totalPontosKO || 0;
+    
+    tbody.innerHTML = '';
+    
+    rankingKO.forEach((jogador, index) => {
+        const rank = index + 1;
+        const isTop10 = rank <= 10;
+        
+        const diferencaPontos = primeiroColocadoPontosKO - jogador.totalPontosKO;
+        const diffClass = rank === 1 ? 'leader' : '';
+        
+        // Gerar células de etapas para KO
+        let etapasHTML = '';
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            const score = etapas[i]?.[jogador.id];
+            let etapaClass = 'empty';
+            let etapaText = '-';
+            
+            if (score !== undefined && score !== null) {
+                if (score === 'NJ') {
+                    etapaClass = 'absent';
+                    etapaText = 'NJ';
+                } else if (parseInt(score) > 0) {
+                    etapaClass = 'present';
+                    etapaText = score;
+                }
+            }
+            
+            etapasHTML += `<td><div class="etapa-pill ${etapaClass}">${etapaText}</div></td>`;
+        }
+        
+        const tr = document.createElement('tr');
+        tr.className = `ranking-row ${isTop10 ? 'top10' : 'other'} pos-${isTop10 ? rank : ''}`;
+        tr.innerHTML = `
+            <td>
+                <div class="rank-cell">
+                    <div class="rank-number">${rank}</div>
+                </div>
+            </td>
+            <td>
+                <div class="player-info">
+                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
+                         class="player-avatar"
+                         alt="${jogador.nome}"
+                         onerror="this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('${jogador.nome}') + '&background=0a150a&color=d4a121&bold=true'">
+                    <div class="player-name">${jogador.nome}</div>
+                </div>
+            </td>
+            <td class="points-cell">
+                <div class="points pos-${rank <= 3 ? rank : ''}">
+                    ${jogador.totalPontosKO}
                 </div>
             </td>
             <td class="diff-cell">
@@ -1609,8 +1832,10 @@ function renderizarAdminJogadores() {
     `;
     
     jogadoresOrdenados.forEach(jogador => {
-        const posicao = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
-        const totalPontos = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
+        const posicaoGeral = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
+        const totalPontosGeral = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
+        const posicaoKO = (rankingKO.findIndex(j => j.id === jogador.id) + 1) || '-';
+        const totalPontosKO = rankingKO.find(j => j.id === jogador.id)?.totalPontosKO || 0;
         
         html += `
             <div style="background: var(--bg-row); padding: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border);">
@@ -1620,9 +1845,9 @@ function renderizarAdminJogadores() {
                          alt="${jogador.nome}">
                     <div>
                         <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}</div>
-                        <div style="display: flex; gap: 10px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
-                            <span>Posição: #${posicao}</span>
-                            <span>Pontos: ${totalPontos}</span>
+                        <div style="display: flex; gap: 8px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
+                            <span>Geral: #${posicaoGeral} (${totalPontosGeral} pts)</span>
+                            <span>KO: #${posicaoKO} (${totalPontosKO} pts)</span>
                         </div>
                     </div>
                 </div>
@@ -1665,9 +1890,9 @@ window.removerJogador = async function(id, nome) {
 
 // Exportar CSV
 btnExportarCSV.onclick = function() {
-    const ranking = calcularRanking();
+    const ranking = calcularRankingGeral();
     
-    let csv = 'Posição,Jogador,Pontos Totais,Participações,Diferença para Líder';
+    let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações,Diferença para Líder,Pontos KO,Posição KO';
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         csv += `,Etapa ${i}`;
@@ -1677,8 +1902,12 @@ btnExportarCSV.onclick = function() {
     const primeiroPontos = ranking[0]?.totalPontos || 0;
     
     ranking.forEach(jogador => {
-        const diferenca = primeiroPontos - jogador.totalPontos;
-        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferenca}`;
+        const diferencaGeral = primeiroPontos - jogador.totalPontos;
+        const jogadorKO = rankingKO.find(j => j.id === jogador.id);
+        const pontosKO = jogadorKO?.totalPontosKO || 0;
+        const posicaoKO = jogadorKO?.posicaoAtualKO || '-';
+        
+        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferencaGeral},${pontosKO},${posicaoKO}`;
         
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapas[i]?.[jogador.id] || '-';
