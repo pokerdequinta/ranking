@@ -26,6 +26,8 @@
     --text-muted: #aaaaaa;
     --border: #1a2a1a;
     --border-light: #152015;
+    --ko-color: #FF6B6B;
+    --ko-color-dark: #FF4757;
 }
 
 * {
@@ -119,6 +121,21 @@ body {
     border-color: var(--primary);
 }
 
+.view-btn.ko {
+    color: var(--ko-color);
+}
+
+.view-btn.ko:hover {
+    background: rgba(255, 107, 107, 0.05);
+    border-color: var(--ko-color);
+}
+
+.view-btn.ko.active {
+    background: var(--ko-color);
+    color: #000;
+    border-color: var(--ko-color);
+}
+
 /* SEÇÃO RANKING */
 .ranking-section {
     background: var(--bg-card);
@@ -143,6 +160,10 @@ body {
     gap: 6px;
 }
 
+.section-header.ko h2 {
+    color: var(--ko-color);
+}
+
 .g10-badge {
     background: linear-gradient(135deg, var(--gold), var(--primary));
     color: #000;
@@ -154,6 +175,10 @@ body {
     align-items: center;
     gap: 3px;
     margin-left: 6px;
+}
+
+.g10-badge.ko {
+    background: linear-gradient(135deg, var(--ko-color), #FF8E8E);
 }
 
 /* TABELA DE RANKING */
@@ -176,6 +201,10 @@ body {
     z-index: 10;
 }
 
+.ranking-table.ko thead {
+    background: linear-gradient(180deg, #3d1a1a 0%, #301616 100%);
+}
+
 .ranking-table th {
     padding: 10px 8px;
     text-align: left;
@@ -187,6 +216,11 @@ body {
     letter-spacing: 0.5px;
     border-bottom: 2px solid var(--primary);
     white-space: nowrap;
+}
+
+.ranking-table.ko th {
+    color: var(--ko-color);
+    border-bottom: 2px solid var(--ko-color);
 }
 
 .ranking-table th:first-child {
@@ -230,6 +264,18 @@ body {
     background: rgba(212, 161, 33, 0.2);
 }
 
+.ranking-row.top10.ko:nth-child(odd) {
+    background: rgba(255, 107, 107, 0.15);
+}
+
+.ranking-row.top10.ko:nth-child(even) {
+    background: rgba(255, 107, 107, 0.10);
+}
+
+.ranking-row.top10.ko:hover {
+    background: rgba(255, 107, 107, 0.2);
+}
+
 /* APÓS O 10º - CORES NORMAIS */
 .ranking-row.other:nth-child(odd) {
     background: var(--bg-row);
@@ -241,6 +287,10 @@ body {
 
 .ranking-row.other:hover {
     background: rgba(212, 161, 33, 0.03);
+}
+
+.ranking-row.other.ko:hover {
+    background: rgba(255, 107, 107, 0.03);
 }
 
 /* DESTAQUES POR POSIÇÃO COM BORDAS E CORES FORTES */
@@ -319,6 +369,12 @@ body {
     border-color: rgba(212, 161, 33, 0.4);
 }
 
+.ranking-row.top10.ko .rank-number {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.4);
+    color: var(--ko-color);
+}
+
 /* JOGADOR */
 .player-info {
     display: flex;
@@ -333,12 +389,6 @@ body {
     object-fit: cover;
     border: 1px solid var(--primary);
     background: var(--bg-dark);
-}
-
-.player-name {
-    font-weight: 600;
-    font-size: 0.8rem;
-    color: var(--text);
 }
 
 /* PONTUAÇÃO COM BORDA */
@@ -374,9 +424,37 @@ body {
     background: rgba(205, 127, 50, 0.2);
     border: 1px solid rgba(205, 127, 50, 0.4);
 }
+
+.points.ko {
+    color: var(--ko-color);
+    background: rgba(255, 107, 107, 0.08);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.points.ko.pos-1 { 
+    color: var(--gold);
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+}
+.points.ko.pos-2 { 
+    color: var(--silver);
+    background: rgba(192, 192, 192, 0.2);
+    border: 1px solid rgba(192, 192, 192, 0.4);
+}
+.points.ko.pos-3 { 
+    color: var(--bronze);
+    background: rgba(205, 127, 50, 0.2);
+    border: 1px solid rgba(205, 127, 50, 0.4);
+}
+
 .ranking-row.top10 .points:not(.pos-1):not(.pos-2):not(.pos-3) {
     background: rgba(212, 161, 33, 0.15);
     border: 1px solid rgba(212, 161, 33, 0.3);
+}
+
+.ranking-row.top10.ko .points.ko:not(.pos-1):not(.pos-2):not(.pos-3) {
+    background: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 /* DIFERENÇA PARA O LÍDER - VERMELHA */
@@ -420,6 +498,10 @@ body {
     background: linear-gradient(135deg, #4CAF50, #45a049);
     color: white;
     border: none;
+}
+
+.etapa-pill.present.ko {
+    background: linear-gradient(135deg, var(--ko-color), var(--ko-color-dark));
 }
 
 .etapa-pill.absent {
@@ -496,6 +578,21 @@ body {
     border-color: var(--primary);
 }
 
+.stage-btn.ko {
+    border-color: var(--ko-color);
+}
+
+.stage-btn.ko:hover {
+    border-color: var(--ko-color);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.stage-btn.ko.active {
+    background: var(--ko-color);
+    color: #000;
+    border-color: var(--ko-color);
+}
+
 /* Etapa Atual */
 .etapa-atual {
     text-align: center;
@@ -513,6 +610,10 @@ body {
     margin: 0 4px;
 }
 
+.etapa-atual.ko .numero {
+    color: var(--ko-color);
+}
+
 /* LISTA DE JOGADORES PARA PONTUAÇÃO - ORDEM ALFABÉTICA */
 .players-points-list {
     margin-top: 12px;
@@ -528,6 +629,10 @@ body {
     font-weight: 600;
     font-size: 0.8rem;
     color: var(--primary);
+}
+
+.points-list-header.ko {
+    color: var(--ko-color);
 }
 
 .points-list-items {
@@ -555,6 +660,10 @@ body {
 
 .point-item:hover {
     background: rgba(212, 161, 33, 0.03);
+}
+
+.point-item.ko:hover {
+    background: rgba(255, 107, 107, 0.03);
 }
 
 .player-info-admin {
@@ -597,6 +706,10 @@ body {
     border-color: #FF4757;
 }
 
+.points-input-admin.ko input:focus {
+    border-color: var(--ko-color);
+}
+
 .quick-actions {
     display: flex;
     gap: 3px;
@@ -617,6 +730,10 @@ body {
 .quick-action-btn:hover {
     background: var(--primary);
     color: #000;
+}
+
+.quick-action-btn.ko:hover {
+    background: var(--ko-color);
 }
 
 /* ADMIN ACTIONS */
@@ -652,6 +769,14 @@ body {
 
 .save-btn:hover {
     background: #45a049;
+}
+
+.save-btn.ko {
+    background: var(--ko-color);
+}
+
+.save-btn.ko:hover {
+    background: var(--ko-color-dark);
 }
 
 .clear-btn {
@@ -816,6 +941,55 @@ body {
     text-align: center;
 }
 
+/* PAINEL ADMIN KO */
+.admin-ko-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background: var(--bg-row);
+    border-radius: 4px;
+}
+
+.admin-ko-toggle-btn {
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-ko-toggle-btn:hover {
+    border-color: var(--primary);
+    background: rgba(212, 161, 33, 0.05);
+}
+
+.admin-ko-toggle-btn.active {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+}
+
+.admin-ko-toggle-btn.ko {
+    border-color: var(--ko-color);
+    color: var(--ko-color);
+}
+
+.admin-ko-toggle-btn.ko:hover {
+    border-color: var(--ko-color);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.admin-ko-toggle-btn.ko.active {
+    background: var(--ko-color);
+    color: #000;
+    border-color: var(--ko-color);
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .header h1 {
@@ -939,7 +1113,7 @@ body {
             <span>📊</span>
             <span>Ranking Geral</span>
         </button>
-        <button class="view-btn" id="btnViewRankingKO">
+        <button class="view-btn ko" id="btnViewRankingKO">
             <span>🥊</span>
             <span>Ranking KO</span>
         </button>
@@ -999,18 +1173,18 @@ body {
     <!-- VIEW RANKING KO (Inicialmente oculta) -->
     <div id="viewRankingKO" style="display: none;">
         <div class="ranking-section">
-            <div class="section-header">
+            <div class="section-header ko">
                 <h2>
                     <span>CLASSIFICAÇÃO KO</span>
-                    <span class="g10-badge">🥊 KO</span>
+                    <span class="g10-badge ko">🥊 KO</span>
                 </h2>
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
-                    Ranking baseado nas pontuações de KO
+                    Ranking baseado nas pontuações de KO (banco de dados separado)
                 </div>
             </div>
             
             <div class="ranking-container">
-                <table class="ranking-table" id="rankingTableKO">
+                <table class="ranking-table ko" id="rankingTableKO">
                     <thead id="rankingTableHeadKO">
                         <tr>
                             <th style="width: 60px;">POS</th>
@@ -1043,63 +1217,136 @@ body {
         </div>
 
         <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
-            ℹ️ Este ranking contabiliza apenas as pontuações de KO das etapas.
+            ℹ️ Este ranking contabiliza apenas as pontuações de KO (banco de dados separado).
         </div>
     </div>
 
     <!-- VIEW ADMIN (Inicialmente oculta) -->
     <div id="viewAdmin" style="display: none;">
-        <div class="admin-section">
-            <div class="admin-header">
-                <h2>
-                    <span>⚙️</span>
-                    <span>PAINEL ADMINISTRATIVO</span>
-                </h2>
-                <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">
-                    Gerencie jogadores e pontuações das etapas
+        <!-- Botões para alternar entre Geral e KO no Admin -->
+        <div class="admin-ko-toggle">
+            <button class="admin-ko-toggle-btn active" id="btnAdminGeral">
+                <span>📊</span>
+                <span>Pontuações Gerais</span>
+            </button>
+            <button class="admin-ko-toggle-btn ko" id="btnAdminKO">
+                <span>🥊</span>
+                <span>Pontuações KO</span>
+            </button>
+        </div>
+
+        <!-- ADMIN GERAL -->
+        <div id="adminGeral">
+            <div class="admin-section">
+                <div class="admin-header">
+                    <h2>
+                        <span>📊</span>
+                        <span>PONTUAÇÕES GERAIS</span>
+                    </h2>
+                    <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">
+                        Gerencie pontuações das etapas (Geral)
+                    </div>
+                </div>
+
+                <div class="points-system">
+                    <!-- Seletor de Etapas -->
+                    <div style="text-align: center; margin-bottom: 8px;">
+                        <div style="color: var(--primary); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">
+                            SELECIONE A ETAPA:
+                        </div>
+                        <div class="stage-selector" id="etapaSelector"></div>
+                    </div>
+
+                    <!-- Etapa Atual -->
+                    <div class="etapa-atual">
+                        <div style="font-size: 0.9rem; font-weight: 700; color: var(--gold);">
+                            ETAPA <span class="numero" id="etapaAtualNumero">1</span>
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">
+                            Atualize as pontuações dos jogadores
+                        </div>
+                    </div>
+
+                    <!-- Lista de Jogadores para Pontuação (ORDEM ALFABÉTICA) -->
+                    <div class="players-points-list">
+                        <div class="points-list-header">
+                            <div>JOGADOR</div>
+                            <div>PONTOS</div>
+                        </div>
+                        <div class="points-list-items" id="playersPointsList">
+                            <!-- Jogadores serão carregados dinamicamente em ordem alfabética -->
+                        </div>
+                    </div>
+
+                    <!-- Ações -->
+                    <div class="admin-actions">
+                        <button class="admin-btn clear-btn" onclick="limparPontuacoes('geral')">
+                            <span>🧹</span>
+                            <span>Limpar Tudo</span>
+                        </button>
+                        <button class="admin-btn save-btn" onclick="salvarEtapa('geral')">
+                            <span>💾</span>
+                            <span>Salvar Etapa</span>
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="points-system">
-                <!-- Seletor de Etapas -->
-                <div style="text-align: center; margin-bottom: 8px;">
-                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">
-                        SELECIONE A ETAPA:
-                    </div>
-                    <div class="stage-selector" id="etapaSelector"></div>
-                </div>
-
-                <!-- Etapa Atual -->
-                <div class="etapa-atual">
-                    <div style="font-size: 0.9rem; font-weight: 700; color: var(--gold);">
-                        ETAPA <span class="numero" id="etapaAtualNumero">1</span>
-                    </div>
-                    <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">
-                        Atualize as pontuações dos jogadores
+        <!-- ADMIN KO -->
+        <div id="adminKO" style="display: none;">
+            <div class="admin-section">
+                <div class="admin-header">
+                    <h2>
+                        <span>🥊</span>
+                        <span>PONTUAÇÕES KO</span>
+                    </h2>
+                    <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">
+                        Gerencie pontuações das etapas (KO)
                     </div>
                 </div>
 
-                <!-- Lista de Jogadores para Pontuação (ORDEM ALFABÉTICA) -->
-                <div class="players-points-list">
-                    <div class="points-list-header">
-                        <div>JOGADOR</div>
-                        <div>PONTOS</div>
+                <div class="points-system">
+                    <!-- Seletor de Etapas KO -->
+                    <div style="text-align: center; margin-bottom: 8px;">
+                        <div style="color: var(--ko-color); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">
+                            SELECIONE A ETAPA KO:
+                        </div>
+                        <div class="stage-selector" id="etapaSelectorKO"></div>
                     </div>
-                    <div class="points-list-items" id="playersPointsList">
-                        <!-- Jogadores serão carregados dinamicamente em ordem alfabética -->
-                    </div>
-                </div>
 
-                <!-- Ações -->
-                <div class="admin-actions">
-                    <button class="admin-btn clear-btn" onclick="limparPontuacoes()">
-                        <span>🧹</span>
-                        <span>Limpar Tudo</span>
-                    </button>
-                    <button class="admin-btn save-btn" onclick="salvarEtapa()">
-                        <span>💾</span>
-                        <span>Salvar Etapa</span>
-                    </button>
+                    <!-- Etapa Atual KO -->
+                    <div class="etapa-atual ko">
+                        <div style="font-size: 0.9rem; font-weight: 700; color: var(--ko-color);">
+                            ETAPA KO <span class="numero" id="etapaAtualNumeroKO">1</span>
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">
+                            Atualize as pontuações de KO dos jogadores
+                        </div>
+                    </div>
+
+                    <!-- Lista de Jogadores para Pontuação KO (ORDEM ALFABÉTICA) -->
+                    <div class="players-points-list">
+                        <div class="points-list-header ko">
+                            <div>JOGADOR</div>
+                            <div>PONTOS KO</div>
+                        </div>
+                        <div class="points-list-items" id="playersPointsListKO">
+                            <!-- Jogadores serão carregados dinamicamente em ordem alfabética -->
+                        </div>
+                    </div>
+
+                    <!-- Ações KO -->
+                    <div class="admin-actions">
+                        <button class="admin-btn clear-btn" onclick="limparPontuacoes('ko')">
+                            <span>🧹</span>
+                            <span>Limpar Tudo</span>
+                        </button>
+                        <button class="admin-btn save-btn ko" onclick="salvarEtapa('ko')">
+                            <span>💾</span>
+                            <span>Salvar Etapa KO</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1183,8 +1430,11 @@ const SENHA_ADMIN = "poker2026";
 
 let jogadores = [];
 let etapas = {};
+let etapasKO = {};
 let modoAdmin = false;
 let etapaAtualSelecionada = 1;
+let etapaAtualSelecionadaKO = 1;
+let adminTipo = 'geral'; // 'geral' ou 'ko'
 let rankingAtual = [];
 let rankingKO = [];
 let viewAtual = 'rankingGeral'; // 'rankingGeral' ou 'rankingKO'
@@ -1283,11 +1533,16 @@ const btnAdicionarJogador = document.getElementById('btnAdicionarJogador');
 const novoJogadorNome = document.getElementById('novoJogadorNome');
 const novoJogadorFoto = document.getElementById('novoJogadorFoto');
 const btnExportarCSV = document.getElementById('btnExportarCSV');
+const btnAdminGeral = document.getElementById('btnAdminGeral');
+const btnAdminKO = document.getElementById('btnAdminKO');
+const adminGeral = document.getElementById('adminGeral');
+const adminKO = document.getElementById('adminKO');
 
 async function carregarDados() {
     try {
         const dadosJogadores = await db.get('rankingJogadores');
         const dadosEtapas = await db.get('rankingEtapas');
+        const dadosEtapasKO = await db.get('rankingEtapasKO');
         
         if (dadosJogadores) {
             jogadores = Object.keys(dadosJogadores).map(key => ({
@@ -1298,6 +1553,10 @@ async function carregarDados() {
         
         if (dadosEtapas) {
             etapas = dadosEtapas;
+        }
+        
+        if (dadosEtapasKO) {
+            etapasKO = dadosEtapasKO;
         }
         
         statusIndicator.textContent = '✅ Conectado';
@@ -1335,7 +1594,8 @@ btnAcessarAdmin.onclick = () => {
         viewAdmin.style.display = 'block';
         
         renderizarSeletorEtapas();
-        renderizarPlayersPoints();
+        renderizarSeletorEtapasKO();
+        renderizarPlayersPoints('geral');
         renderizarAdminJogadores();
         
         setTimeout(() => {
@@ -1370,6 +1630,25 @@ btnViewRankingKO.onclick = () => {
         viewRankingKO.style.display = 'block';
         atualizarRankingKO();
     }
+};
+
+// Alternar entre Geral e KO no Admin
+btnAdminGeral.onclick = () => {
+    adminTipo = 'geral';
+    btnAdminGeral.classList.add('active');
+    btnAdminKO.classList.remove('active');
+    adminGeral.style.display = 'block';
+    adminKO.style.display = 'none';
+    renderizarPlayersPoints('geral');
+};
+
+btnAdminKO.onclick = () => {
+    adminTipo = 'ko';
+    btnAdminKO.classList.add('active');
+    btnAdminGeral.classList.remove('active');
+    adminGeral.style.display = 'none';
+    adminKO.style.display = 'block';
+    renderizarPlayersPoints('ko');
 };
 
 // Voltar para o ranking do admin
@@ -1416,7 +1695,7 @@ btnAdicionarJogador.onclick = async () => {
         
         await carregarDados();
         if (modoAdmin) {
-            renderizarPlayersPoints();
+            renderizarPlayersPoints(adminTipo);
             renderizarAdminJogadores();
         }
         
@@ -1474,25 +1753,24 @@ function calcularRankingKO() {
         let participacoesKO = 0;
         
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            const score = etapas[i]?.[jogador.id];
+            const score = etapasKO[i]?.[jogador.id];
             if (score !== undefined && score !== null && score !== 'NJ') {
                 const pontos = parseInt(score);
                 if (!isNaN(pontos) && pontos > 0) {
-                    // Para o ranking KO, usamos TODAS as pontuações, não apenas as 10 melhores
                     pontuacoesKO.push(pontos);
                     participacoesKO++;
                 }
             }
         }
         
-        // Soma de TODAS as pontuações de KO
-        const totalPontosKO = pontuacoesKO.reduce((sum, p) => sum + p, 0);
+        const melhoresPontuacoesKO = pontuacoesKO.sort((a, b) => b - a).slice(0, 10);
+        const totalPontosKO = melhoresPontuacoesKO.reduce((sum, p) => sum + p, 0);
         
         return {
             ...jogador,
             totalPontosKO: totalPontosKO,
             participacoesKO: participacoesKO,
-            pontuacoesKO: pontuacoesKO
+            melhoresPontuacoesKO: melhoresPontuacoesKO
         };
     });
     
@@ -1628,7 +1906,7 @@ function atualizarRankingKO() {
         // Gerar células de etapas para KO
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            const score = etapas[i]?.[jogador.id];
+            const score = etapasKO[i]?.[jogador.id];
             let etapaClass = 'empty';
             let etapaText = '-';
             
@@ -1637,7 +1915,7 @@ function atualizarRankingKO() {
                     etapaClass = 'absent';
                     etapaText = 'NJ';
                 } else if (parseInt(score) > 0) {
-                    etapaClass = 'present';
+                    etapaClass = 'present ko';
                     etapaText = score;
                 }
             }
@@ -1646,7 +1924,7 @@ function atualizarRankingKO() {
         }
         
         const tr = document.createElement('tr');
-        tr.className = `ranking-row ${isTop10 ? 'top10' : 'other'} pos-${isTop10 ? rank : ''}`;
+        tr.className = `ranking-row ${isTop10 ? 'top10 ko' : 'other'} pos-${isTop10 ? rank : ''}`;
         tr.innerHTML = `
             <td>
                 <div class="rank-cell">
@@ -1663,7 +1941,7 @@ function atualizarRankingKO() {
                 </div>
             </td>
             <td class="points-cell">
-                <div class="points pos-${rank <= 3 ? rank : ''}">
+                <div class="points ko pos-${rank <= 3 ? rank : ''}">
                     ${jogador.totalPontosKO}
                 </div>
             </td>
@@ -1694,15 +1972,38 @@ function renderizarSeletorEtapas() {
         btn.onclick = () => {
             etapaAtualSelecionada = i;
             renderizarSeletorEtapas();
-            renderizarPlayersPoints();
+            renderizarPlayersPoints('geral');
             document.getElementById('etapaAtualNumero').textContent = i;
         };
         container.appendChild(btn);
     }
 }
 
-function renderizarPlayersPoints() {
-    const container = document.getElementById('playersPointsList');
+function renderizarSeletorEtapasKO() {
+    const container = document.getElementById('etapaSelectorKO');
+    container.innerHTML = '';
+    
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'stage-btn ko';
+        if (i === etapaAtualSelecionadaKO) {
+            btn.classList.add('active');
+        }
+        btn.textContent = `K${i}`;
+        btn.onclick = () => {
+            etapaAtualSelecionadaKO = i;
+            renderizarSeletorEtapasKO();
+            renderizarPlayersPoints('ko');
+            document.getElementById('etapaAtualNumeroKO').textContent = i;
+        };
+        container.appendChild(btn);
+    }
+}
+
+function renderizarPlayersPoints(tipo) {
+    const container = tipo === 'geral' ? 
+        document.getElementById('playersPointsList') : 
+        document.getElementById('playersPointsListKO');
     
     if (!container) return;
     
@@ -1713,10 +2014,12 @@ function renderizarPlayersPoints() {
     );
     
     jogadoresOrdenados.forEach(jogador => {
-        const scoreAtual = etapas[etapaAtualSelecionada]?.[jogador.id] || '';
+        const scoreAtual = tipo === 'geral' ? 
+            etapas[etapaAtualSelecionada]?.[jogador.id] || '' :
+            etapasKO[etapaAtualSelecionadaKO]?.[jogador.id] || '';
         
         const item = document.createElement('div');
-        item.className = 'point-item';
+        item.className = `point-item ${tipo === 'ko' ? 'ko' : ''}`;
         item.innerHTML = `
             <div class="player-info-admin">
                 <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
@@ -1724,14 +2027,14 @@ function renderizarPlayersPoints() {
                      alt="${jogador.nome}">
                 <div style="font-weight: 600; font-size: 0.8rem;">${jogador.nome}</div>
             </div>
-            <div class="points-input-admin">
+            <div class="points-input-admin ${tipo === 'ko' ? 'ko' : ''}">
                 <input type="text" 
-                       id="score_${etapaAtualSelecionada}_${jogador.id}"
+                       id="${tipo}_score_${tipo === 'geral' ? etapaAtualSelecionada : etapaAtualSelecionadaKO}_${jogador.id}"
                        value="${scoreAtual}"
                        placeholder="Pts ou NJ"
-                       oninput="formatarInputPontos(this)">
+                       oninput="formatarInputPontos(this, '${tipo}')">
                 <div class="quick-actions">
-                    <button class="quick-action-btn" onclick="setPontuacao('${jogador.id}', 'NJ')">NJ</button>
+                    <button class="quick-action-btn ${tipo === 'ko' ? 'ko' : ''}" onclick="setPontuacao('${jogador.id}', 'NJ', '${tipo}')">NJ</button>
                 </div>
             </div>
         `;
@@ -1741,7 +2044,7 @@ function renderizarPlayersPoints() {
 }
 
 // Funções auxiliares para o sistema de pontuação
-window.formatarInputPontos = function(input) {
+window.formatarInputPontos = function(input, tipo) {
     let valor = input.value.trim().toUpperCase();
     
     if (valor === 'NJ') {
@@ -1752,35 +2055,49 @@ window.formatarInputPontos = function(input) {
         input.value = valor;
         input.classList.remove('NJ');
     }
-};
-
-window.setPontuacao = function(jogadorId, pontos) {
-    const input = document.getElementById(`score_${etapaAtualSelecionada}_${jogadorId}`);
-    if (input) {
-        input.value = pontos;
-        formatarInputPontos(input);
+    
+    if (tipo === 'ko') {
+        if (input.value === 'NJ') {
+            input.style.borderColor = '#FF4757';
+        } else {
+            input.style.borderColor = 'var(--ko-color)';
+        }
     }
 };
 
-window.limparPontuacoes = function() {
-    if (confirm('Tem certeza que deseja limpar TODAS as pontuações desta etapa?')) {
+window.setPontuacao = function(jogadorId, pontos, tipo) {
+    const etapa = tipo === 'geral' ? etapaAtualSelecionada : etapaAtualSelecionadaKO;
+    const input = document.getElementById(`${tipo}_score_${etapa}_${jogadorId}`);
+    if (input) {
+        input.value = pontos;
+        formatarInputPontos(input, tipo);
+    }
+};
+
+window.limparPontuacoes = function(tipo) {
+    if (confirm(`Tem certeza que deseja limpar TODAS as pontuações ${tipo === 'geral' ? 'gerais' : 'KO'} desta etapa?`)) {
         jogadores.forEach(jogador => {
-            const input = document.getElementById(`score_${etapaAtualSelecionada}_${jogador.id}`);
+            const etapa = tipo === 'geral' ? etapaAtualSelecionada : etapaAtualSelecionadaKO;
+            const input = document.getElementById(`${tipo}_score_${etapa}_${jogador.id}`);
             if (input) {
                 input.value = '';
                 input.classList.remove('NJ');
+                if (tipo === 'ko') {
+                    input.style.borderColor = 'var(--border)';
+                }
             }
         });
     }
 };
 
-window.salvarEtapa = async function() {
+window.salvarEtapa = async function(tipo) {
     try {
         const novosScores = {};
         let temAlteracoes = false;
         
         jogadores.forEach(jogador => {
-            const input = document.getElementById(`score_${etapaAtualSelecionada}_${jogador.id}`);
+            const etapa = tipo === 'geral' ? etapaAtualSelecionada : etapaAtualSelecionadaKO;
+            const input = document.getElementById(`${tipo}_score_${etapa}_${jogador.id}`);
             if (input) {
                 const valor = input.value.trim().toUpperCase();
                 if (valor) {
@@ -1793,18 +2110,22 @@ window.salvarEtapa = async function() {
         });
         
         if (!temAlteracoes) {
-            if (!confirm('Nenhuma pontuação foi alterada. Deseja salvar mesmo assim?')) {
+            if (!confirm(`Nenhuma pontuação ${tipo === 'geral' ? 'geral' : 'KO'} foi alterada. Deseja salvar mesmo assim?`)) {
                 return;
             }
         }
         
-        await db.set(`rankingEtapas/${etapaAtualSelecionada}`, novosScores);
-        alert('✅ Etapa salva com sucesso!');
+        const caminho = tipo === 'geral' ? 
+            `rankingEtapas/${etapaAtualSelecionada}` : 
+            `rankingEtapasKO/${etapaAtualSelecionadaKO}`;
+        
+        await db.set(caminho, novosScores);
+        alert(`✅ Etapa ${tipo === 'geral' ? 'geral' : 'KO'} salva com sucesso!`);
         
         await carregarDados();
         
     } catch (e) {
-        alert('❌ Erro ao salvar etapa: ' + e.message);
+        alert(`❌ Erro ao salvar etapa ${tipo === 'geral' ? 'geral' : 'KO'}: ` + e.message);
     }
 };
 
@@ -1846,8 +2167,8 @@ function renderizarAdminJogadores() {
                     <div>
                         <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}</div>
                         <div style="display: flex; gap: 8px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
-                            <span>Geral: #${posicaoGeral} (${totalPontosGeral} pts)</span>
-                            <span>KO: #${posicaoKO} (${totalPontosKO} pts)</span>
+                            <span>📊 Geral: #${posicaoGeral} (${totalPontosGeral} pts)</span>
+                            <span>🥊 KO: #${posicaoKO} (${totalPontosKO} pts)</span>
                         </div>
                     </div>
                 </div>
@@ -1873,13 +2194,14 @@ window.removerJogador = async function(id, nome) {
         
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             await db.remove(`rankingEtapas/${i}/${id}`);
+            await db.remove(`rankingEtapasKO/${i}/${id}`);
         }
         
         alert('✅ Jogador removido com sucesso!');
         
         await carregarDados();
         if (modoAdmin) {
-            renderizarPlayersPoints();
+            renderizarPlayersPoints(adminTipo);
             renderizarAdminJogadores();
         }
         
@@ -1891,11 +2213,15 @@ window.removerJogador = async function(id, nome) {
 // Exportar CSV
 btnExportarCSV.onclick = function() {
     const ranking = calcularRankingGeral();
+    const rankingKOCalc = calcularRankingKO();
     
-    let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações,Diferença para Líder,Pontos KO,Posição KO';
+    let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações (Geral),Diferença para Líder (Geral),Pontos KO,Participações KO,Posição KO';
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-        csv += `,Etapa ${i}`;
+        csv += `,Etapa ${i} Geral`;
+    }
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+        csv += `,Etapa ${i} KO`;
     }
     csv += '\n';
     
@@ -1903,14 +2229,22 @@ btnExportarCSV.onclick = function() {
     
     ranking.forEach(jogador => {
         const diferencaGeral = primeiroPontos - jogador.totalPontos;
-        const jogadorKO = rankingKO.find(j => j.id === jogador.id);
+        const jogadorKO = rankingKOCalc.find(j => j.id === jogador.id);
         const pontosKO = jogadorKO?.totalPontosKO || 0;
+        const participacoesKO = jogadorKO?.participacoesKO || 0;
         const posicaoKO = jogadorKO?.posicaoAtualKO || '-';
         
-        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferencaGeral},${pontosKO},${posicaoKO}`;
+        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferencaGeral},${pontosKO},${participacoesKO},${posicaoKO}`;
         
+        // Pontuações gerais
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapas[i]?.[jogador.id] || '-';
+            csv += `,"${score}"`;
+        }
+        
+        // Pontuações KO
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            const score = etapasKO[i]?.[jogador.id] || '-';
             csv += `,"${score}"`;
         }
         csv += '\n';
@@ -1919,12 +2253,12 @@ btnExportarCSV.onclick = function() {
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `ranking-poker-quinta-${new Date().toISOString().split('T')[0]}.csv`;
+    link.download = `ranking-poker-quinta-completo-${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     
-    alert('📊 Ranking exportado com sucesso!');
+    alert('📊 Ranking completo exportado com sucesso!');
 };
 
 // Event Listeners
