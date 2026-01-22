@@ -6,161 +6,986 @@
 <title>Ranking - Poker de Quinta</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Roboto', sans-serif;background:#0d1b0d;color:#fff;min-height:100vh}
-.logo-top{text-align:center;padding:20px 20px 15px}
-.logo-top img{max-width:250px;height:auto}
-.container{max-width:1400px;margin:auto;padding:15px}
-header{text-align:center;background:#102810;border:2px solid #d4a121;border-radius:12px;padding:20px;margin-bottom:20px}
-h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
-.subtitle{margin-top:8px;font-size:1em}
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap');
 
-.view-toggle{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
-.view-btn{padding:10px 25px;background:#102810;border:2px solid #d4a121;border-radius:8px;color:#d4a121;font-weight:bold;cursor:pointer;transition:all 0.3s;font-size:0.9em}
-.view-btn.active{background:#d4a121;color:#000}
+:root {
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+    --primary: #d4a121;
+    --primary-dark: #b38a1c;
+    --bg-dark: #0a150a;
+    --bg-card: #0f1f0f;
+    --bg-row: #122012;
+    --bg-row-alt: #0f1a0f;
+    --success: #4CAF50;
+    --danger: #FF4757;
+    --text: #ffffff;
+    --text-muted: #aaaaaa;
+    --border: #2a402a;
+}
 
-.section{background:#102810;border:2px solid #d4a121;border-radius:10px;padding:12px;margin-bottom:15px}
-.section h3{color:#d4a121;margin-bottom:10px;font-family:'Anton';font-size:1.2em}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-.ranking-table{width:100%;border-collapse:collapse}
-.ranking-table th{text-align:left;padding:8px 6px;background:#1a3d1a;color:#d4a121;font-family:'Anton';border-bottom:2px solid #d4a121;font-size:0.85em}
-.ranking-table td{padding:6px;font-size:0.85em}
-.ranking-row{transition:all 0.2s}
-.ranking-row:hover{background:rgba(212,161,33,0.15)}
-.ranking-row:nth-child(odd){background:rgba(26,61,26,0.3)}
-.ranking-row:nth-child(even){background:rgba(16,40,16,0.3)}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-/* Destaque especial para os 10 primeiros */
-.ranking-row.top10{border-left:6px solid #FFD700;background:linear-gradient(90deg,rgba(255,215,0,0.1) 0%,rgba(212,161,33,0.05) 100%)}
-.ranking-row.top10:nth-child(odd){background:linear-gradient(90deg,rgba(255,215,0,0.15) 0%,rgba(212,161,33,0.08) 100%)}
-.ranking-row.top10:nth-child(even){background:linear-gradient(90deg,rgba(255,215,0,0.12) 0%,rgba(212,161,33,0.06) 100%)}
-.ranking-row.top10:hover{background:linear-gradient(90deg,rgba(255,215,0,0.25) 0%,rgba(212,161,33,0.12) 100%)}
+/* Logo e Cabeçalho */
+.logo-container {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+    border-bottom: 3px solid var(--primary);
+}
 
-/* Cores específicas por posição */
-.ranking-row.pos-1{border-left:6px solid #FFD700;background:linear-gradient(90deg,rgba(255,215,0,0.2) 0%,rgba(212,161,33,0.1) 100%)}
-.ranking-row.pos-2{border-left:6px solid #C0C0C0;background:linear-gradient(90deg,rgba(192,192,192,0.15) 0%,rgba(212,161,33,0.08) 100%)}
-.ranking-row.pos-3{border-left:6px solid #CD7F32;background:linear-gradient(90deg,rgba(205,127,50,0.15) 0%,rgba(212,161,33,0.08) 100%)}
+.logo-container img {
+    max-width: 280px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(212, 161, 33, 0.3));
+}
+
+.header {
+    text-align: center;
+    padding: 25px 20px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.header h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.8rem;
+    color: var(--primary);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Botões de Visualização */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.view-btn {
+    padding: 12px 30px;
+    background: var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 161, 33, 0.2);
+}
+
+.view-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #000;
+    border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(212, 161, 33, 0.4);
+}
+
+/* SEÇÃO RANKING - DESIGN PROFISSIONAL */
+.ranking-section {
+    background: var(--bg-card);
+    border-radius: 15px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.ranking-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+}
+
+.section-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(18, 32, 18, 0.8);
+}
+
+.section-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.g10-badge {
+    background: linear-gradient(135deg, var(--gold), var(--primary));
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+/* TABELA DE RANKING REVOLUCIONÁRIA */
+.ranking-container {
+    overflow-x: auto;
+    padding: 0;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.ranking-table thead {
+    background: linear-gradient(180deg, #1a3d1a 0%, #153015 100%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.ranking-table th {
+    padding: 15px 12px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid var(--primary);
+}
+
+.ranking-table th:first-child {
+    padding-left: 25px;
+}
+
+.ranking-table th:last-child {
+    padding-right: 25px;
+}
+
+/* LINHAS DO RANKING - DESIGN PROFISSIONAL */
+.ranking-row {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(42, 64, 42, 0.3);
+    height: 60px;
+}
+
+.ranking-row:nth-child(even) {
+    background: var(--bg-row);
+}
+
+.ranking-row:nth-child(odd) {
+    background: var(--bg-row-alt);
+}
+
+.ranking-row:hover {
+    background: rgba(212, 161, 33, 0.08);
+    transform: scale(1.005);
+}
+
+/* TOP 10 - DESTAQUE MÁXIMO */
+.ranking-row.top10 {
+    position: relative;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+    border-left: 8px solid transparent;
+}
+
+.ranking-row.top10::before {
+    content: 'G10';
+    position: absolute;
+    left: -35px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    color: var(--gold);
+    font-family: 'Anton', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* DESTAQUES POR POSIÇÃO */
+.ranking-row.pos-1 {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%) !important;
+    border-left: 8px solid var(--gold) !important;
+}
+
+.ranking-row.pos-1 .rank-number {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.ranking-row.pos-2 {
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.12) 0%, rgba(192, 192, 192, 0.04) 100%) !important;
+    border-left: 8px solid var(--silver) !important;
+}
+
+.ranking-row.pos-2 .rank-number {
+    background: var(--silver);
+    color: #000;
+}
+
+.ranking-row.pos-3 {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.12) 0%, rgba(205, 127, 50, 0.04) 100%) !important;
+    border-left: 8px solid var(--bronze) !important;
+}
+
+.ranking-row.pos-3 .rank-number {
+    background: var(--bronze);
+    color: #000;
+}
+
 .ranking-row.pos-4,
 .ranking-row.pos-5,
 .ranking-row.pos-6,
 .ranking-row.pos-7,
 .ranking-row.pos-8,
 .ranking-row.pos-9,
-.ranking-row.pos-10{border-left:6px solid #4CAF50;}
-
-.ranking-row.separator{border-top:3px dashed #d4a121 !important}
-
-.participacao-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:0.7em;font-weight:bold}
-.participacao-icon.sim{background:#4CAF50;color:#fff}
-.participacao-icon.nao{background:#c72c48;color:#fff}
-
-.rank-cell{font-family:'Anton';font-size:1.1em;color:#d4a121;display:flex;align-items:center;gap:6px}
-.rank-1{color:#FFD700}
-.rank-2{color:#C0C0C0}
-.rank-3{color:#CD7F32}
-.rank-top10{color:#FFA500}
-
-.rank-badge{font-size:1em}
-.rank-indicator{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:1.1em}
-.rank-up{color:#4CAF50}
-.rank-down{color:#ff4444}
-.rank-same{color:#666;font-size:0.9em}
-
-.player-name{font-weight:bold;font-size:0.9em;display:flex;align-items:center;gap:6px}
-.player-avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
-.player-score{font-family:'Anton';font-size:1.1em}
-.score-1{color:#FFD700}
-.score-2{color:#C0C0C0}
-.score-3{color:#CD7F32}
-.score-top10{color:#FFA500}
-
-.diff-cell{text-align:center;font-family:'Anton';font-size:0.9em}
-.diff-0{color:#4CAF50;font-weight:bold}
-.diff-positive{color:#FF6B6B}
-.diff-large{color:#ff4444;font-weight:bold}
-
-.etapa-cell{background:#1a3d1a;padding:5px 3px;border-radius:3px;text-align:center;font-size:0.8em;min-width:45px}
-.etapa-cell.nj{background:#c72c48;opacity:0.7}
-.etapa-cell.empty{background:#2d5016;opacity:0.5}
-
-.admin-controls{background:#1a1a1a;border:2px solid #8b0000;border-radius:10px;padding:15px;margin-bottom:15px}
-.admin-title{color:#8b0000;font-family:'Anton';font-size:1.3em;margin-bottom:12px}
-
-.form-group{margin-bottom:12px}
-.form-group label{color:#d4a121;font-weight:bold;display:block;margin-bottom:4px;font-size:0.9em}
-.form-group input,.form-group select{width:100%;padding:8px;border-radius:6px;border:1px solid #2d5016;background:#1a3d1a;color:#fff;font-size:0.9em}
-
-.btn-primary{padding:10px 20px;background:#d4a121;border:none;border-radius:8px;font-weight:bold;cursor:pointer;color:#000;transition:all 0.3s;font-size:0.9em}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(212,161,33,0.4)}
-.btn-danger{background:#c72c48;color:#fff}
-.btn-success{background:#4CAF50;color:#fff}
-
-/* REVOLUÇÃO na aba de etapas */
-.etapa-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
-.etapa-btn{padding:8px 15px;background:#1a3d1a;border:2px solid #2d5016;border-radius:6px;color:#d4a121;cursor:pointer;transition:all 0.3s;font-size:0.85em}
-.etapa-btn.active{background:#d4a121;color:#000;border-color:#d4a121;transform:scale(1.05);box-shadow:0 0 10px rgba(212,161,33,0.5)}
-.etapa-btn:hover{border-color:#d4a121;transform:scale(1.02)}
-
-/* Novo layout visual para pontos */
-.scores-container{margin-top:15px;border:2px solid #d4a121;border-radius:10px;overflow:hidden}
-.score-header{background:#1a3d1a;padding:10px;display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px;align-items:center;border-bottom:2px solid #d4a121}
-.score-header span{color:#d4a121;font-weight:bold;font-size:0.9em}
-.score-items{max-height:400px;overflow-y:auto}
-.score-item{background:#102810;padding:12px 10px;display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:10px;align-items:center;border-bottom:1px solid rgba(212,161,33,0.2);transition:all 0.3s}
-.score-item:nth-child(odd){background:#0d1b0d}
-.score-item:hover{background:rgba(212,161,33,0.1)}
-.score-item input{width:100%;padding:8px;background:#1a3d1a;border:1px solid #2d5016;border-radius:4px;color:#fff;font-size:0.9em;text-align:center}
-.score-item input:focus{outline:none;border-color:#d4a121;box-shadow:0 0 5px rgba(212,161,33,0.5)}
-
-.score-quick-actions{display:flex;gap:5px;justify-content:center;margin-top:15px}
-.score-quick-btn{padding:8px 12px;background:#1a3d1a;border:1px solid #2d5016;border-radius:4px;color:#d4a121;cursor:pointer;font-size:0.8em;transition:all 0.2s}
-.score-quick-btn:hover{background:#d4a121;color:#000}
-
-.player-info{display:flex;align-items:center;gap:8px}
-.player-info-avatar{width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
-.player-info-name{font-weight:bold;font-size:0.9em}
-.player-info-rank{font-size:0.8em;color:#d4a121;opacity:0.8}
-
-.quick-points{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:10px}
-.quick-point{background:#1a3d1a;border:1px solid #2d5016;border-radius:4px;padding:8px;text-align:center;cursor:pointer;font-size:0.85em;transition:all 0.2s}
-.quick-point:hover{background:#d4a121;color:#000;transform:scale(1.05)}
-.quick-point.active{background:#4CAF50;color:#fff;border-color:#4CAF50}
-
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);justify-content:center;align-items:center;z-index:1000}
-.modal.active{display:flex}
-.modal-content{background:#102810;border:2px solid #d4a121;border-radius:12px;padding:25px;width:90%;max-width:450px}
-.modal-buttons{display:flex;gap:8px;margin-top:15px}
-
-.status-indicator{position:fixed;top:10px;right:10px;background:#2d5016;padding:6px 12px;border-radius:15px;font-size:0.8em;border:1px solid #d4a121;z-index:100}
-.status-indicator.connected{background:#1a3d1a;border-color:#4CAF50}
-
-.admin-btn{position:fixed;bottom:20px;right:20px;width:55px;height:55px;background:rgba(13,27,13,0.3);border:2px solid rgba(212,161,33,0.1);border-radius:50%;color:#d4a121;font-size:1.4em;cursor:pointer;opacity:0.2;transition:all 0.3s;z-index:100}
-.admin-btn:hover{opacity:1;background:#102810}
-.admin-btn.active{background:#4CAF50;opacity:1;border-color:#4CAF50}
-
-.add-player-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
-
-.player-item{background:#1a3d1a;padding:10px;border-radius:6px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-
-.info-note{margin-top:12px;font-size:0.85em;opacity:0.8;text-align:center;padding:10px;background:#102810;border-radius:8px}
-
-/* Indicador G10 */
-.g10-indicator{position:sticky;left:0;background:linear-gradient(90deg,#FFD700 0%,#d4a121 100%);color:#000;padding:3px 10px;border-radius:0 10px 10px 0;font-family:'Anton';font-size:0.8em;margin-bottom:10px;display:inline-block;box-shadow:0 2px 5px rgba(0,0,0,0.3)}
-
-@media(max-width:768px){
-.ranking-table{font-size:0.85em}
-.ranking-table th,.ranking-table td{padding:6px 4px}
-.scores-container{overflow-x:auto}
-.score-header,.score-item{grid-template-columns:2fr 1fr 1fr;min-width:350px}
-.score-header span:last-child,.score-item > div:last-child{display:none}
-.add-player-grid{grid-template-columns:1fr;gap:8px}
-.player-avatar{width:28px;height:28px}
-.participacao-icon{width:18px;height:18px;font-size:0.65em}
-.etapa-selector{gap:5px}
-.etapa-btn{padding:6px 10px;font-size:0.75em}
-.quick-points{grid-template-columns:repeat(3,1fr)}
+.ranking-row.pos-10 {
+    border-left: 8px solid #4CAF50 !important;
+    background: linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, transparent 100%) !important;
 }
+
+.ranking-row.top10 .rank-number {
+    font-weight: 800;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* CÉLULAS DA TABELA */
+.ranking-table td {
+    padding: 12px;
+    vertical-align: middle;
+}
+
+.ranking-table td:first-child {
+    padding-left: 25px;
+    position: relative;
+}
+
+.ranking-table td:last-child {
+    padding-right: 25px;
+}
+
+/* NÚMERO DO RANKING */
+.rank-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rank-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: 2px solid var(--border);
+}
+
+/* INDICADOR DE MOVIMENTAÇÃO */
+.rank-movement {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 10px;
+    min-width: 60px;
+    justify-content: center;
+}
+
+.rank-movement.up {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.rank-movement.down {
+    background: rgba(255, 71, 87, 0.2);
+    color: #FF4757;
+    border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+.rank-movement.stable {
+    background: rgba(170, 170, 170, 0.2);
+    color: var(--text-muted);
+    border: 1px solid rgba(170, 170, 170, 0.3);
+}
+
+/* JOGADOR */
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    background: var(--bg-dark);
+}
+
+.player-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+/* PONTUAÇÃO */
+.points-cell {
+    text-align: center;
+}
+
+.points {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: rgba(212, 161, 33, 0.1);
+    border: 1px solid rgba(212, 161, 33, 0.2);
+}
+
+.points.pos-1 { color: var(--gold); }
+.points.pos-2 { color: var(--silver); }
+.points.pos-3 { color: var(--bronze); }
+
+/* DIFERENÇA PARA O LÍDER */
+.diff-cell {
+    text-align: center;
+}
+
+.diff {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 15px;
+    display: inline-block;
+    min-width: 70px;
+}
+
+.diff.leader {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.diff.close {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.diff.medium {
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+}
+
+.diff.large {
+    background: rgba(255, 71, 87, 0.2);
+    color: #FF4757;
+}
+
+/* ETAPAS */
+.etapas-cell {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.etapa-pill {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 32px;
+    text-align: center;
+    background: var(--bg-dark);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.etapa-pill.present {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+}
+
+.etapa-pill.absent {
+    background: rgba(255, 71, 87, 0.2);
+    color: #FF4757;
+}
+
+.etapa-pill.empty {
+    opacity: 0.3;
+}
+
+/* PAINEL ADMINISTRATIVO REVOLUCIONÁRIO */
+.admin-section {
+    background: var(--bg-card);
+    border-radius: 15px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.admin-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a, #222);
+    border-bottom: 2px solid #8b0000;
+}
+
+.admin-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8rem;
+    color: #8b0000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* SISTEMA DE PONTUAÇÃO MODERNO */
+.points-system {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+}
+
+.stage-selector {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stage-btn {
+    padding: 10px 20px;
+    background: var(--bg-row);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    text-align: center;
+}
+
+.stage-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.stage-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #000;
+    border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(212, 161, 33, 0.4);
+}
+
+/* QUICK POINTS SYSTEM */
+.quick-points-system {
+    background: var(--bg-row);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid var(--border);
+}
+
+.quick-points-system h4 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.quick-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.quick-point {
+    padding: 12px;
+    background: var(--bg-dark);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.quick-point:hover {
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.quick-point.active {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+}
+
+/* PLAYERS POINTS GRID - SISTEMA REVOLUCIONÁRIO */
+.players-points-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.player-points-card {
+    background: var(--bg-row);
+    border-radius: 10px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 15px;
+    align-items: center;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.player-points-card:hover {
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+.player-info-compact {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+}
+
+.player-info-compact .player-avatar {
+    width: 35px;
+    height: 35px;
+}
+
+.points-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.points-input {
+    width: 100px;
+    padding: 10px;
+    background: var(--bg-dark);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.points-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(212, 161, 33, 0.2);
+}
+
+.points-input.NJ {
+    color: #FF4757;
+    border-color: #FF4757;
+}
+
+.quick-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.quick-btn {
+    padding: 8px 12px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-btn:hover {
+    background: var(--primary);
+    color: #000;
+}
+
+/* ADMIN ACTIONS */
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+    padding: 20px;
+    background: var(--bg-row);
+    border-radius: 12px;
+}
+
+.admin-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 160px;
+    justify-content: center;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.clear-btn {
+    background: linear-gradient(135deg, #FF4757, #ff3742);
+    color: white;
+}
+
+.clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #000;
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 161, 33, 0.4);
+}
+
+/* GERENCIAMENTO DE JOGADORES */
+.players-management {
+    background: var(--bg-card);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.add-player-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: var(--bg-row);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    padding: 12px;
+    background: var(--bg-dark);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(212, 161, 33, 0.2);
+}
+
+/* STATUS INDICATOR */
+.status-indicator {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 1000;
+    background: rgba(26, 61, 26, 0.9);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.status-indicator.connected {
+    background: rgba(76, 175, 80, 0.9);
+    border-color: #4CAF50;
+}
+
+/* ADMIN TOGGLE BUTTON */
+.admin-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(212, 161, 33, 0.9);
+    border: 2px solid var(--primary);
+    color: #000;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.admin-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(212, 161, 33, 0.4);
+}
+
+.admin-toggle-btn.active {
+    background: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+    .add-player-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .player-points-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .points-input-container {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .view-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .ranking-table th,
+    .ranking-table td {
+        padding: 10px 8px;
+    }
+    
+    .rank-number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .player-avatar {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .quick-points-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .admin-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .stage-selector {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .stage-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        min-width: auto;
+    }
+}
+
+/* SCROLLBAR STYLING */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-row);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ranking-row {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.ranking-row:nth-child(1) { animation-delay: 0.1s; }
+.ranking-row:nth-child(2) { animation-delay: 0.15s; }
+.ranking-row:nth-child(3) { animation-delay: 0.2s; }
+.ranking-row:nth-child(4) { animation-delay: 0.25s; }
+.ranking-row:nth-child(5) { animation-delay: 0.3s; }
 </style>
 </head>
 
@@ -168,110 +993,219 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
 
 <div class="status-indicator" id="statusIndicator">🔄 Conectando...</div>
 
-<div class="logo-top">
-<img src="logo pdq.png" alt="Poker de Quinta">
+<div class="logo-container">
+    <img src="logo pdq.png" alt="Poker de Quinta">
 </div>
 
 <div class="container">
 
-<header>
-<h1>🏆 RANKING POKER DE QUINTA 2026</h1>
-<div class="subtitle">📊 Acompanhe a classificação oficial</div>
-</header>
+    <div class="header">
+        <h1>🏆 RANKING POKER DE QUINTA 2026</h1>
+        <div class="subtitle">📊 Sistema Oficial de Classificação</div>
+    </div>
 
-<div class="view-toggle">
-<button class="view-btn active" id="btnViewRanking">📊 Ranking</button>
-<button class="view-btn" id="btnViewAdmin">🔐 Admin</button>
+    <div class="view-toggle">
+        <button class="view-btn active" id="btnViewRanking">
+            <span>📊</span>
+            <span>Ranking</span>
+        </button>
+        <button class="view-btn" id="btnViewAdmin">
+            <span>⚙️</span>
+            <span>Admin</span>
+        </button>
+    </div>
+
+    <!-- VIEW RANKING -->
+    <div id="viewRanking">
+        <div class="ranking-section">
+            <div class="section-header">
+                <h2>
+                    <span>CLASSIFICAÇÃO GERAL</span>
+                    <span class="g10-badge">🏆 G10</span>
+                </h2>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">
+                    Atualizado em tempo real
+                </div>
+            </div>
+            
+            <div class="ranking-container">
+                <table class="ranking-table" id="rankingTable">
+                    <thead id="rankingTableHead">
+                        <tr>
+                            <th style="width: 80px;">POS</th>
+                            <th>JOGADOR</th>
+                            <th style="width: 120px; text-align: center;">PONTOS</th>
+                            <th style="width: 140px; text-align: center;">DIF. LÍDER</th>
+                            <th style="min-width: 200px;">ETAPAS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingTableBody">
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                                Carregando ranking...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px; color: var(--text-muted); font-size: 0.9rem; padding: 15px; background: var(--bg-card); border-radius: 10px;">
+            ℹ️ As 10 melhores pontuações de cada jogador são consideradas para a classificação geral.
+        </div>
+    </div>
+
+    <!-- VIEW ADMIN (Inicialmente oculta) -->
+    <div id="viewAdmin" style="display: none;">
+        <div class="admin-section">
+            <div class="admin-header">
+                <h2>
+                    <span>⚙️</span>
+                    <span>PAINEL ADMINISTRATIVO</span>
+                </h2>
+                <div style="color: #aaaaaa; font-size: 0.9rem; margin-top: 5px;">
+                    Modo de edição ativado - Gerencie jogadores e pontuações
+                </div>
+            </div>
+
+            <div class="points-system">
+                <!-- Seletor de Etapas -->
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <div style="color: var(--primary); font-weight: 600; margin-bottom: 15px; font-size: 1.1rem;">
+                        SELECIONE A ETAPA:
+                    </div>
+                    <div class="stage-selector" id="etapaSelector">
+                        <!-- Etapas serão geradas dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Etapa Atual -->
+                <div style="text-align: center; margin: 20px 0;">
+                    <div style="font-size: 1.3rem; font-weight: 700; color: var(--gold);">
+                        ETAPA <span id="etapaAtualNumero">1</span>
+                    </div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem;">
+                        Atualize as pontuações dos jogadores
+                    </div>
+                </div>
+
+                <!-- Sistema de Pontuação Rápida -->
+                <div class="quick-points-system">
+                    <h4>🏃 PONTUAÇÃO RÁPIDA</h4>
+                    <div class="quick-points-grid">
+                        <div class="quick-point" onclick="aplicarPontuacaoRapida('NJ')">NJ</div>
+                        <div class="quick-point" onclick="aplicarPontuacaoRapida(0)">0 pts</div>
+                        <div class="quick-point" onclick="aplicarPontuacaoRapida(10)">10 pts</div>
+                        <div class="quick-point" onclick="aplicarPontuacaoRapida(20)">20 pts</div>
+                        <div class="quick-point" onclick="aplicarPontuacaoRapida(30)">30 pts</div>
+                        <div class="quick-point" onclick="aplicarPontuacaoRapida(50)">50 pts</div>
+                    </div>
+                </div>
+
+                <!-- Lista de Jogadores para Pontuação -->
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="color: var(--primary); font-weight: 600;">JOGADORES</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">
+                            Total: <span id="totalJogadores">0</span> jogadores
+                        </div>
+                    </div>
+                    
+                    <div class="players-points-grid" id="playersPointsGrid">
+                        <!-- Jogadores serão carregados dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Ações -->
+                <div class="admin-actions">
+                    <button class="admin-btn clear-btn" onclick="limparPontuacoes()">
+                        <span>🧹</span>
+                        <span>Limpar Tudo</span>
+                    </button>
+                    <button class="admin-btn save-btn" onclick="salvarEtapa()">
+                        <span>💾</span>
+                        <span>Salvar Etapa</span>
+                    </button>
+                    <button class="admin-btn next-btn" onclick="proximaEtapa()">
+                        <span>⏭️</span>
+                        <span>Salvar & Próxima</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gerenciamento de Jogadores -->
+        <div class="players-management">
+            <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Anton', sans-serif; font-size: 1.5rem;">
+                👥 GERENCIAR JOGADORES
+            </h3>
+
+            <div class="add-player-form">
+                <div class="form-group">
+                    <label>Nome do Jogador</label>
+                    <input type="text" id="novoJogadorNome" placeholder="Digite o nome completo">
+                </div>
+                <div class="form-group">
+                    <label>URL da Foto (opcional)</label>
+                    <input type="text" id="novoJogadorFoto" placeholder="https://exemplo.com/foto.jpg">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="admin-btn save-btn" id="btnAdicionarJogador" style="height: 44px;">
+                        <span>➕</span>
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="listaJogadoresAdmin">
+                <!-- Lista de jogadores será carregada aqui -->
+            </div>
+        </div>
+        
+        <!-- Botão de Exportação CSV -->
+        <div style="margin-top: 25px; text-align: center;">
+            <button class="admin-btn save-btn" id="btnExportarCSV" style="width: 100%; max-width: 300px; margin: 0 auto;">
+                <span>📊</span>
+                <span>Exportar Ranking CSV</span>
+            </button>
+        </div>
+    </div>
 </div>
 
-<div id="viewRanking">
-<div class="section">
-<h3>🏅 CLASSIFICAÇÃO GERAL <span class="g10-indicator">G10 - TOP 10 PREMIADOS</span></h3>
-<div style="overflow-x:auto">
-<table class="ranking-table" id="rankingTable">
-<thead id="rankingTableHead">
-<tr>
-<th>Pos</th>
-<th>Jogador</th>
-<th style="text-align:center">Pontos</th>
-<th style="text-align:center">Diferença</th>
-</tr>
-</thead>
-<tbody id="rankingTableBody">
-<tr><td colspan="4" style="text-align:center;padding:20px;opacity:0.7">Carregando dados...</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div class="info-note">
-ℹ️ <strong>Sistema de pontuação:</strong> São contabilizadas as 10 melhores pontuações de cada jogador ao longo das etapas.
-</div>
-</div>
-
-<div id="viewAdmin" style="display:none">
-<div class="admin-controls">
-<div class="admin-title">⚙️ PAINEL ADMINISTRATIVO</div>
-<p style="opacity:0.8;margin-bottom:15px;font-size:0.9em">Gerencie jogadores e atualize pontuações das etapas</p>
-
-<div class="form-group">
-<label>➕ Adicionar Novo Jogador</label>
-<div class="add-player-grid">
-<div>
-<label style="font-size:0.8em;margin-bottom:3px">Nome do Jogador</label>
-<input type="text" id="novoJogadorNome" placeholder="Nome do jogador">
-</div>
-<div>
-<label style="font-size:0.8em;margin-bottom:3px">URL da Foto (opcional)</label>
-<input type="text" id="novoJogadorFoto" placeholder="https://exemplo.com/foto.jpg">
-</div>
-<button class="btn-primary btn-success" id="btnAdicionarJogador" style="height:fit-content">Adicionar</button>
-</div>
-</div>
-
-<button class="btn-primary" id="btnExportarCSV" style="width:100%;margin-top:8px">📊 Exportar Ranking CSV</button>
-</div>
-
-<div class="section">
-<h3>🎮 ATUALIZAÇÃO DE ETAPAS - <span id="etapaAtualTitulo" style="color:#FFD700">Etapa 1</span></h3>
-<div class="etapa-selector" id="etapaSelector"></div>
-<div id="etapaAtualContent"></div>
-</div>
-
-<div class="section">
-<h3>👥 GERENCIAR JOGADORES</h3>
-<div id="listaJogadoresAdmin"></div>
-</div>
-</div>
-
-</div>
-
-<button class="admin-btn" id="btnAdminToggle">🔐</button>
+<button class="admin-toggle-btn" id="btnAdminToggle">🔐</button>
 
 <div class="modal" id="modalAdmin">
-<div class="modal-content">
-<h2 style="color: #8b0000;font-size:1.3em">🔐 Acesso Administrativo</h2>
-<p style="margin: 12px 0; opacity: 0.8;font-size:0.9em">Digite a senha de administrador:</p>
-<div class="form-group">
-<label>Senha</label>
-<input type="password" id="senhaAdmin" placeholder="Digite a senha">
-</div>
-<div class="modal-buttons">
-<button class="btn-primary btn-danger" id="btnFecharAdmin">Cancelar</button>
-<button class="btn-primary" id="btnAcessarAdmin">Acessar</button>
-</div>
-</div>
+    <div class="modal-content">
+        <h2 style="color: #8b0000; font-size: 1.5rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <span>🔐</span>
+            <span>Acesso Administrativo</span>
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">
+            Digite a senha de administrador para acessar o painel:
+        </p>
+        <div class="form-group">
+            <input type="password" id="senhaAdmin" placeholder="Digite a senha" style="width: 100%;">
+        </div>
+        <div class="modal-buttons">
+            <button class="admin-btn clear-btn" id="btnFecharAdmin" style="flex: 1;">
+                Cancelar
+            </button>
+            <button class="admin-btn save-btn" id="btnAcessarAdmin" style="flex: 1;">
+                Acessar
+            </button>
+        </div>
+    </div>
 </div>
 
 <script>
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyD_XXjcjJYM73wLTTzpDgzKCOZnztcJhjE",
-  authDomain: "poker-de-quinta.firebaseapp.com",
-  databaseURL: "https://poker-de-quinta-default-rtdb.firebaseio.com",
-  projectId: "poker-de-quinta",
-  storageBucket: "poker-de-quinta.firebasestorage.app",
-  messagingSenderId: "776724152456",
-  appId: "1:776724152456:web:fbffde9a1c1a7628c61f3d"
+    apiKey: "AIzaSyD_XXjcjJYM73wLTTzpDgzKCOZnztcJhjE",
+    authDomain: "poker-de-quinta.firebaseapp.com",
+    databaseURL: "https://poker-de-quinta-default-rtdb.firebaseio.com",
+    projectId: "poker-de-quinta",
+    storageBucket: "poker-de-quinta.firebasestorage.app",
+    messagingSenderId: "776724152456",
+    appId: "1:776724152456:web:fbffde9a1c1a7628c61f3d"
 };
 
 const TOTAL_ETAPAS = 12;
@@ -284,563 +1218,749 @@ let etapaAtualSelecionada = 1;
 let rankingAtual = [];
 
 class FirebaseDB {
-  constructor(config) {
-    this.dbUrl = config.databaseURL;
-    this.listeners = {};
-  }
+    constructor(config) {
+        this.dbUrl = config.databaseURL;
+        this.listeners = {};
+    }
 
-  async get(path) {
-    const response = await fetch(`${this.dbUrl}/${path}.json`);
-    return await response.json();
-  }
+    async get(path) {
+        try {
+            const response = await fetch(`${this.dbUrl}/${path}.json`);
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+            return null;
+        }
+    }
 
-  async set(path, data) {
-    const response = await fetch(`${this.dbUrl}/${path}.json`, {
-      method: 'PUT',
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  }
+    async set(path, data) {
+        try {
+            const response = await fetch(`${this.dbUrl}/${path}.json`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao salvar dados:', error);
+            throw error;
+        }
+    }
 
-  async update(path, data) {
-    const response = await fetch(`${this.dbUrl}/${path}.json`, {
-      method: 'PATCH',
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  }
+    async update(path, data) {
+        try {
+            const response = await fetch(`${this.dbUrl}/${path}.json`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao atualizar dados:', error);
+            throw error;
+        }
+    }
 
-  async push(path, data) {
-    const response = await fetch(`${this.dbUrl}/${path}.json`, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  }
+    async push(path, data) {
+        try {
+            const response = await fetch(`${this.dbUrl}/${path}.json`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao adicionar dados:', error);
+            throw error;
+        }
+    }
 
-  async remove(path) {
-    const response = await fetch(`${this.dbUrl}/${path}.json`, {
-      method: 'DELETE'
-    });
-    return await response.json();
-  }
+    async remove(path) {
+        try {
+            const response = await fetch(`${this.dbUrl}/${path}.json`, {
+                method: 'DELETE'
+            });
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao remover dados:', error);
+            throw error;
+        }
+    }
 
-  onValue(path, callback) {
-    const poll = async () => {
-      const data = await this.get(path);
-      callback(data);
-    };
-    
-    poll();
-    const interval = setInterval(poll, 3000);
-    
-    this.listeners[path] = interval;
-    return () => clearInterval(interval);
-  }
+    onValue(path, callback) {
+        const poll = async () => {
+            const data = await this.get(path);
+            callback(data);
+        };
+        
+        poll();
+        const interval = setInterval(poll, 3000);
+        
+        this.listeners[path] = interval;
+        return () => clearInterval(interval);
+    }
 }
 
 const db = new FirebaseDB(FIREBASE_CONFIG);
 
+// Elementos DOM
+const statusIndicator = document.getElementById('statusIndicator');
+const btnViewRanking = document.getElementById('btnViewRanking');
+const btnViewAdmin = document.getElementById('btnViewAdmin');
+const viewRanking = document.getElementById('viewRanking');
+const viewAdmin = document.getElementById('viewAdmin');
+const btnAdminToggle = document.getElementById('btnAdminToggle');
+const modalAdmin = document.getElementById('modalAdmin');
+const btnFecharAdmin = document.getElementById('btnFecharAdmin');
+const btnAcessarAdmin = document.getElementById('btnAcessarAdmin');
+const senhaAdmin = document.getElementById('senhaAdmin');
+const btnAdicionarJogador = document.getElementById('btnAdicionarJogador');
+const novoJogadorNome = document.getElementById('novoJogadorNome');
+const novoJogadorFoto = document.getElementById('novoJogadorFoto');
+const btnExportarCSV = document.getElementById('btnExportarCSV');
+
 async function inicializar() {
-  try {
-    statusIndicator.textContent = '✅ Conectado';
-    statusIndicator.classList.add('connected');
-    
-    db.onValue('rankingJogadores', (data) => {
-      jogadores = [];
-      if (data) {
-        Object.keys(data).forEach(key => {
-          jogadores.push({...data[key], id: key});
+    try {
+        statusIndicator.textContent = '🔄 Conectando ao banco de dados...';
+        
+        // Carregar dados iniciais
+        const dadosJogadores = await db.get('rankingJogadores');
+        const dadosEtapas = await db.get('rankingEtapas');
+        
+        if (dadosJogadores) {
+            jogadores = Object.keys(dadosJogadores).map(key => ({
+                ...dadosJogadores[key],
+                id: key
+            }));
+        }
+        
+        if (dadosEtapas) {
+            etapas = dadosEtapas;
+        }
+        
+        statusIndicator.textContent = '✅ Conectado';
+        statusIndicator.classList.add('connected');
+        
+        // Configurar listeners em tempo real
+        db.onValue('rankingJogadores', (data) => {
+            if (data) {
+                jogadores = Object.keys(data).map(key => ({
+                    ...data[key],
+                    id: key
+                }));
+                atualizarRanking();
+                if (modoAdmin) {
+                    renderizarPlayersPoints();
+                    renderizarAdminJogadores();
+                }
+            }
         });
-      }
-      atualizarRanking();
-    });
-    
-    db.onValue('rankingEtapas', (data) => {
-      etapas = data || {};
-      atualizarRanking();
-      if (modoAdmin) {
-        renderizarSeletorEtapas();
-      }
-    });
-    
-  } catch (e) {
-    statusIndicator.textContent = '❌ Erro de conexão';
-    console.error(e);
-  }
+        
+        db.onValue('rankingEtapas', (data) => {
+            if (data) {
+                etapas = data;
+                atualizarRanking();
+                if (modoAdmin && etapaAtualSelecionada) {
+                    renderizarPlayersPoints();
+                }
+            }
+        });
+        
+        atualizarRanking();
+        
+    } catch (e) {
+        console.error('Erro na inicialização:', e);
+        statusIndicator.textContent = '❌ Erro de conexão';
+    }
 }
 
-inicializar();
-
+// Sistema de Navegação
 btnViewRanking.onclick = () => {
-  btnViewRanking.classList.add('active');
-  btnViewAdmin.classList.remove('active');
-  viewRanking.style.display = 'block';
-  viewAdmin.style.display = 'none';
+    btnViewRanking.classList.add('active');
+    btnViewAdmin.classList.remove('active');
+    viewRanking.style.display = 'block';
+    viewAdmin.style.display = 'none';
 };
 
 btnViewAdmin.onclick = () => {
-  if (!modoAdmin) {
-    modalAdmin.classList.add('active');
-  } else {
-    btnViewRanking.classList.remove('active');
-    btnViewAdmin.classList.add('active');
-    viewRanking.style.display = 'none';
-    viewAdmin.style.display = 'block';
-    renderizarSeletorEtapas();
-    renderizarAdminJogadores();
-  }
-};
-
-btnAdminToggle.onclick = () => modalAdmin.classList.add('active');
-btnFecharAdmin.onclick = () => modalAdmin.classList.remove('active');
-btnAcessarAdmin.onclick = () => {
-  if (senhaAdmin.value === SENHA_ADMIN) {
-    modoAdmin = true;
-    modalAdmin.classList.remove('active');
-    btnAdminToggle.classList.add('active');
-    btnAdminToggle.textContent = '✅';
-    alert('✅ Modo Administrador Ativado!');
-    senhaAdmin.value = '';
-    
-    btnViewRanking.classList.remove('active');
-    btnViewAdmin.classList.add('active');
-    viewRanking.style.display = 'none';
-    viewAdmin.style.display = 'block';
-    renderizarSeletorEtapas();
-    renderizarAdminJogadores();
-  } else {
-    alert('❌ Senha incorreta!');
-  }
-};
-
-btnAdicionarJogador.onclick = async () => {
-  const nome = novoJogadorNome.value.trim();
-  if (!nome) return alert('Digite o nome do jogador!');
-  
-  const foto = novoJogadorFoto.value.trim();
-  
-  try {
-    const novoJogador = {
-      nome,
-      foto: foto || null,
-      previousRank: 0,
-      dataCriacao: new Date().toISOString()
-    };
-    
-    await db.push('rankingJogadores', novoJogador);
-    novoJogadorNome.value = '';
-    novoJogadorFoto.value = '';
-    alert('✅ Jogador adicionado com sucesso!');
-  } catch (e) {
-    alert('Erro ao adicionar jogador: ' + e.message);
-  }
-};
-
-function getEtapasAcontecidas() {
-  const etapasComDados = [];
-  for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-    if (etapas[i] && Object.keys(etapas[i]).length > 0) {
-      etapasComDados.push(i);
-    }
-  }
-  return etapasComDados;
-}
-
-function calcularRanking() {
-  const rankingCalculado = jogadores.map(jogador => {
-    const pontuacoes = [];
-    let participacoes = 0;
-    
-    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-      const score = etapas[i]?.[jogador.id];
-      if (score !== undefined && score !== null && score !== 'NJ') {
-        const pontos = parseInt(score);
-        if (pontos > 0) {
-          pontuacoes.push(pontos);
-          participacoes++;
-        }
-      }
-    }
-    
-    const melhoresPontuacoes = pontuacoes.sort((a, b) => b - a).slice(0, 10);
-    const totalPontos = melhoresPontuacoes.reduce((sum, p) => sum + p, 0);
-    
-    return {
-      ...jogador,
-      totalPontos,
-      participacoes,
-      pontuacoes
-    };
-  });
-  
-  rankingCalculado.sort((a, b) => {
-    if (b.totalPontos !== a.totalPontos) return b.totalPontos - a.totalPontos;
-    if (b.participacoes !== a.participacoes) return b.participacoes - a.participacoes;
-    return a.nome.localeCompare(b.nome);
-  });
-  
-  rankingCalculado.forEach((jogador, index) => {
-    const novoRank = index + 1;
-    const rankAnterior = jogador.previousRank || 0;
-    jogador.posicaoAtual = novoRank;
-    
-    if (rankAnterior === 0) {
-      jogador.mudancaRank = 0;
+    if (!modoAdmin) {
+        modalAdmin.classList.add('active');
+        senhaAdmin.focus();
     } else {
-      jogador.mudancaRank = rankAnterior - novoRank;
+        btnViewRanking.classList.remove('active');
+        btnViewAdmin.classList.add('active');
+        viewRanking.style.display = 'none';
+        viewAdmin.style.display = 'block';
+        renderizarSeletorEtapas();
+        renderizarPlayersPoints();
+        renderizarAdminJogadores();
+    }
+};
+
+// Sistema de Autenticação
+btnAdminToggle.onclick = () => {
+    modalAdmin.classList.add('active');
+    senhaAdmin.focus();
+};
+
+btnFecharAdmin.onclick = () => {
+    modalAdmin.classList.remove('active');
+    senhaAdmin.value = '';
+};
+
+btnAcessarAdmin.onclick = () => {
+    if (senhaAdmin.value === SENHA_ADMIN) {
+        modoAdmin = true;
+        modalAdmin.classList.remove('active');
+        btnAdminToggle.classList.add('active');
+        btnAdminToggle.innerHTML = '✅';
+        senhaAdmin.value = '';
+        
+        // Mudar para view admin
+        btnViewRanking.classList.remove('active');
+        btnViewAdmin.classList.add('active');
+        viewRanking.style.display = 'none';
+        viewAdmin.style.display = 'block';
+        
+        renderizarSeletorEtapas();
+        renderizarPlayersPoints();
+        renderizarAdminJogadores();
+        
+        // Mostrar mensagem de boas vindas
+        setTimeout(() => {
+            alert('🔓 Modo Administrador ATIVADO!\n\nVocê agora pode gerenciar jogadores e pontuações.');
+        }, 300);
+        
+    } else {
+        alert('❌ Senha incorreta!');
+        senhaAdmin.value = '';
+        senhaAdmin.focus();
+    }
+};
+
+// Adicionar novo jogador
+btnAdicionarJogador.onclick = async () => {
+    const nome = novoJogadorNome.value.trim();
+    if (!nome) {
+        alert('Digite o nome do jogador!');
+        return;
     }
     
-    if (jogador.previousRank !== novoRank) {
-      db.update(`rankingJogadores/${jogador.id}`, { previousRank: novoRank });
+    const foto = novoJogadorFoto.value.trim();
+    
+    try {
+        const novoJogador = {
+            nome: nome,
+            foto: foto || null,
+            previousRank: 0,
+            dataCriacao: new Date().toISOString()
+        };
+        
+        await db.push('rankingJogadores', novoJogador);
+        
+        novoJogadorNome.value = '';
+        novoJogadorFoto.value = '';
+        
+        alert('✅ Jogador adicionado com sucesso!');
+        
+    } catch (e) {
+        alert('❌ Erro ao adicionar jogador: ' + e.message);
     }
-  });
-  
-  rankingAtual = rankingCalculado;
-  return rankingCalculado;
+};
+
+// Funções de Ranking
+function calcularRanking() {
+    const rankingCalculado = jogadores.map(jogador => {
+        const pontuacoes = [];
+        let participacoes = 0;
+        
+        // Calcular pontuações por etapa
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            const score = etapas[i]?.[jogador.id];
+            if (score !== undefined && score !== null && score !== 'NJ') {
+                const pontos = parseInt(score);
+                if (!isNaN(pontos) && pontos > 0) {
+                    pontuacoes.push(pontos);
+                    participacoes++;
+                }
+            }
+        }
+        
+        // Pegar as 10 melhores pontuações
+        const melhoresPontuacoes = pontuacoes.sort((a, b) => b - a).slice(0, 10);
+        const totalPontos = melhoresPontuacoes.reduce((sum, p) => sum + p, 0);
+        
+        return {
+            ...jogador,
+            totalPontos: totalPontos,
+            participacoes: participacoes,
+            melhoresPontuacoes: melhoresPontuacoes
+        };
+    });
+    
+    // Ordenar ranking
+    rankingCalculado.sort((a, b) => {
+        if (b.totalPontos !== a.totalPontos) return b.totalPontos - a.totalPontos;
+        if (b.participacoes !== a.participacoes) return b.participacoes - a.participacoes;
+        return a.nome.localeCompare(b.nome);
+    });
+    
+    // Calcular mudanças de ranking e atualizar no banco
+    rankingCalculado.forEach((jogador, index) => {
+        const novoRank = index + 1;
+        const rankAnterior = jogador.previousRank || 0;
+        
+        jogador.posicaoAtual = novoRank;
+        
+        if (rankAnterior === 0) {
+            jogador.mudancaRank = 0;
+        } else {
+            jogador.mudancaRank = rankAnterior - novoRank;
+        }
+        
+        // Atualizar previousRank no banco se mudou
+        if (jogador.previousRank !== novoRank) {
+            db.update(`rankingJogadores/${jogador.id}`, { previousRank: novoRank });
+        }
+    });
+    
+    rankingAtual = rankingCalculado;
+    return rankingCalculado;
 }
 
 function atualizarRanking() {
-  const ranking = calcularRanking();
-  const etapasAcontecidas = getEtapasAcontecidas();
-  
-  const thead = rankingTableHead;
-  let headerHtml = `
-    <tr>
-      <th>Pos</th>
-      <th>Jogador</th>
-      <th style="text-align:center">Pontos</th>
-      <th style="text-align:center">Diferença</th>
-  `;
-  
-  etapasAcontecidas.forEach(num => {
-    headerHtml += `<th style="text-align:center">E${num}</th>`;
-  });
-  
-  headerHtml += '</tr>';
-  thead.innerHTML = headerHtml;
-  
-  const tbody = rankingTableBody;
-  tbody.innerHTML = '';
-  
-  if (ranking.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="${5 + etapasAcontecidas.length}" style="text-align:center;padding:20px;opacity:0.7">Nenhum jogador cadastrado</td></tr>`;
-    return;
-  }
-  
-  const primeiroColocadoPontos = ranking[0]?.totalPontos || 0;
-  
-  ranking.forEach((jogador, index) => {
-    const rank = jogador.posicaoAtual;
-    const isTop10 = rank <= 10;
-    const isSeparator = rank === 11;
+    const ranking = calcularRanking();
+    const thead = document.getElementById('rankingTableHead');
+    const tbody = document.getElementById('rankingTableBody');
     
-    // Classes por posição
-    const rankClass = `rank-${rank <= 3 ? rank : (isTop10 ? 'top10' : '')}`;
-    const scoreClass = `score-${rank <= 3 ? rank : (isTop10 ? 'top10' : '')}`;
-    
-    const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
-    const diferencaTexto = rank === 1 ? '—' : `-${diferencaPontos}`;
-    const diffClass = diferencaPontos === 0 ? 'diff-0' : (diferencaPontos > 100 ? 'diff-large' : 'diff-positive');
-    
-    let indicator = '';
-    if (jogador.mudancaRank > 0) {
-      indicator = '<span class="rank-indicator rank-up">▲' + Math.abs(jogador.mudancaRank) + '</span>';
-    } else if (jogador.mudancaRank < 0) {
-      indicator = '<span class="rank-indicator rank-down">▼' + Math.abs(jogador.mudancaRank) + '</span>';
-    } else {
-      indicator = '<span class="rank-indicator rank-same">—</span>';
+    if (ranking.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                    Nenhum jogador cadastrado
+                </td>
+            </tr>
+        `;
+        return;
     }
     
-    let etapasCells = '';
-    etapasAcontecidas.forEach(numEtapa => {
-      const score = etapas[numEtapa]?.[jogador.id];
-      let iconHtml = '';
-      
-      if (score !== undefined && score !== null && score !== 'NJ') {
-        const pontos = parseInt(score);
-        if (pontos > 0) {
-          iconHtml = '<span class="participacao-icon sim">' + pontos + '</span>';
-        } else {
-          iconHtml = '<span class="participacao-icon nao">0</span>';
+    const primeiroColocadoPontos = ranking[0]?.totalPontos || 0;
+    
+    // Atualizar linhas do ranking
+    tbody.innerHTML = '';
+    
+    ranking.forEach((jogador, index) => {
+        const rank = index + 1;
+        const isTop10 = rank <= 10;
+        
+        // Calcular diferença para o líder
+        const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
+        let diffClass = 'close';
+        if (rank === 1) {
+            diffClass = 'leader';
+        } else if (diferencaPontos > 100) {
+            diffClass = 'large';
+        } else if (diferencaPontos > 50) {
+            diffClass = 'medium';
         }
-      } else if (score === 'NJ') {
-        iconHtml = '<span class="participacao-icon nao">NJ</span>';
-      } else {
-        iconHtml = '<span class="participacao-icon nao">—</span>';
-      }
-      
-      etapasCells += `<td style="text-align:center">${iconHtml}</td>`;
+        
+        // Determinar movimento
+        let movementClass = 'stable';
+        let movementText = '—';
+        if (jogador.mudancaRank > 0) {
+            movementClass = 'up';
+            movementText = `+${jogador.mudancaRank}`;
+        } else if (jogador.mudancaRank < 0) {
+            movementClass = 'down';
+            movementText = `${jogador.mudancaRank}`;
+        }
+        
+        // Gerar células de etapas
+        let etapasHTML = '';
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            const score = etapas[i]?.[jogador.id];
+            let etapaClass = 'empty';
+            let etapaText = '-';
+            
+            if (score !== undefined && score !== null) {
+                if (score === 'NJ') {
+                    etapaClass = 'absent';
+                    etapaText = 'NJ';
+                } else if (parseInt(score) > 0) {
+                    etapaClass = 'present';
+                    etapaText = score;
+                }
+            }
+            
+            etapasHTML += `<div class="etapa-pill ${etapaClass}">${etapaText}</div>`;
+        }
+        
+        const tr = document.createElement('tr');
+        tr.className = `ranking-row ${isTop10 ? 'top10' : ''} pos-${rank <= 10 ? rank : ''}`;
+        tr.innerHTML = `
+            <td>
+                <div class="rank-cell">
+                    <div class="rank-number">${rank}</div>
+                    <div class="rank-movement ${movementClass}">
+                        ${movementText}
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="player-info">
+                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
+                         class="player-avatar"
+                         alt="${jogador.nome}"
+                         onerror="this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('${jogador.nome}') + '&background=0a150a&color=d4a121&bold=true'">
+                    <div class="player-name">${jogador.nome}</div>
+                </div>
+            </td>
+            <td class="points-cell">
+                <div class="points pos-${rank <= 3 ? rank : ''}">
+                    ${jogador.totalPontos}
+                </div>
+            </td>
+            <td class="diff-cell">
+                <div class="diff ${diffClass}">
+                    ${rank === 1 ? 'LÍDER' : `-${diferencaPontos}`}
+                </div>
+            </td>
+            <td>
+                <div class="etapas-cell">
+                    ${etapasHTML}
+                </div>
+            </td>
+        `;
+        
+        tbody.appendChild(tr);
     });
-    
-    const avatarHtml = jogador.foto 
-      ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" onerror="this.style.display='none'">`
-      : '';
-    
-    const tr = document.createElement('tr');
-    tr.className = `ranking-row pos-${rank}${isTop10 ? ' top10' : ''}${isSeparator ? ' separator' : ''}`;
-    tr.innerHTML = `
-      <td>
-        <div class="rank-cell ${rankClass}">
-          ${rank}º ${indicator}
-        </div>
-      </td>
-      <td>
-        <div class="player-name">
-          ${avatarHtml}
-          <span>${jogador.nome}</span>
-        </div>
-      </td>
-      <td style="text-align:center">
-        <span class="player-score ${scoreClass}">${jogador.totalPontos}</span>
-      </td>
-      <td style="text-align:center">
-        <span class="diff-cell ${diffClass}">${diferencaTexto}</span>
-      </td>
-      ${etapasCells}
-    `;
-    tbody.appendChild(tr);
-  });
 }
 
+// Sistema de Gerenciamento de Etapas (Admin)
 function renderizarSeletorEtapas() {
-  const container = document.getElementById('etapaSelector');
-  container.innerHTML = '';
-  
-  for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-    const btn = document.createElement('button');
-    btn.className = 'etapa-btn';
-    if (i === etapaAtualSelecionada) btn.classList.add('active');
-    btn.textContent = `Etapa ${i}`;
-    btn.onclick = () => {
-      etapaAtualSelecionada = i;
-      renderizarSeletorEtapas();
-      renderizarEtapaAtual();
-    };
-    container.appendChild(btn);
-  }
-  
-  renderizarEtapaAtual();
-}
-
-function renderizarEtapaAtual() {
-  const container = document.getElementById('etapaAtualContent');
-  const num = etapaAtualSelecionada;
-  
-  // Atualizar título
-  document.getElementById('etapaAtualTitulo').textContent = `Etapa ${num}`;
-  
-  container.innerHTML = `
-    <div class="scores-container">
-      <div class="score-header">
-        <span>JOGADOR</span>
-        <span>POSIÇÃO</span>
-        <span>PONTOS ATUAIS</span>
-        <span>NOVA PONTUAÇÃO</span>
-      </div>
-      <div class="score-items" id="scoreItems${num}"></div>
-    </div>
+    const container = document.getElementById('etapaSelector');
+    container.innerHTML = '';
     
-    <div class="quick-points">
-      <div class="quick-point" onclick="aplicarPontuacaoRapida('${num}', 'NJ')">NJ</div>
-      <div class="quick-point" onclick="aplicarPontuacaoRapida('${num}', 0)">0</div>
-      <div class="quick-point" onclick="aplicarPontuacaoRapida('${num}', 10)">10</div>
-      <div class="quick-point" onclick="aplicarPontuacaoRapida('${num}', 20)">20</div>
-      <div class="quick-point" onclick="aplicarPontuacaoRapida('${num}', 30)">30</div>
-      <div class="quick-point" onclick="aplicarPontuacaoRapida('${num}', 50)">50</div>
-    </div>
-    
-    <div class="score-quick-actions">
-      <button class="score-quick-btn" onclick="limparTodosScores(${num})">🧹 Limpar Tudo</button>
-      <button class="score-quick-btn" onclick="salvarEtapa(${num})">💾 Salvar Etapa</button>
-      <button class="score-quick-btn" onclick="salvarECarregarProxima(${num})">💾⏭️ Salvar e Próxima</button>
-    </div>
-  `;
-  
-  const scoresContainer = document.getElementById(`scoreItems${num}`);
-  
-  // Ordenar jogadores pela posição no ranking atual
-  const jogadoresOrdenados = [...jogadores].sort((a, b) => {
-    const rankA = rankingAtual.findIndex(j => j.id === a.id);
-    const rankB = rankingAtual.findIndex(j => j.id === b.id);
-    return rankA - rankB;
-  });
-  
-  jogadoresOrdenados.forEach(jogador => {
-    const scoreAtual = etapas[num]?.[jogador.id] || '';
-    const posicaoRanking = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
-    
-    const scoreDiv = document.createElement('div');
-    scoreDiv.className = 'score-item';
-    scoreDiv.innerHTML = `
-      <div class="player-info">
-        <img src="${jogador.foto || 'https://via.placeholder.com/35?text=' + jogador.nome.charAt(0)}" 
-             alt="${jogador.nome}" 
-             class="player-info-avatar"
-             onerror="this.src='https://via.placeholder.com/35?text=' + this.alt.charAt(0)">
-        <div>
-          <div class="player-info-name">${jogador.nome}</div>
-          <div class="player-info-rank">#${posicaoRanking} no ranking</div>
-        </div>
-      </div>
-      <div style="text-align:center;font-family:'Anton';color:#d4a121">${posicaoRanking}º</div>
-      <div style="text-align:center;color:${scoreAtual ? '#FFD700' : '#666'}">${scoreAtual || '—'}</div>
-      <input type="text" 
-             id="score_${num}_${jogador.id}" 
-             value="${scoreAtual}" 
-             placeholder="Pontos ou NJ"
-             onkeyup="formatarPontuacao(this)">
-    `;
-    scoresContainer.appendChild(scoreDiv);
-  });
-}
-
-window.formatarPontuacao = function(input) {
-  let valor = input.value.trim().toUpperCase();
-  if (valor === 'NJ') {
-    input.value = 'NJ';
-    input.style.color = '#FF6B6B';
-  } else if (!isNaN(valor) && valor !== '') {
-    input.value = parseInt(valor) || 0;
-    input.style.color = '#FFD700';
-  } else {
-    input.style.color = '#fff';
-  }
-};
-
-window.aplicarPontuacaoRapida = function(etapaNum, pontos) {
-  jogadores.forEach(jogador => {
-    const input = document.getElementById(`score_${etapaNum}_${jogador.id}`);
-    if (input) {
-      input.value = pontos;
-      formatarPontuacao(input);
-    }
-  });
-};
-
-window.limparTodosScores = function(etapaNum) {
-  if (!confirm('Tem certeza que deseja limpar todas as pontuações desta etapa?')) return;
-  
-  jogadores.forEach(jogador => {
-    const input = document.getElementById(`score_${etapaNum}_${jogador.id}`);
-    if (input) {
-      input.value = '';
-      input.style.color = '#fff';
-    }
-  });
-};
-
-window.salvarECarregarProxima = async function(numero) {
-  await salvarEtapa(numero);
-  if (numero < TOTAL_ETAPAS) {
-    etapaAtualSelecionada = numero + 1;
-    renderizarSeletorEtapas();
-  }
-};
-
-window.salvarEtapa = async (numero) => {
-  try {
-    const novosScores = {};
-    
-    jogadores.forEach(jogador => {
-      const input = document.getElementById(`score_${numero}_${jogador.id}`);
-      if (input) {
-        const valor = input.value.trim().toUpperCase();
-        if (valor) {
-          novosScores[jogador.id] = valor === 'NJ' ? 'NJ' : (parseInt(valor) || 0);
-        } else {
-          // Se vazio, remove a pontuação
-          novosScores[jogador.id] = null;
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'stage-btn';
+        if (i === etapaAtualSelecionada) {
+            btn.classList.add('active');
         }
-      }
+        btn.textContent = `E${i}`;
+        btn.onclick = () => {
+            etapaAtualSelecionada = i;
+            renderizarSeletorEtapas();
+            renderizarPlayersPoints();
+            document.getElementById('etapaAtualNumero').textContent = i;
+        };
+        container.appendChild(btn);
+    }
+}
+
+function renderizarPlayersPoints() {
+    const container = document.getElementById('playersPointsGrid');
+    const totalJogadores = document.getElementById('totalJogadores');
+    
+    if (!container) return;
+    
+    container.innerHTML = '';
+    totalJogadores.textContent = jogadores.length;
+    
+    // Ordenar jogadores pela posição no ranking
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => {
+        const rankA = rankingAtual.findIndex(j => j.id === a.id);
+        const rankB = rankingAtual.findIndex(j => j.id === b.id);
+        return (rankA === -1 ? 999 : rankA) - (rankB === -1 ? 999 : rankB);
     });
     
-    await db.set(`rankingEtapas/${numero}`, novosScores);
-    alert('✅ Etapa atualizada com sucesso!');
-  } catch (e) {
-    alert('Erro ao salvar etapa: ' + e.message);
-  }
-};
-
-function renderizarAdminJogadores() {
-  const container = document.getElementById('listaJogadoresAdmin');
-  container.innerHTML = '';
-  
-  if (jogadores.length === 0) {
-    container.innerHTML = '<p style="opacity:0.7;text-align:center;padding:15px;font-size:0.9em">Nenhum jogador cadastrado</p>';
-    return;
-  }
-  
-  jogadores.forEach(jogador => {
-    const div = document.createElement('div');
-    div.className = 'player-item';
-    
-    const avatarHtml = jogador.foto 
-      ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" style="margin-right:8px" onerror="this.style.display='none'">`
-      : '';
-    
-    div.innerHTML = `
-      <div style="display:flex;align-items:center">
-        ${avatarHtml}
-        <div>
-          <strong style="font-size:0.9em">${jogador.nome}</strong>
-          <br><small style="opacity:0.7;font-size:0.75em">ID: ${jogador.id}</small>
-          ${jogador.foto ? `<br><small style="opacity:0.5;font-size:0.7em;word-break:break-all">${jogador.foto}</small>` : ''}
-        </div>
-      </div>
-      <button class="btn-primary btn-danger" onclick="removerJogador('${jogador.id}','${jogador.nome}')">🗑️ Remover</button>
-    `;
-    container.appendChild(div);
-  });
+    jogadoresOrdenados.forEach(jogador => {
+        const scoreAtual = etapas[etapaAtualSelecionada]?.[jogador.id] || '';
+        const posicao = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
+        
+        const card = document.createElement('div');
+        card.className = 'player-points-card';
+        card.innerHTML = `
+            <div class="player-info-compact">
+                <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
+                     class="player-avatar"
+                     alt="${jogador.nome}">
+                <div>
+                    <div style="font-weight: 600; font-size: 0.95rem;">${jogador.nome}</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">Rank: #${posicao}</div>
+                </div>
+            </div>
+            <div class="points-input-container">
+                <input type="text" 
+                       class="points-input ${scoreAtual === 'NJ' ? 'NJ' : ''}"
+                       id="score_${etapaAtualSelecionada}_${jogador.id}"
+                       value="${scoreAtual}"
+                       placeholder="Pts ou NJ"
+                       oninput="formatarInputPontos(this)">
+            </div>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 'NJ')">NJ</button>
+                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 0)">0</button>
+                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 10)">10</button>
+                <button class="quick-btn" onclick="setPontuacao('${jogador.id}', 30)">30</button>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
 }
 
-window.removerJogador = async (id, nome) => {
-  if (!confirm(`Tem certeza que deseja remover ${nome}?\n\nIsso também removerá todas as pontuações deste jogador.`)) return;
-  
-  try {
-    await db.remove(`rankingJogadores/${id}`);
+// Funções auxiliares para o sistema de pontuação
+window.formatarInputPontos = function(input) {
+    let valor = input.value.trim().toUpperCase();
     
-    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-      await db.remove(`rankingEtapas/${i}/${id}`);
+    if (valor === 'NJ') {
+        input.value = 'NJ';
+        input.classList.add('NJ');
+        input.classList.remove('points-input');
+    } else {
+        // Remover caracteres não numéricos
+        valor = valor.replace(/[^0-9]/g, '');
+        input.value = valor;
+        input.classList.remove('NJ');
+        input.classList.add('points-input');
     }
-    
-    alert('✅ Jogador removido com sucesso!');
-    renderizarAdminJogadores();
-  } catch (e) {
-    alert('Erro ao remover jogador: ' + e.message);
-  }
 };
 
-btnExportarCSV.onclick = () => {
-  const ranking = calcularRanking();
-  
-  let csv = 'Posição,Jogador,Pontos Totais,Participações,Diferença para Líder';
-  for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-    csv += `,Etapa ${i}`;
-  }
-  csv += '\n';
-  
-  const primeiroPontos = ranking[0]?.totalPontos || 0;
-  
-  ranking.forEach(jogador => {
-    const diferenca = primeiroPontos - jogador.totalPontos;
-    csv += `${jogador.posicaoAtual},${jogador.nome},${jogador.totalPontos},${jogador.participacoes},${diferenca}`;
+window.setPontuacao = function(jogadorId, pontos) {
+    const input = document.getElementById(`score_${etapaAtualSelecionada}_${jogadorId}`);
+    if (input) {
+        input.value = pontos;
+        formatarInputPontos(input);
+    }
+};
+
+window.aplicarPontuacaoRapida = function(pontos) {
+    jogadores.forEach(jogador => {
+        setPontuacao(jogador.id, pontos);
+    });
+};
+
+window.limparPontuacoes = function() {
+    if (confirm('Tem certeza que deseja limpar TODAS as pontuações desta etapa?')) {
+        jogadores.forEach(jogador => {
+            const input = document.getElementById(`score_${etapaAtualSelecionada}_${jogador.id}`);
+            if (input) {
+                input.value = '';
+                input.classList.remove('NJ');
+            }
+        });
+    }
+};
+
+window.salvarEtapa = async function() {
+    try {
+        const novosScores = {};
+        let temAlteracoes = false;
+        
+        jogadores.forEach(jogador => {
+            const input = document.getElementById(`score_${etapaAtualSelecionada}_${jogador.id}`);
+            if (input) {
+                const valor = input.value.trim().toUpperCase();
+                if (valor) {
+                    novosScores[jogador.id] = valor === 'NJ' ? 'NJ' : parseInt(valor) || 0;
+                    temAlteracoes = true;
+                } else {
+                    novosScores[jogador.id] = null;
+                }
+            }
+        });
+        
+        if (!temAlteracoes) {
+            if (!confirm('Nenhuma pontuação foi alterada. Deseja salvar mesmo assim?')) {
+                return;
+            }
+        }
+        
+        await db.set(`rankingEtapas/${etapaAtualSelecionada}`, novosScores);
+        alert('✅ Etapa salva com sucesso!');
+        
+    } catch (e) {
+        alert('❌ Erro ao salvar etapa: ' + e.message);
+    }
+};
+
+window.proximaEtapa = async function() {
+    await salvarEtapa();
+    if (etapaAtualSelecionada < TOTAL_ETAPAS) {
+        etapaAtualSelecionada++;
+        document.getElementById('etapaAtualNumero').textContent = etapaAtualSelecionada;
+        renderizarSeletorEtapas();
+        renderizarPlayersPoints();
+    } else {
+        alert('🎉 Esta é a última etapa!');
+    }
+};
+
+// Gerenciamento de Jogadores (Admin)
+function renderizarAdminJogadores() {
+    const container = document.getElementById('listaJogadoresAdmin');
     
+    if (!container) return;
+    
+    if (jogadores.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 30px; color: var(--text-muted); background: var(--bg-row); border-radius: 10px;">
+                Nenhum jogador cadastrado
+            </div>
+        `;
+        return;
+    }
+    
+    // Ordenar por posição no ranking
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => {
+        const rankA = rankingAtual.findIndex(j => j.id === a.id);
+        const rankB = rankingAtual.findIndex(j => j.id === b.id);
+        return (rankA === -1 ? 999 : rankA) - (rankB === -1 ? 999 : rankB);
+    });
+    
+    let html = `
+        <div style="display: grid; gap: 10px; margin-top: 20px;">
+    `;
+    
+    jogadoresOrdenados.forEach(jogador => {
+        const posicao = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
+        const totalPontos = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
+        
+        html += `
+            <div style="background: var(--bg-row); padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
+                         style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--primary);"
+                         alt="${jogador.nome}">
+                    <div>
+                        <div style="font-weight: 600; font-size: 0.95rem;">${jogador.nome}</div>
+                        <div style="display: flex; gap: 15px; font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
+                            <span>Rank: #${posicao}</span>
+                            <span>Pontos: ${totalPontos}</span>
+                            <span>ID: ${jogador.id.substring(0, 8)}...</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="removerJogador('${jogador.id}', '${jogador.nome.replace(/'/g, "\\'")}')" 
+                        style="background: linear-gradient(135deg, #FF4757, #ff3742); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
+                    🗑️ Remover
+                </button>
+            </div>
+        `;
+    });
+    
+    html += `</div>`;
+    container.innerHTML = html;
+}
+
+window.removerJogador = async function(id, nome) {
+    if (!confirm(`Tem certeza que deseja remover o jogador "${nome}"?\n\nEsta ação não pode ser desfeita!`)) {
+        return;
+    }
+    
+    try {
+        // Remover jogador
+        await db.remove(`rankingJogadores/${id}`);
+        
+        // Remover pontuações do jogador em todas as etapas
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            await db.remove(`rankingEtapas/${i}/${id}`);
+        }
+        
+        alert('✅ Jogador removido com sucesso!');
+        
+    } catch (e) {
+        alert('❌ Erro ao remover jogador: ' + e.message);
+    }
+};
+
+// Exportar CSV
+btnExportarCSV.onclick = function() {
+    const ranking = calcularRanking();
+    
+    let csv = 'Posição,Jogador,Pontos Totais,Participações,Diferença para Líder';
+    
+    // Cabeçalho das etapas
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-      const score = etapas[i]?.[jogador.id] || '-';
-      csv += `,${score}`;
+        csv += `,Etapa ${i}`;
     }
     csv += '\n';
-  });
-  
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `ranking-poker-quinta-${new Date().toISOString().split('T')[0]}.csv`;
-  link.click();
-  
-  alert('✅ Ranking exportado com sucesso!');
+    
+    const primeiroPontos = ranking[0]?.totalPontos || 0;
+    
+    ranking.forEach(jogador => {
+        const diferenca = primeiroPontos - jogador.totalPontos;
+        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferenca}`;
+        
+        // Dados das etapas
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+            const score = etapas[i]?.[jogador.id] || '-';
+            csv += `,"${score}"`;
+        }
+        csv += '\n';
+    });
+    
+    // Criar e baixar arquivo
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `ranking-poker-quinta-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    alert('📊 Ranking exportado com sucesso!');
 };
+
+// Event Listeners para teclado
+document.addEventListener('keydown', (e) => {
+    // Ctrl + Enter para salvar etapa (no modo admin)
+    if (modoAdmin && e.ctrlKey && e.key === 'Enter') {
+        salvarEtapa();
+    }
+    
+    // Esc para fechar modal
+    if (e.key === 'Escape' && modalAdmin.classList.contains('active')) {
+        modalAdmin.classList.remove('active');
+        senhaAdmin.value = '';
+    }
+});
+
+// Focar no input quando modal abrir
+modalAdmin.addEventListener('click', (e) => {
+    if (e.target === modalAdmin) {
+        modalAdmin.classList.remove('active');
+        senhaAdmin.value = '';
+    }
+});
+
+// Inicializar aplicação
+document.addEventListener('DOMContentLoaded', () => {
+    inicializar();
+});
+
+// Prevenir envio do formulário com Enter
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+        }
+    });
+});
+
+// Permitir Enter no modal de senha
+senhaAdmin.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        btnAcessarAdmin.click();
+    }
+});
 </script>
 </body>
 </html>
