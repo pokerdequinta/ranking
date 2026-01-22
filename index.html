@@ -18,8 +18,8 @@
     --bg-card: #0f1f0f;
     --bg-row: #122012;
     --bg-row-alt: #0f1a0f;
-    --top10-row-1: rgba(212, 161, 33, 0.08);
-    --top10-row-2: rgba(212, 161, 33, 0.05);
+    --top10-row-odd: rgba(212, 161, 33, 0.15);
+    --top10-row-even: rgba(212, 161, 33, 0.10);
     --success: #4CAF50;
     --danger: #FF4757;
     --text: #ffffff;
@@ -206,24 +206,28 @@ body {
     font-size: 0.8rem;
 }
 
-/* LINHAS DO RANKING - MUITO MAIS FINAS */
+/* LINHAS DO RANKING */
 .ranking-row {
     transition: all 0.2s ease;
     border-bottom: 1px solid var(--border-light);
     height: 36px;
 }
 
-/* DIFERENCIAÇÃO TOP 10 - CORES FORTES INTERCALADAS */
+/* TOP 10 - CORES FORTES INTERCALADAS COM DESTAQUE MÁXIMO */
+.ranking-row.top10 {
+    position: relative;
+}
+
 .ranking-row.top10:nth-child(odd) {
-    background: var(--top10-row-1);
+    background: var(--top10-row-odd);
 }
 
 .ranking-row.top10:nth-child(even) {
-    background: var(--top10-row-2);
+    background: var(--top10-row-even);
 }
 
 .ranking-row.top10:hover {
-    background: rgba(212, 161, 33, 0.12);
+    background: rgba(212, 161, 33, 0.2);
 }
 
 /* APÓS O 10º - CORES NORMAIS */
@@ -239,24 +243,32 @@ body {
     background: rgba(212, 161, 33, 0.03);
 }
 
-/* DESTAQUES POR POSIÇÃO COM BORDAS */
+/* DESTAQUES POR POSIÇÃO COM BORDAS E CORES FORTES */
 .ranking-row.pos-1 {
     border-left: 4px solid var(--gold) !important;
-    background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.03) 100%) !important;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.08) 100%) !important;
 }
 
 .ranking-row.pos-2 {
     border-left: 4px solid var(--silver) !important;
-    background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, rgba(192, 192, 192, 0.03) 100%) !important;
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.08) 100%) !important;
 }
 
 .ranking-row.pos-3 {
     border-left: 4px solid var(--bronze) !important;
-    background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, rgba(205, 127, 50, 0.03) 100%) !important;
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.08) 100%) !important;
 }
 
-.ranking-row.pos-4,
-.ranking-row.pos-5,
+.ranking-row.pos-4 {
+    border-left: 4px solid #4CAF50 !important;
+    background: linear-gradient(90deg, rgba(76, 175, 80, 0.15) 0%, rgba(76, 175, 80, 0.05) 100%) !important;
+}
+
+.ranking-row.pos-5 {
+    border-left: 4px solid #4CAF50 !important;
+    background: linear-gradient(90deg, rgba(76, 175, 80, 0.12) 0%, rgba(76, 175, 80, 0.04) 100%) !important;
+}
+
 .ranking-row.pos-6,
 .ranking-row.pos-7,
 .ranking-row.pos-8,
@@ -302,6 +314,11 @@ body {
     border: 1px solid var(--border);
 }
 
+.ranking-row.top10 .rank-number {
+    background: rgba(212, 161, 33, 0.2);
+    border-color: rgba(212, 161, 33, 0.4);
+}
+
 /* JOGADOR */
 .player-info {
     display: flex;
@@ -344,18 +361,22 @@ body {
 
 .points.pos-1 { 
     color: var(--gold);
-    background: rgba(255, 215, 0, 0.15);
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.4);
 }
 .points.pos-2 { 
     color: var(--silver);
-    background: rgba(192, 192, 192, 0.15);
-    border: 1px solid rgba(192, 192, 192, 0.3);
+    background: rgba(192, 192, 192, 0.2);
+    border: 1px solid rgba(192, 192, 192, 0.4);
 }
 .points.pos-3 { 
     color: var(--bronze);
-    background: rgba(205, 127, 50, 0.15);
-    border: 1px solid rgba(205, 127, 50, 0.3);
+    background: rgba(205, 127, 50, 0.2);
+    border: 1px solid rgba(205, 127, 50, 0.4);
+}
+.ranking-row.top10 .points:not(.pos-1):not(.pos-2):not(.pos-3) {
+    background: rgba(212, 161, 33, 0.15);
+    border: 1px solid rgba(212, 161, 33, 0.3);
 }
 
 /* DIFERENÇA PARA O LÍDER - VERMELHA */
@@ -381,15 +402,7 @@ body {
     border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
-/* ETAPAS - NÚMEROS 1-12 NO HEADER, VALORES AO LADO */
-.etapas-cell {
-    display: flex;
-    gap: 4px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 2px 0;
-}
-
+/* ETAPAS */
 .etapa-pill {
     padding: 2px 6px;
     border-radius: 6px;
@@ -720,36 +733,38 @@ body {
 /* ADMIN TOGGLE BUTTON - MUITO ESCONDIDO */
 .admin-toggle-btn {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: rgba(212, 161, 33, 0.05);
-    border: 1px solid rgba(212, 161, 33, 0.1);
+    border: 1px solid rgba(212, 161, 33, 0.08);
     color: rgba(212, 161, 33, 0.2);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     cursor: pointer;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    opacity: 0.3;
+    opacity: 0.25;
+    box-shadow: none;
 }
 
 .admin-toggle-btn:hover {
-    background: rgba(212, 161, 33, 0.2);
-    border-color: rgba(212, 161, 33, 0.3);
-    color: rgba(212, 161, 33, 0.6);
-    opacity: 0.6;
+    background: rgba(212, 161, 33, 0.15);
+    border-color: rgba(212, 161, 33, 0.25);
+    color: rgba(212, 161, 33, 0.5);
+    opacity: 0.5;
+    transform: scale(1.1);
 }
 
 .admin-toggle-btn.active {
     background: rgba(76, 175, 80, 0.8);
     border-color: #4CAF50;
     color: white;
-    opacity: 1;
+    opacity: 0.9;
 }
 
 /* MODAL */
@@ -849,6 +864,14 @@ body {
         width: 100%;
         min-width: auto;
     }
+    
+    .admin-toggle-btn {
+        bottom: 6px;
+        right: 6px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -914,7 +937,7 @@ body {
     <div class="view-toggle">
         <button class="view-btn active" id="btnViewRanking">
             <span>📊</span>
-            <span>Ranking Geral</span>
+            <span>Ranking</span>
         </button>
     </div>
 
@@ -924,10 +947,10 @@ body {
             <div class="section-header">
                 <h2>
                     <span>CLASSIFICAÇÃO GERAL</span>
-                    <span class="g10-badge">🏆 G - 10</span>
+                    <span class="g10-badge">🏆 G10</span>
                 </h2>
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
-                    Ranking Atualizado sempre após a Última etapa jogada. 
+                    Atualizado após salvar na aba Admin
                 </div>
             </div>
             
@@ -965,7 +988,7 @@ body {
         </div>
 
         <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
-            ℹ️ Os 5 melhores do Ranking Geral tem premiação em Dinheiro.
+            ℹ️ As 10 melhores pontuações de cada jogador são consideradas para a classificação geral.
         </div>
     </div>
 
