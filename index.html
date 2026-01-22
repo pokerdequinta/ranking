@@ -9,89 +9,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Roboto', sans-serif;background:#0d1b0d;color:#fff;min-height:100vh}
-.logo-top{text-align:center;padding:30px 20px 20px}
+.logo-top{text-align:center;padding:20px 20px 15px}
 .logo-top img{max-width:250px;height:auto}
-.container{max-width:1400px;margin:auto;padding:20px}
-header{text-align:center;background:#102810;border:2px solid #d4a121;border-radius:15px;padding:30px;margin-bottom:30px}
-h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
-.subtitle{margin-top:10px;font-size:1.1em}
+.container{max-width:1400px;margin:auto;padding:15px}
+header{text-align:center;background:#102810;border:2px solid #d4a121;border-radius:12px;padding:20px;margin-bottom:20px}
+h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
+.subtitle{margin-top:8px;font-size:1em}
 
-.view-toggle{display:flex;gap:10px;justify-content:center;margin-bottom:25px}
-.view-btn{padding:12px 30px;background:#102810;border:2px solid #d4a121;border-radius:10px;color:#d4a121;font-weight:bold;cursor:pointer;transition:all 0.3s}
+.view-toggle{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.view-btn{padding:10px 25px;background:#102810;border:2px solid #d4a121;border-radius:8px;color:#d4a121;font-weight:bold;cursor:pointer;transition:all 0.3s;font-size:0.9em}
 .view-btn.active{background:#d4a121;color:#000}
 
-.section{background:#102810;border:2px solid #d4a121;border-radius:12px;padding:20px;margin-bottom:25px}
-.section h3{color:#d4a121;margin-bottom:15px;font-family:'Anton';font-size:1.5em}
+.section{background:#102810;border:2px solid #d4a121;border-radius:10px;padding:15px;margin-bottom:20px}
+.section h3{color:#d4a121;margin-bottom:12px;font-family:'Anton';font-size:1.3em}
 
 .ranking-table{width:100%;border-collapse:collapse}
-.ranking-table th{text-align:left;padding:15px;background:#1a3d1a;color:#d4a121;font-family:'Anton';border-bottom:2px solid #d4a121}
-.ranking-table td{padding:15px;border-bottom:1px solid #2d5016}
+.ranking-table th{text-align:left;padding:10px 8px;background:#1a3d1a;color:#d4a121;font-family:'Anton';border-bottom:2px solid #d4a121;font-size:0.9em}
+.ranking-table td{padding:8px;border-bottom:1px solid #2d5016;font-size:0.9em}
 .ranking-row{transition:all 0.3s}
 .ranking-row:hover{background:rgba(212,161,33,0.1)}
 
-.rank-cell{font-family:'Anton';font-size:1.5em;color:#d4a121;display:flex;align-items:center;gap:10px}
+.rank-cell{font-family:'Anton';font-size:1.3em;color:#d4a121;display:flex;align-items:center;gap:8px}
 .rank-top5{color:#FFD700;text-shadow:0 0 10px rgba(255,215,0,0.5)}
 .rank-top10{color:#FFA500}
 
-.rank-badge{font-size:1.2em}
-.rank-indicator{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px}
-.rank-up{color:#4CAF50;animation:pulse 2s infinite}
-.rank-down{color:#c72c48}
-.rank-same{color:#666;font-size:0.8em}
+.rank-badge{font-size:1em}
+.rank-indicator{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;font-size:1.1em}
+.rank-up{color:#4CAF50}
+.rank-down{color:#ff4444}
+.rank-same{color:#666;font-size:0.9em}
 
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
-
-.player-name{font-weight:bold;font-size:1.1em;display:flex;align-items:center;gap:10px}
-.player-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
-.player-score{font-family:'Anton';font-size:1.3em;color:#d4a121}
+.player-name{font-weight:bold;font-size:1em;display:flex;align-items:center;gap:8px}
+.player-avatar{width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
+.player-score{font-family:'Anton';font-size:1.2em;color:#d4a121}
 .score-top5{color:#FFD700}
 .score-top10{color:#FFA500}
 
-.etapa-cell{background:#1a3d1a;padding:8px;border-radius:5px;text-align:center;font-size:0.85em;min-width:60px}
+.etapa-cell{background:#1a3d1a;padding:6px 4px;border-radius:4px;text-align:center;font-size:0.85em;min-width:50px}
 .etapa-cell.nj{background:#c72c48;opacity:0.7}
 .etapa-cell.empty{background:#2d5016;opacity:0.5}
 
-.admin-controls{background:#1a1a1a;border:2px solid #8b0000;border-radius:12px;padding:20px;margin-bottom:20px}
-.admin-title{color:#8b0000;font-family:'Anton';font-size:1.5em;margin-bottom:15px}
+.admin-controls{background:#1a1a1a;border:2px solid #8b0000;border-radius:10px;padding:15px;margin-bottom:15px}
+.admin-title{color:#8b0000;font-family:'Anton';font-size:1.3em;margin-bottom:12px}
 
-.form-group{margin-bottom:15px}
-.form-group label{color:#d4a121;font-weight:bold;display:block;margin-bottom:5px}
-.form-group input,.form-group select{width:100%;padding:10px;border-radius:8px;border:1px solid #2d5016;background:#1a3d1a;color:#fff}
+.form-group{margin-bottom:12px}
+.form-group label{color:#d4a121;font-weight:bold;display:block;margin-bottom:4px;font-size:0.9em}
+.form-group input,.form-group select{width:100%;padding:8px;border-radius:6px;border:1px solid #2d5016;background:#1a3d1a;color:#fff;font-size:0.9em}
 
-.btn-primary{padding:12px 24px;background:#d4a121;border:none;border-radius:10px;font-weight:bold;cursor:pointer;color:#000;transition:all 0.3s}
+.btn-primary{padding:10px 20px;background:#d4a121;border:none;border-radius:8px;font-weight:bold;cursor:pointer;color:#000;transition:all 0.3s;font-size:0.9em}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(212,161,33,0.4)}
 .btn-danger{background:#c72c48;color:#fff}
 .btn-success{background:#4CAF50;color:#fff}
 
-.etapa-admin{background:#1a3d1a;border:1px solid #2d5016;border-radius:10px;padding:15px;margin-bottom:15px}
-.etapa-admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.etapa-admin-title{color:#d4a121;font-family:'Anton';font-size:1.2em}
+.etapa-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.etapa-btn{padding:8px 15px;background:#1a3d1a;border:2px solid #2d5016;border-radius:6px;color:#d4a121;cursor:pointer;transition:all 0.3s;font-size:0.85em}
+.etapa-btn.active{background:#d4a121;color:#000;border-color:#d4a121}
+.etapa-btn:hover{border-color:#d4a121}
 
-.scores-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
-.score-input-group{background:#102810;padding:10px;border-radius:8px}
-.score-input-group label{font-size:0.9em;color:#d4a121;display:block;margin-bottom:5px}
-.score-input-group input{width:100%;padding:8px;background:#1a3d1a;border:1px solid #2d5016;border-radius:5px;color:#fff}
+.scores-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:10px}
+.score-input-group{background:#102810;padding:8px;border-radius:6px}
+.score-input-group label{font-size:0.85em;color:#d4a121;display:block;margin-bottom:4px}
+.score-input-group input{width:100%;padding:6px;background:#1a3d1a;border:1px solid #2d5016;border-radius:4px;color:#fff;font-size:0.85em}
 
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);justify-content:center;align-items:center;z-index:1000}
 .modal.active{display:flex}
-.modal-content{background:#102810;border:2px solid #d4a121;border-radius:15px;padding:30px;width:90%;max-width:500px}
-.modal-buttons{display:flex;gap:10px;margin-top:20px}
+.modal-content{background:#102810;border:2px solid #d4a121;border-radius:12px;padding:25px;width:90%;max-width:450px}
+.modal-buttons{display:flex;gap:8px;margin-top:15px}
 
-.status-indicator{position:fixed;top:10px;right:10px;background:#2d5016;padding:8px 15px;border-radius:20px;font-size:0.85em;border:1px solid #d4a121}
+.status-indicator{position:fixed;top:10px;right:10px;background:#2d5016;padding:6px 12px;border-radius:15px;font-size:0.8em;border:1px solid #d4a121;z-index:100}
 .status-indicator.connected{background:#1a3d1a;border-color:#4CAF50}
 
-.admin-btn{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:rgba(13,27,13,0.3);border:2px solid rgba(212,161,33,0.1);border-radius:50%;color:#d4a121;font-size:1.5em;cursor:pointer;opacity:0.2;transition:all 0.3s}
+.admin-btn{position:fixed;bottom:20px;right:20px;width:55px;height:55px;background:rgba(13,27,13,0.3);border:2px solid rgba(212,161,33,0.1);border-radius:50%;color:#d4a121;font-size:1.4em;cursor:pointer;opacity:0.2;transition:all 0.3s;z-index:100}
 .admin-btn:hover{opacity:1;background:#102810}
 .admin-btn.active{background:#4CAF50;opacity:1;border-color:#4CAF50}
 
-.add-player-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+.add-player-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+
+.player-item{background:#1a3d1a;padding:10px;border-radius:6px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+
+.info-note{margin-top:12px;font-size:0.85em;opacity:0.8;text-align:center;padding:10px;background:#102810;border-radius:8px}
 
 @media(max-width:768px){
-.ranking-table{font-size:0.9em}
+.ranking-table{font-size:0.85em}
+.ranking-table th,.ranking-table td{padding:6px 4px}
 .scores-grid{grid-template-columns:1fr}
-.add-player-grid{grid-template-columns:1fr;gap:10px}
-.player-avatar{width:30px;height:30px}
-.etapa-cell{font-size:0.75em;padding:6px;min-width:50px}
+.add-player-grid{grid-template-columns:1fr;gap:8px}
+.player-avatar{width:28px;height:28px}
+.etapa-cell{font-size:0.75em;padding:4px 2px;min-width:45px}
+.etapa-selector{gap:5px}
+.etapa-btn{padding:6px 10px;font-size:0.75em}
 }
 </style>
 </head>
@@ -120,64 +126,54 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 <div class="section">
 <h3>🏅 CLASSIFICAÇÃO GERAL</h3>
 <div style="overflow-x:auto">
-<table class="ranking-table">
-<thead>
+<table class="ranking-table" id="rankingTable">
+<thead id="rankingTableHead">
 <tr>
-<th>Posição</th>
+<th>Pos</th>
 <th>Jogador</th>
 <th style="text-align:center">Pontos</th>
-<th style="text-align:center">Etapa 1</th>
-<th style="text-align:center">Etapa 2</th>
-<th style="text-align:center">Etapa 3</th>
-<th style="text-align:center">Etapa 4</th>
-<th style="text-align:center">Etapa 5</th>
-<th style="text-align:center">Etapa 6</th>
-<th style="text-align:center">Etapa 7</th>
-<th style="text-align:center">Etapa 8</th>
-<th style="text-align:center">Etapa 9</th>
-<th style="text-align:center">Etapa 10</th>
-<th style="text-align:center">Etapa 11</th>
-<th style="text-align:center">Etapa 12</th>
+<th style="text-align:center">Participações</th>
 </tr>
 </thead>
 <tbody id="rankingTableBody">
-<tr><td colspan="14" style="text-align:center;padding:30px;opacity:0.7">Carregando dados...</td></tr>
+<tr><td colspan="4" style="text-align:center;padding:20px;opacity:0.7">Carregando dados...</td></tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div style="margin-top:15px;font-size:0.9em;opacity:0.8;text-align:center;padding:15px;background:#102810;border-radius:10px">
-ℹ️ <strong>Sistema de pontuação:</strong> São contabilizadas as 10 melhores pontuações de cada jogador ao longo das 12 etapas.
+<div class="info-note">
+ℹ️ <strong>Sistema de pontuação:</strong> São contabilizadas as 10 melhores pontuações de cada jogador ao longo das etapas.
 </div>
 </div>
 
 <div id="viewAdmin" style="display:none">
 <div class="admin-controls">
 <div class="admin-title">⚙️ PAINEL ADMINISTRATIVO</div>
-<p style="opacity:0.8;margin-bottom:20px">Gerencie jogadores e atualize pontuações das etapas</p>
+<p style="opacity:0.8;margin-bottom:15px;font-size:0.9em">Gerencie jogadores e atualize pontuações das etapas</p>
 
 <div class="form-group">
 <label>➕ Adicionar Novo Jogador</label>
 <div class="add-player-grid">
 <div>
-<label style="font-size:0.85em;margin-bottom:3px">Nome do Jogador</label>
+<label style="font-size:0.8em;margin-bottom:3px">Nome do Jogador</label>
 <input type="text" id="novoJogadorNome" placeholder="Nome do jogador">
 </div>
 <div>
-<label style="font-size:0.85em;margin-bottom:3px">URL da Foto (opcional)</label>
+<label style="font-size:0.8em;margin-bottom:3px">URL da Foto (opcional)</label>
 <input type="text" id="novoJogadorFoto" placeholder="https://exemplo.com/foto.jpg">
 </div>
 <button class="btn-primary btn-success" id="btnAdicionarJogador" style="height:fit-content">Adicionar</button>
 </div>
 </div>
 
-<button class="btn-primary" id="btnExportarCSV" style="width:100%;margin-top:10px">📊 Exportar Ranking CSV</button>
+<button class="btn-primary" id="btnExportarCSV" style="width:100%;margin-top:8px">📊 Exportar Ranking CSV</button>
 </div>
 
 <div class="section">
 <h3>🎮 ATUALIZAÇÃO DE ETAPAS</h3>
-<div id="etapasAdmin"></div>
+<div class="etapa-selector" id="etapaSelector"></div>
+<div id="etapaAtualContent"></div>
 </div>
 
 <div class="section">
@@ -192,8 +188,8 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 
 <div class="modal" id="modalAdmin">
 <div class="modal-content">
-<h2 style="color: #8b0000;">🔐 Acesso Administrativo</h2>
-<p style="margin: 15px 0; opacity: 0.8;">Digite a senha de administrador:</p>
+<h2 style="color: #8b0000;font-size:1.3em">🔐 Acesso Administrativo</h2>
+<p style="margin: 12px 0; opacity: 0.8;font-size:0.9em">Digite a senha de administrador:</p>
 <div class="form-group">
 <label>Senha</label>
 <input type="password" id="senhaAdmin" placeholder="Digite a senha">
@@ -222,9 +218,8 @@ const SENHA_ADMIN = "poker2026";
 let jogadores = [];
 let etapas = {};
 let modoAdmin = false;
-let editandoEtapa = null;
+let etapaAtualSelecionada = 1;
 
-// Firebase REST API Helper
 class FirebaseDB {
   constructor(config) {
     this.dbUrl = config.databaseURL;
@@ -283,13 +278,11 @@ class FirebaseDB {
 
 const db = new FirebaseDB(FIREBASE_CONFIG);
 
-// Inicializar
 async function inicializar() {
   try {
     statusIndicator.textContent = '✅ Conectado';
     statusIndicator.classList.add('connected');
     
-    // Listeners
     db.onValue('rankingJogadores', (data) => {
       jogadores = [];
       if (data) {
@@ -303,6 +296,9 @@ async function inicializar() {
     db.onValue('rankingEtapas', (data) => {
       etapas = data || {};
       atualizarRanking();
+      if (modoAdmin) {
+        renderizarSeletorEtapas();
+      }
     });
     
   } catch (e) {
@@ -313,7 +309,6 @@ async function inicializar() {
 
 inicializar();
 
-// Navegação entre views
 btnViewRanking.onclick = () => {
   btnViewRanking.classList.add('active');
   btnViewAdmin.classList.remove('active');
@@ -329,12 +324,11 @@ btnViewAdmin.onclick = () => {
     btnViewAdmin.classList.add('active');
     viewRanking.style.display = 'none';
     viewAdmin.style.display = 'block';
-    renderizarAdminEtapas();
+    renderizarSeletorEtapas();
     renderizarAdminJogadores();
   }
 };
 
-// Modal Admin
 btnAdminToggle.onclick = () => modalAdmin.classList.add('active');
 btnFecharAdmin.onclick = () => modalAdmin.classList.remove('active');
 btnAcessarAdmin.onclick = () => {
@@ -350,14 +344,13 @@ btnAcessarAdmin.onclick = () => {
     btnViewAdmin.classList.add('active');
     viewRanking.style.display = 'none';
     viewAdmin.style.display = 'block';
-    renderizarAdminEtapas();
+    renderizarSeletorEtapas();
     renderizarAdminJogadores();
   } else {
     alert('❌ Senha incorreta!');
   }
 };
 
-// Adicionar jogador
 btnAdicionarJogador.onclick = async () => {
   const nome = novoJogadorNome.value.trim();
   if (!nome) return alert('Digite o nome do jogador!');
@@ -381,25 +374,32 @@ btnAdicionarJogador.onclick = async () => {
   }
 };
 
-// Calcular e atualizar ranking
+function getEtapasAcontecidas() {
+  const etapasComDados = [];
+  for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+    if (etapas[i] && Object.keys(etapas[i]).length > 0) {
+      etapasComDados.push(i);
+    }
+  }
+  return etapasComDados;
+}
+
 function calcularRanking() {
   const rankingCalculado = jogadores.map(jogador => {
     const pontuacoes = [];
     let participacoes = 0;
-    let etapasJogadas = 0;
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
       const score = etapas[i]?.[jogador.id];
-      if (score !== undefined && score !== null) {
-        etapasJogadas++;
-        if (score !== 'NJ' && score > 0) {
-          pontuacoes.push(parseInt(score));
+      if (score !== undefined && score !== null && score !== 'NJ') {
+        const pontos = parseInt(score);
+        if (pontos > 0) {
+          pontuacoes.push(pontos);
           participacoes++;
         }
       }
     }
     
-    // Pegar as 10 melhores pontuações
     const melhoresPontuacoes = pontuacoes.sort((a, b) => b - a).slice(0, 10);
     const totalPontos = melhoresPontuacoes.reduce((sum, p) => sum + p, 0);
     
@@ -407,26 +407,27 @@ function calcularRanking() {
       ...jogador,
       totalPontos,
       participacoes,
-      etapasJogadas,
       pontuacoes
     };
   });
   
-  // Ordenar por pontos, depois por participações
   rankingCalculado.sort((a, b) => {
     if (b.totalPontos !== a.totalPontos) return b.totalPontos - a.totalPontos;
     if (b.participacoes !== a.participacoes) return b.participacoes - a.participacoes;
     return a.nome.localeCompare(b.nome);
   });
   
-  // Atualizar ranks e calcular mudanças
   rankingCalculado.forEach((jogador, index) => {
     const novoRank = index + 1;
-    const rankAnterior = jogador.previousRank || novoRank;
+    const rankAnterior = jogador.previousRank || 0;
     jogador.posicaoAtual = novoRank;
-    jogador.mudancaRank = rankAnterior - novoRank;
     
-    // Atualizar previousRank no banco se mudou
+    if (rankAnterior === 0) {
+      jogador.mudancaRank = 0;
+    } else {
+      jogador.mudancaRank = rankAnterior - novoRank;
+    }
+    
     if (jogador.previousRank !== novoRank) {
       db.update(`rankingJogadores/${jogador.id}`, { previousRank: novoRank });
     }
@@ -437,13 +438,29 @@ function calcularRanking() {
 
 function atualizarRanking() {
   const ranking = calcularRanking();
+  const etapasAcontecidas = getEtapasAcontecidas();
   
-  // Renderizar tabela
+  const thead = rankingTableHead;
+  let headerHtml = `
+    <tr>
+      <th>Pos</th>
+      <th>Jogador</th>
+      <th style="text-align:center">Pontos</th>
+      <th style="text-align:center">Participações</th>
+  `;
+  
+  etapasAcontecidas.forEach(num => {
+    headerHtml += `<th style="text-align:center">E${num}</th>`;
+  });
+  
+  headerHtml += '</tr>';
+  thead.innerHTML = headerHtml;
+  
   const tbody = rankingTableBody;
   tbody.innerHTML = '';
   
   if (ranking.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="14" style="text-align:center;padding:30px;opacity:0.7">Nenhum jogador cadastrado</td></tr>';
+    tbody.innerHTML = `<tr><td colspan="${4 + etapasAcontecidas.length}" style="text-align:center;padding:20px;opacity:0.7">Nenhum jogador cadastrado</td></tr>`;
     return;
   }
   
@@ -464,17 +481,16 @@ function atualizarRanking() {
     
     let indicator = '';
     if (jogador.mudancaRank > 0) {
-      indicator = '<span class="rank-indicator rank-up">↑</span>';
+      indicator = '<span class="rank-indicator rank-up">▲</span>';
     } else if (jogador.mudancaRank < 0) {
-      indicator = '<span class="rank-indicator rank-down">↓</span>';
+      indicator = '<span class="rank-indicator rank-down">▼</span>';
     } else {
-      indicator = '<span class="rank-indicator rank-same">━</span>';
+      indicator = '<span class="rank-indicator rank-same">—</span>';
     }
     
-    // Gerar células de etapas
     let etapasCells = '';
-    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-      const score = etapas[i]?.[jogador.id];
+    etapasAcontecidas.forEach(numEtapa => {
+      const score = etapas[numEtapa]?.[jogador.id];
       let cellClass = 'etapa-cell';
       let cellContent = '-';
       
@@ -490,7 +506,7 @@ function atualizarRanking() {
       }
       
       etapasCells += `<td style="text-align:center"><div class="${cellClass}">${cellContent}</div></td>`;
-    }
+    });
     
     const avatarHtml = jogador.foto 
       ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" onerror="this.style.display='none'">`
@@ -513,73 +529,65 @@ function atualizarRanking() {
       <td style="text-align:center">
         <span class="player-score ${scoreClass}">${jogador.totalPontos}</span>
       </td>
+      <td style="text-align:center">${jogador.participacoes}</td>
       ${etapasCells}
     `;
     tbody.appendChild(tr);
   });
 }
 
-// Admin - Etapas
-function renderizarAdminEtapas() {
-  const container = document.getElementById('etapasAdmin');
+function renderizarSeletorEtapas() {
+  const container = document.getElementById('etapaSelector');
   container.innerHTML = '';
   
   for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-    const div = document.createElement('div');
-    div.className = 'etapa-admin';
-    
-    const isEditando = editandoEtapa === i;
-    
-    div.innerHTML = `
-      <div class="etapa-admin-header">
-        <span class="etapa-admin-title">Etapa ${i}</span>
-        <div>
-          ${isEditando ? `
-            <button class="btn-primary btn-success" onclick="salvarEtapa(${i})">💾 Salvar</button>
-            <button class="btn-primary btn-danger" onclick="cancelarEdicao()">❌ Cancelar</button>
-          ` : `
-            <button class="btn-primary" onclick="editarEtapa(${i})">✏️ Editar</button>
-          `}
-        </div>
-      </div>
-      <div class="scores-grid" id="scoresEtapa${i}"></div>
-    `;
-    
-    container.appendChild(div);
-    
-    const scoresContainer = document.getElementById(`scoresEtapa${i}`);
-    jogadores.forEach(jogador => {
-      const scoreAtual = etapas[i]?.[jogador.id] || '';
-      
-      const scoreDiv = document.createElement('div');
-      scoreDiv.className = 'score-input-group';
-      scoreDiv.innerHTML = `
-        <label>${jogador.nome}</label>
-        ${isEditando ? `
-          <input type="text" 
-                 id="score_${i}_${jogador.id}" 
-                 value="${scoreAtual}" 
-                 placeholder="Pts ou NJ">
-        ` : `
-          <div style="padding:8px;background:#1a3d1a;border-radius:5px;text-align:center">
-            ${scoreAtual || '-'}
-          </div>
-        `}
-      `;
-      scoresContainer.appendChild(scoreDiv);
-    });
+    const btn = document.createElement('button');
+    btn.className = 'etapa-btn';
+    if (i === etapaAtualSelecionada) btn.classList.add('active');
+    btn.textContent = `Etapa ${i}`;
+    btn.onclick = () => {
+      etapaAtualSelecionada = i;
+      renderizarSeletorEtapas();
+      renderizarEtapaAtual();
+    };
+    container.appendChild(btn);
   }
+  
+  renderizarEtapaAtual();
 }
 
-window.editarEtapa = (numero) => {
-  editandoEtapa = numero;
-  renderizarAdminEtapas();
-};
-
-window.cancelarEdicao = () => {
-  editandoEtapa = null;
-  renderizarAdminEtapas();
-};
+function renderizarEtapaAtual() {
+  const container = document.getElementById('etapaAtualContent');
+  const num = etapaAtualSelecionada;
+  
+  container.innerHTML = `
+    <div style="background:#1a3d1a;border-radius:8px;padding:12px;margin-top:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span style="color:#d4a121;font-family:'Anton';font-size:1.1em">Etapa ${num}</span>
+        <div>
+          <button class="btn-primary btn-success" onclick="salvarEtapa(${num})">💾 Salvar</button>
+        </div>
+      </div>
+      <div class="scores-grid" id="scoresEtapa${num}"></div>
+    </div>
+  `;
+  
+  const scoresContainer = document.getElementById(`scoresEtapa${num}`);
+  jogadores.forEach(jogador => {
+    const scoreAtual = etapas[num]?.[jogador.id] || '';
+    
+    const scoreDiv = document.createElement('div');
+    scoreDiv.className = 'score-input-group';
+    scoreDiv.innerHTML = `
+      <label>${jogador.nome}</label>
+      <input type="text" 
+             id="score_${num}_${jogador.id}" 
+             value="${scoreAtual}" 
+             placeholder="Pts ou NJ">
+    `;
+    scoresContainer.appendChild(scoreDiv);
+  });
+}
 
 window.salvarEtapa = async (numero) => {
   try {
@@ -596,39 +604,36 @@ window.salvarEtapa = async (numero) => {
     });
     
     await db.set(`rankingEtapas/${numero}`, novosScores);
-    editandoEtapa = null;
-    renderizarAdminEtapas();
     alert('✅ Etapa atualizada com sucesso!');
   } catch (e) {
     alert('Erro ao salvar etapa: ' + e.message);
   }
 };
 
-// Admin - Jogadores
 function renderizarAdminJogadores() {
   const container = document.getElementById('listaJogadoresAdmin');
   container.innerHTML = '';
   
   if (jogadores.length === 0) {
-    container.innerHTML = '<p style="opacity:0.7;text-align:center;padding:20px">Nenhum jogador cadastrado</p>';
+    container.innerHTML = '<p style="opacity:0.7;text-align:center;padding:15px;font-size:0.9em">Nenhum jogador cadastrado</p>';
     return;
   }
   
   jogadores.forEach(jogador => {
     const div = document.createElement('div');
-    div.style.cssText = 'background:#1a3d1a;padding:15px;border-radius:8px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center';
+    div.className = 'player-item';
     
     const avatarHtml = jogador.foto 
-      ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" style="margin-right:10px" onerror="this.style.display='none'">`
+      ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" style="margin-right:8px" onerror="this.style.display='none'">`
       : '';
     
     div.innerHTML = `
       <div style="display:flex;align-items:center">
         ${avatarHtml}
         <div>
-          <strong>${jogador.nome}</strong>
-          <br><small style="opacity:0.7">ID: ${jogador.id}</small>
-          ${jogador.foto ? `<br><small style="opacity:0.5;font-size:0.75em">${jogador.foto}</small>` : ''}
+          <strong style="font-size:0.9em">${jogador.nome}</strong>
+          <br><small style="opacity:0.7;font-size:0.75em">ID: ${jogador.id}</small>
+          ${jogador.foto ? `<br><small style="opacity:0.5;font-size:0.7em;word-break:break-all">${jogador.foto}</small>` : ''}
         </div>
       </div>
       <button class="btn-primary btn-danger" onclick="removerJogador('${jogador.id}','${jogador.nome}')">🗑️ Remover</button>
@@ -643,7 +648,6 @@ window.removerJogador = async (id, nome) => {
   try {
     await db.remove(`rankingJogadores/${id}`);
     
-    // Remover pontuações de todas as etapas
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
       await db.remove(`rankingEtapas/${i}/${id}`);
     }
@@ -655,18 +659,17 @@ window.removerJogador = async (id, nome) => {
   }
 };
 
-// Exportar CSV
 btnExportarCSV.onclick = () => {
   const ranking = calcularRanking();
   
-  let csv = 'Posição,Jogador,Pontos Totais';
+  let csv = 'Posição,Jogador,Pontos Totais,Participações';
   for (let i = 1; i <= TOTAL_ETAPAS; i++) {
     csv += `,Etapa ${i}`;
   }
   csv += '\n';
   
   ranking.forEach(jogador => {
-    csv += `${jogador.posicaoAtual},${jogador.nome},${jogador.totalPontos}`;
+    csv += `${jogador.posicaoAtual},${jogador.nome},${jogador.totalPontos},${jogador.participacoes}`;
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
       const score = etapas[i]?.[jogador.id] || '-';
