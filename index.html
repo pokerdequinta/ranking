@@ -20,17 +20,22 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
 .view-btn{padding:10px 25px;background:#102810;border:2px solid #d4a121;border-radius:8px;color:#d4a121;font-weight:bold;cursor:pointer;transition:all 0.3s;font-size:0.9em}
 .view-btn.active{background:#d4a121;color:#000}
 
-.section{background:#102810;border:2px solid #d4a121;border-radius:10px;padding:15px;margin-bottom:20px}
-.section h3{color:#d4a121;margin-bottom:12px;font-family:'Anton';font-size:1.3em}
+.section{background:#102810;border:2px solid #d4a121;border-radius:10px;padding:12px;margin-bottom:15px}
+.section h3{color:#d4a121;margin-bottom:10px;font-family:'Anton';font-size:1.2em}
 
 .ranking-table{width:100%;border-collapse:collapse}
-.ranking-table th{text-align:left;padding:10px 8px;background:#1a3d1a;color:#d4a121;font-family:'Anton';border-bottom:2px solid #d4a121;font-size:0.9em}
-.ranking-table td{padding:8px;border-bottom:1px solid #2d5016;font-size:0.9em}
-.ranking-row{transition:all 0.3s}
-.ranking-row:hover{background:rgba(212,161,33,0.1)}
+.ranking-table th{text-align:left;padding:8px 6px;background:#1a3d1a;color:#d4a121;font-family:'Anton';border-bottom:2px solid #d4a121;font-size:0.85em}
+.ranking-table td{padding:6px;font-size:0.85em}
+.ranking-row{transition:all 0.2s}
+.ranking-row:hover{background:rgba(212,161,33,0.15)}
+.ranking-row:nth-child(odd){background:rgba(26,61,26,0.3)}
+.ranking-row:nth-child(even){background:rgba(16,40,16,0.3)}
+.ranking-row.top10{border-left:4px solid #d4a121;background:rgba(212,161,33,0.08)}
+.ranking-row.top10:nth-child(odd){background:rgba(212,161,33,0.12)}
+.ranking-row.top10:nth-child(even){background:rgba(212,161,33,0.08)}
 
-.rank-cell{font-family:'Anton';font-size:1.3em;color:#d4a121;display:flex;align-items:center;gap:8px}
-.rank-top5{color:#FFD700;text-shadow:0 0 10px rgba(255,215,0,0.5)}
+.rank-cell{font-family:'Anton';font-size:1.1em;color:#d4a121;display:flex;align-items:center;gap:6px}
+.rank-top5{color:#FFD700}
 .rank-top10{color:#FFA500}
 
 .rank-badge{font-size:1em}
@@ -39,13 +44,13 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
 .rank-down{color:#ff4444}
 .rank-same{color:#666;font-size:0.9em}
 
-.player-name{font-weight:bold;font-size:1em;display:flex;align-items:center;gap:8px}
-.player-avatar{width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
-.player-score{font-family:'Anton';font-size:1.2em;color:#d4a121}
+.player-name{font-weight:bold;font-size:0.9em;display:flex;align-items:center;gap:6px}
+.player-avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
+.player-score{font-family:'Anton';font-size:1.1em;color:#d4a121}
 .score-top5{color:#FFD700}
 .score-top10{color:#FFA500}
 
-.etapa-cell{background:#1a3d1a;padding:6px 4px;border-radius:4px;text-align:center;font-size:0.85em;min-width:50px}
+.etapa-cell{background:#1a3d1a;padding:5px 3px;border-radius:3px;text-align:center;font-size:0.8em;min-width:45px}
 .etapa-cell.nj{background:#c72c48;opacity:0.7}
 .etapa-cell.empty{background:#2d5016;opacity:0.5}
 
@@ -124,7 +129,7 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
 
 <div id="viewRanking">
 <div class="section">
-<h3>🏅 CLASSIFICAÇÃO GERAL</h3>
+<h3>🏅 CLASSIFICAÇÃO GERAL <span style="font-size:0.7em;color:#d4a121;opacity:0.8;font-family:'Roboto';font-weight:normal;margin-left:10px">| G10 = Top 10 Premiados</span></h3>
 <div style="overflow-x:auto">
 <table class="ranking-table" id="rankingTable">
 <thead id="rankingTableHead">
@@ -466,18 +471,10 @@ function atualizarRanking() {
   
   ranking.forEach(jogador => {
     const rank = jogador.posicaoAtual;
-    const isTop5 = rank <= 5;
     const isTop10 = rank <= 10;
     
-    const rankClass = isTop5 ? 'rank-top5' : isTop10 ? 'rank-top10' : '';
-    const scoreClass = isTop5 ? 'score-top5' : isTop10 ? 'score-top10' : '';
-    
-    let badge = '';
-    if (rank === 1) badge = '🥇';
-    else if (rank === 2) badge = '🥈';
-    else if (rank === 3) badge = '🥉';
-    else if (rank <= 5) badge = '🏆';
-    else if (rank <= 10) badge = '🎖️';
+    const rankClass = '';
+    const scoreClass = '';
     
     let indicator = '';
     if (jogador.mudancaRank > 0) {
@@ -513,11 +510,11 @@ function atualizarRanking() {
       : '';
     
     const tr = document.createElement('tr');
-    tr.className = 'ranking-row';
+    tr.className = `ranking-row${isTop10 ? ' top10' : ''}`;
     tr.innerHTML = `
       <td>
         <div class="rank-cell ${rankClass}">
-          ${rank}º ${badge} ${indicator}
+          ${rank}º ${indicator}
         </div>
       </td>
       <td>
