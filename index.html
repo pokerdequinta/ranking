@@ -33,6 +33,11 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
 .ranking-row.top10{border-left:4px solid #d4a121;background:rgba(212,161,33,0.08)}
 .ranking-row.top10:nth-child(odd){background:rgba(212,161,33,0.12)}
 .ranking-row.top10:nth-child(even){background:rgba(212,161,33,0.08)}
+.ranking-row.separator{border-top:3px dashed #d4a121 !important}
+
+.participacao-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:0.7em;font-weight:bold}
+.participacao-icon.sim{background:#4CAF50;color:#fff}
+.participacao-icon.nao{background:#c72c48;color:#fff}
 
 .rank-cell{font-family:'Anton';font-size:1.1em;color:#d4a121;display:flex;align-items:center;gap:6px}
 .rank-top5{color:#FFD700}
@@ -100,7 +105,7 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.2em}
 .scores-grid{grid-template-columns:1fr}
 .add-player-grid{grid-template-columns:1fr;gap:8px}
 .player-avatar{width:28px;height:28px}
-.etapa-cell{font-size:0.75em;padding:4px 2px;min-width:45px}
+.participacao-icon{width:18px;height:18px;font-size:0.65em}
 .etapa-selector{gap:5px}
 .etapa-btn{padding:6px 10px;font-size:0.75em}
 }
@@ -451,7 +456,7 @@ function atualizarRanking() {
       <th>Pos</th>
       <th>Jogador</th>
       <th style="text-align:center">Pontos</th>
-      <th style="text-align:center">Participações</th>
+      <th style="text-align:center">Diferença</th>
   `;
   
   etapasAcontecidas.forEach(num => {
@@ -465,16 +470,22 @@ function atualizarRanking() {
   tbody.innerHTML = '';
   
   if (ranking.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="${4 + etapasAcontecidas.length}" style="text-align:center;padding:20px;opacity:0.7">Nenhum jogador cadastrado</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="${5 + etapasAcontecidas.length}" style="text-align:center;padding:20px;opacity:0.7">Nenhum jogador cadastrado</td></tr>`;
     return;
   }
   
-  ranking.forEach(jogador => {
+  const primeiroColocadoPontos = ranking[0]?.totalPontos || 0;
+  
+  ranking.forEach((jogador, index) => {
     const rank = jogador.posicaoAtual;
     const isTop10 = rank <= 10;
+    const isSeparator = rank === 11;
     
     const rankClass = '';
     const scoreClass = '';
+    
+    const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
+    const diferencaTexto = rank === 1 ? '—' : `-${diferencaPontos}`;
     
     let indicator = '';
     if (jogador.mudancaRank > 0) {
@@ -488,21 +499,22 @@ function atualizarRanking() {
     let etapasCells = '';
     etapasAcontecidas.forEach(numEtapa => {
       const score = etapas[numEtapa]?.[jogador.id];
-      let cellClass = 'etapa-cell';
-      let cellContent = '-';
+      let iconHtml = '';
       
-      if (score !== undefined && score !== null) {
-        if (score === 'NJ') {
-          cellClass += ' nj';
-          cellContent = 'NJ';
+      if (score !== undefined && score !== null && score !== 'NJ') {
+        const pontos = parseInt(score);
+        if (pontos > 0) {
+          iconHtml = '<span class="participacao-icon sim">✓</span>';
         } else {
-          cellContent = score;
+          iconHtml = '<span class="participacao-icon nao">✗</span>';
         }
+      } else if (score === 'NJ') {
+        iconHtml = '<span class="participacao-icon nao">✗</span>';
       } else {
-        cellClass += ' empty';
+        iconHtml = '<span class="participacao-icon nao">✗</span>';
       }
       
-      etapasCells += `<td style="text-align:center"><div class="${cellClass}">${cellContent}</div></td>`;
+      etapasCells += `<td style="text-align:center">${iconHtml}</td>`;
     });
     
     const avatarHtml = jogador.foto 
@@ -510,7 +522,7 @@ function atualizarRanking() {
       : '';
     
     const tr = document.createElement('tr');
-    tr.className = `ranking-row${isTop10 ? ' top10' : ''}`;
+    tr.className = `ranking-row${isTop10 ? ' top10' : ''}${isSeparator ? ' separator' : ''}`;
     tr.innerHTML = `
       <td>
         <div class="rank-cell ${rankClass}">
@@ -526,7 +538,9 @@ function atualizarRanking() {
       <td style="text-align:center">
         <span class="player-score ${scoreClass}">${jogador.totalPontos}</span>
       </td>
-      <td style="text-align:center">${jogador.participacoes}</td>
+      <td style="text-align:center;opacity:0.8;font-size:0.85em">
+        ${diferencaTexto}
+      </td>
       ${etapasCells}
     `;
     tbody.appendChild(tr);
