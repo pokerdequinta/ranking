@@ -9,8 +9,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Roboto', sans-serif;background:#0d1b0d;color:#fff;min-height:100vh}
-.logo-top{text-align:center;padding:20px}
-.logo-top img{max-width:200px}
+.logo-top{text-align:center;padding:30px 20px 20px}
+.logo-top img{max-width:250px;height:auto}
 .container{max-width:1400px;margin:auto;padding:20px}
 header{text-align:center;background:#102810;border:2px solid #d4a121;border-radius:15px;padding:30px;margin-bottom:30px}
 h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
@@ -19,11 +19,6 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 .view-toggle{display:flex;gap:10px;justify-content:center;margin-bottom:25px}
 .view-btn{padding:12px 30px;background:#102810;border:2px solid #d4a121;border-radius:10px;color:#d4a121;font-weight:bold;cursor:pointer;transition:all 0.3s}
 .view-btn.active{background:#d4a121;color:#000}
-
-.info-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:25px}
-.info-card{background:#102810;border:2px solid #d4a121;border-radius:12px;padding:20px;text-align:center}
-.info-card h2{font-family:'Anton';font-size:2.5em;color:#d4a121}
-.info-card p{opacity:0.8;margin-top:5px}
 
 .section{background:#102810;border:2px solid #d4a121;border-radius:12px;padding:20px;margin-bottom:25px}
 .section h3{color:#d4a121;margin-bottom:15px;font-family:'Anton';font-size:1.5em}
@@ -46,18 +41,15 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
 
-.player-name{font-weight:bold;font-size:1.1em}
+.player-name{font-weight:bold;font-size:1.1em;display:flex;align-items:center;gap:10px}
+.player-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #d4a121}
 .player-score{font-family:'Anton';font-size:1.3em;color:#d4a121}
 .score-top5{color:#FFD700}
 .score-top10{color:#FFA500}
 
-.etapas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:5px}
-.etapa-cell{background:#1a3d1a;padding:8px;border-radius:5px;text-align:center;font-size:0.85em}
+.etapa-cell{background:#1a3d1a;padding:8px;border-radius:5px;text-align:center;font-size:0.85em;min-width:60px}
 .etapa-cell.nj{background:#c72c48;opacity:0.7}
-
-.premio-box{background:linear-gradient(135deg,#1a3d1a,#102810);border:2px solid #d4a121;border-radius:12px;padding:20px;margin-top:20px}
-.premio-title{color:#d4a121;font-family:'Anton';font-size:1.3em;margin-bottom:15px}
-.premio-item{padding:10px;margin:5px 0;border-left:4px solid #d4a121;padding-left:15px}
+.etapa-cell.empty{background:#2d5016;opacity:0.5}
 
 .admin-controls{background:#1a1a1a;border:2px solid #8b0000;border-radius:12px;padding:20px;margin-bottom:20px}
 .admin-title{color:#8b0000;font-family:'Anton';font-size:1.5em;margin-bottom:15px}
@@ -92,10 +84,14 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 .admin-btn:hover{opacity:1;background:#102810}
 .admin-btn.active{background:#4CAF50;opacity:1;border-color:#4CAF50}
 
+.add-player-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+
 @media(max-width:768px){
-.info-cards{grid-template-columns:1fr}
 .ranking-table{font-size:0.9em}
 .scores-grid{grid-template-columns:1fr}
+.add-player-grid{grid-template-columns:1fr;gap:10px}
+.player-avatar{width:30px;height:30px}
+.etapa-cell{font-size:0.75em;padding:6px;min-width:50px}
 }
 </style>
 </head>
@@ -105,7 +101,7 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 <div class="status-indicator" id="statusIndicator">🔄 Conectando...</div>
 
 <div class="logo-top">
-<img src="logo pdq.png" onerror="this.style.display='none'">
+<img src="logo pdq.png" alt="Poker de Quinta">
 </div>
 
 <div class="container">
@@ -121,21 +117,6 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 </div>
 
 <div id="viewRanking">
-<div class="info-cards">
-<div class="info-card">
-<h2 id="totalJogadores">0</h2>
-<p>Jogadores</p>
-</div>
-<div class="info-card">
-<h2>12</h2>
-<p>Etapas Totais</p>
-</div>
-<div class="info-card">
-<h2>Top 10</h2>
-<p>Premiados</p>
-</div>
-</div>
-
 <div class="section">
 <h3>🏅 CLASSIFICAÇÃO GERAL</h3>
 <div style="overflow-x:auto">
@@ -145,31 +126,29 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 <th>Posição</th>
 <th>Jogador</th>
 <th style="text-align:center">Pontos</th>
-<th style="text-align:center">Etapas</th>
-<th style="text-align:center">Participações</th>
+<th style="text-align:center">Etapa 1</th>
+<th style="text-align:center">Etapa 2</th>
+<th style="text-align:center">Etapa 3</th>
+<th style="text-align:center">Etapa 4</th>
+<th style="text-align:center">Etapa 5</th>
+<th style="text-align:center">Etapa 6</th>
+<th style="text-align:center">Etapa 7</th>
+<th style="text-align:center">Etapa 8</th>
+<th style="text-align:center">Etapa 9</th>
+<th style="text-align:center">Etapa 10</th>
+<th style="text-align:center">Etapa 11</th>
+<th style="text-align:center">Etapa 12</th>
 </tr>
 </thead>
 <tbody id="rankingTableBody">
-<tr><td colspan="5" style="text-align:center;padding:30px;opacity:0.7">Carregando dados...</td></tr>
+<tr><td colspan="14" style="text-align:center;padding:30px;opacity:0.7">Carregando dados...</td></tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div class="premio-box">
-<div class="premio-title">🎁 SISTEMA DE PREMIAÇÃO</div>
-<div class="premio-item" style="border-color:#FFD700">
-<strong>🥇🥈🥉 Top 3:</strong> Prêmios especiais + troféus personalizados
-</div>
-<div class="premio-item" style="border-color:#FFA500">
-<strong>🏆 4º e 5º lugar:</strong> Prêmios diferenciados
-</div>
-<div class="premio-item" style="border-color:#d4a121">
-<strong>🎖️ 6º ao 10º lugar:</strong> Premiação padrão
-</div>
-<div style="margin-top:15px;font-size:0.9em;opacity:0.8">
+<div style="margin-top:15px;font-size:0.9em;opacity:0.8;text-align:center;padding:15px;background:#102810;border-radius:10px">
 ℹ️ <strong>Sistema de pontuação:</strong> São contabilizadas as 10 melhores pontuações de cada jogador ao longo das 12 etapas.
-</div>
 </div>
 </div>
 
@@ -180,9 +159,16 @@ h1{font-family:'Anton';color:#d4a121;letter-spacing:3px;font-size:2.5em}
 
 <div class="form-group">
 <label>➕ Adicionar Novo Jogador</label>
-<div style="display:flex;gap:10px">
+<div class="add-player-grid">
+<div>
+<label style="font-size:0.85em;margin-bottom:3px">Nome do Jogador</label>
 <input type="text" id="novoJogadorNome" placeholder="Nome do jogador">
-<button class="btn-primary btn-success" id="btnAdicionarJogador">Adicionar</button>
+</div>
+<div>
+<label style="font-size:0.85em;margin-bottom:3px">URL da Foto (opcional)</label>
+<input type="text" id="novoJogadorFoto" placeholder="https://exemplo.com/foto.jpg">
+</div>
+<button class="btn-primary btn-success" id="btnAdicionarJogador" style="height:fit-content">Adicionar</button>
 </div>
 </div>
 
@@ -376,15 +362,19 @@ btnAdicionarJogador.onclick = async () => {
   const nome = novoJogadorNome.value.trim();
   if (!nome) return alert('Digite o nome do jogador!');
   
+  const foto = novoJogadorFoto.value.trim();
+  
   try {
     const novoJogador = {
       nome,
+      foto: foto || null,
       previousRank: 0,
       dataCriacao: new Date().toISOString()
     };
     
     await db.push('rankingJogadores', novoJogador);
     novoJogadorNome.value = '';
+    novoJogadorFoto.value = '';
     alert('✅ Jogador adicionado com sucesso!');
   } catch (e) {
     alert('Erro ao adicionar jogador: ' + e.message);
@@ -447,14 +437,13 @@ function calcularRanking() {
 
 function atualizarRanking() {
   const ranking = calcularRanking();
-  totalJogadores.textContent = ranking.length;
   
   // Renderizar tabela
   const tbody = rankingTableBody;
   tbody.innerHTML = '';
   
   if (ranking.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;opacity:0.7">Nenhum jogador cadastrado</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="14" style="text-align:center;padding:30px;opacity:0.7">Nenhum jogador cadastrado</td></tr>';
     return;
   }
   
@@ -482,6 +471,31 @@ function atualizarRanking() {
       indicator = '<span class="rank-indicator rank-same">━</span>';
     }
     
+    // Gerar células de etapas
+    let etapasCells = '';
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+      const score = etapas[i]?.[jogador.id];
+      let cellClass = 'etapa-cell';
+      let cellContent = '-';
+      
+      if (score !== undefined && score !== null) {
+        if (score === 'NJ') {
+          cellClass += ' nj';
+          cellContent = 'NJ';
+        } else {
+          cellContent = score;
+        }
+      } else {
+        cellClass += ' empty';
+      }
+      
+      etapasCells += `<td style="text-align:center"><div class="${cellClass}">${cellContent}</div></td>`;
+    }
+    
+    const avatarHtml = jogador.foto 
+      ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" onerror="this.style.display='none'">`
+      : '';
+    
     const tr = document.createElement('tr');
     tr.className = 'ranking-row';
     tr.innerHTML = `
@@ -490,12 +504,16 @@ function atualizarRanking() {
           ${rank}º ${badge} ${indicator}
         </div>
       </td>
-      <td><span class="player-name">${jogador.nome}</span></td>
+      <td>
+        <div class="player-name">
+          ${avatarHtml}
+          <span>${jogador.nome}</span>
+        </div>
+      </td>
       <td style="text-align:center">
         <span class="player-score ${scoreClass}">${jogador.totalPontos}</span>
       </td>
-      <td style="text-align:center">${jogador.etapasJogadas}/${TOTAL_ETAPAS}</td>
-      <td style="text-align:center">${jogador.participacoes}</td>
+      ${etapasCells}
     `;
     tbody.appendChild(tr);
   });
@@ -599,10 +617,19 @@ function renderizarAdminJogadores() {
   jogadores.forEach(jogador => {
     const div = document.createElement('div');
     div.style.cssText = 'background:#1a3d1a;padding:15px;border-radius:8px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center';
+    
+    const avatarHtml = jogador.foto 
+      ? `<img src="${jogador.foto}" alt="${jogador.nome}" class="player-avatar" style="margin-right:10px" onerror="this.style.display='none'">`
+      : '';
+    
     div.innerHTML = `
-      <div>
-        <strong>${jogador.nome}</strong>
-        <br><small style="opacity:0.7">ID: ${jogador.id}</small>
+      <div style="display:flex;align-items:center">
+        ${avatarHtml}
+        <div>
+          <strong>${jogador.nome}</strong>
+          <br><small style="opacity:0.7">ID: ${jogador.id}</small>
+          ${jogador.foto ? `<br><small style="opacity:0.5;font-size:0.75em">${jogador.foto}</small>` : ''}
+        </div>
       </div>
       <button class="btn-primary btn-danger" onclick="removerJogador('${jogador.id}','${jogador.nome}')">🗑️ Remover</button>
     `;
@@ -631,31 +658,3 @@ window.removerJogador = async (id, nome) => {
 // Exportar CSV
 btnExportarCSV.onclick = () => {
   const ranking = calcularRanking();
-  
-  let csv = 'Posição,Jogador,Pontos Totais,Etapas Jogadas,Participações';
-  for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-    csv += `,Etapa ${i}`;
-  }
-  csv += '\n';
-  
-  ranking.forEach(jogador => {
-    csv += `${jogador.posicaoAtual},${jogador.nome},${jogador.totalPontos},${jogador.etapasJogadas},${jogador.participacoes}`;
-    
-    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-      const score = etapas[i]?.[jogador.id] || '-';
-      csv += `,${score}`;
-    }
-    csv += '\n';
-  });
-  
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `ranking-poker-quinta-${new Date().toISOString().split('T')[0]}.csv`;
-  link.click();
-  
-  alert('✅ Ranking exportado com sucesso!');
-};
-</script>
-</body>
-</html>
