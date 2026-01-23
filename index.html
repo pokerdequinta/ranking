@@ -28,6 +28,8 @@
     --border-light: #152015;
     --ko-color: #FF6B6B;
     --ko-color-dark: #FF4757;
+    --crown-gold: #FFD700;
+    --card-red: #FF4444;
 }
 
 * {
@@ -179,6 +181,37 @@ body {
 
 .g10-badge.ko {
     background: linear-gradient(135deg, var(--ko-color), #FF8E8E);
+}
+
+/* LEGENDAS ESPECIAIS */
+.legendas-especiais {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    padding: 8px 15px;
+    background: rgba(212, 161, 33, 0.05);
+    border-top: 1px solid var(--border);
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.legenda-icone {
+    font-size: 1rem;
+}
+
+.legenda-crown {
+    color: var(--crown-gold);
+}
+
+.legenda-card {
+    color: var(--card-red);
 }
 
 /* TABELA DE RANKING */
@@ -380,6 +413,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
 }
 
 .player-avatar {
@@ -389,6 +423,37 @@ body {
     object-fit: cover;
     border: 1px solid var(--primary);
     background: var(--bg-dark);
+}
+
+/* ÍCONES ESPECIAIS */
+.player-icons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.player-icon {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crown-icon {
+    color: var(--crown-gold);
+    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+    animation: crownGlow 2s ease-in-out infinite;
+}
+
+@keyframes crownGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.card-icon {
+    color: var(--card-red);
+    filter: drop-shadow(0 0 2px rgba(255, 68, 68, 0.5));
 }
 
 /* PONTUAÇÃO COM BORDA */
@@ -537,6 +602,61 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+}
+
+/* CONFIGURAÇÕES ESPECIAIS */
+.config-especial {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+}
+
+.config-especial h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.config-especial .config-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .config-especial .config-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.config-item {
+    background: var(--bg-row);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.config-item h4 {
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.config-item.crown h4 {
+    color: var(--crown-gold);
+}
+
+.config-item.card h4 {
+    color: var(--card-red);
 }
 
 /* SISTEMA DE PONTUAÇÃO */
@@ -990,6 +1110,75 @@ body {
     border-color: var(--ko-color);
 }
 
+/* SELECT DE JOGADORES PARA CONFIGURAÇÕES ESPECIAIS */
+.player-select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.player-select {
+    width: 100%;
+    padding: 8px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.player-select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.player-select.crown:focus {
+    border-color: var(--crown-gold);
+}
+
+.player-select.card:focus {
+    border-color: var(--card-red);
+}
+
+.save-config-btn {
+    width: 100%;
+    padding: 8px;
+    background: var(--primary);
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.save-config-btn:hover {
+    background: var(--primary-dark);
+}
+
+.save-config-btn.crown {
+    background: var(--crown-gold);
+    color: #000;
+}
+
+.save-config-btn.crown:hover {
+    background: #e6c200;
+}
+
+.save-config-btn.card {
+    background: var(--card-red);
+    color: white;
+}
+
+.save-config-btn.card:hover {
+    background: #ff2a2a;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .header h1 {
@@ -1045,6 +1234,11 @@ body {
         width: 28px;
         height: 28px;
         font-size: 0.7rem;
+    }
+    
+    .legendas-especiais {
+        flex-direction: column;
+        gap: 8px;
     }
 }
 
@@ -1104,8 +1298,8 @@ body {
 <div class="container">
 
     <div class="header">
-        <h1>🏆 RANKING POKER DE QUINTA 2026 🏆</h1>
-        <div class="subtitle">📊 Sistema Oficial de Classificação da Temporada 2026</div>
+        <h1>🏆 RANKING POKER DE QUINTA 2026</h1>
+        <div class="subtitle">📊 Sistema Oficial de Classificação</div>
     </div>
 
     <div class="view-toggle">
@@ -1125,10 +1319,21 @@ body {
             <div class="section-header">
                 <h2>
                     <span>CLASSIFICAÇÃO GERAL</span>
-                    <span class="g10-badge">🏆 G - 10</span>
+                    <span class="g10-badge">🏆 G10</span>
                 </h2>
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
-                    Atualizado após a Última Etapa Jogada.
+                    Atualizado após salvar na aba Admin
+                </div>
+                <!-- LEGENDAS ESPECIAIS -->
+                <div class="legendas-especiais">
+                    <div class="legenda-item">
+                        <span class="legenda-icone legenda-crown">👑</span>
+                        <span>Rei da Mesa (alvo da próxima etapa)</span>
+                    </div>
+                    <div class="legenda-item">
+                        <span class="legenda-icone legenda-card">🃏</span>
+                        <span>Melhor mão da etapa</span>
+                    </div>
                 </div>
             </div>
             
@@ -1166,7 +1371,7 @@ body {
         </div>
 
         <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
-            ℹ️ Este ranking contabiliza apenas as pontuações Geral de cada Etapa.
+            ℹ️ As 10 melhores pontuações de cada jogador são consideradas para a classificação geral.
         </div>
     </div>
 
@@ -1179,7 +1384,7 @@ body {
                     <span class="g10-badge ko">🥊 KO</span>
                 </h2>
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
-                    Ranking baseado nas pontuações de KO.
+                    Ranking baseado nas pontuações de KO (banco de dados separado)
                 </div>
             </div>
             
@@ -1217,7 +1422,7 @@ body {
         </div>
 
         <div style="text-align: center; margin-top: 12px; color: var(--text-muted); font-size: 0.75rem; padding: 10px; background: var(--bg-card); border-radius: 4px; border: 1px solid var(--border);">
-            ℹ️ Este ranking contabiliza apenas as pontuações de KO.
+            ℹ️ Este ranking contabiliza apenas as pontuações de KO (banco de dados separado).
         </div>
     </div>
 
@@ -1233,6 +1438,52 @@ body {
                 <span>🥊</span>
                 <span>Pontuações KO</span>
             </button>
+        </div>
+
+        <!-- CONFIGURAÇÕES ESPECIAIS -->
+        <div class="config-especial">
+            <h3>⚙️ CONFIGURAÇÕES ESPECIAIS</h3>
+            <div class="config-container">
+                <!-- CONFIGURAÇÃO REI DA MESA -->
+                <div class="config-item crown">
+                    <h4>
+                        <span class="crown-icon">👑</span>
+                        <span>REI DA MESA</span>
+                    </h4>
+                    <div class="player-select-container">
+                        <select class="player-select crown" id="selectReiDaMesa">
+                            <option value="">Selecione o Rei da Mesa</option>
+                        </select>
+                        <button class="save-config-btn crown" onclick="salvarReiDaMesa()">
+                            <span>💾</span>
+                            <span>Salvar Rei da Mesa</span>
+                        </button>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">
+                            O Rei da Mesa aparecerá com uma coroa 👑 ao lado do nome
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONFIGURAÇÃO MELHOR MÃO -->
+                <div class="config-item card">
+                    <h4>
+                        <span class="card-icon">🃏</span>
+                        <span>MELHOR MÃO DA ETAPA</span>
+                    </h4>
+                    <div class="player-select-container">
+                        <select class="player-select card" id="selectMelhorMao">
+                            <option value="">Selecione a Melhor Mão</option>
+                        </select>
+                        <button class="save-config-btn card" onclick="salvarMelhorMao()">
+                            <span>💾</span>
+                            <span>Salvar Melhor Mão</span>
+                        </button>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">
+                            O jogador com a melhor mão aparecerá com uma carta 🃏 ao lado do nome
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ADMIN GERAL -->
@@ -1434,10 +1685,12 @@ let etapasKO = {};
 let modoAdmin = false;
 let etapaAtualSelecionada = 1;
 let etapaAtualSelecionadaKO = 1;
-let adminTipo = 'geral'; // 'geral' ou 'ko'
+let adminTipo = 'geral';
 let rankingAtual = [];
 let rankingKO = [];
-let viewAtual = 'rankingGeral'; // 'rankingGeral' ou 'rankingKO'
+let viewAtual = 'rankingGeral';
+let reiDaMesa = null;
+let melhorMao = null;
 
 class FirebaseDB {
     constructor(config) {
@@ -1537,12 +1790,15 @@ const btnAdminGeral = document.getElementById('btnAdminGeral');
 const btnAdminKO = document.getElementById('btnAdminKO');
 const adminGeral = document.getElementById('adminGeral');
 const adminKO = document.getElementById('adminKO');
+const selectReiDaMesa = document.getElementById('selectReiDaMesa');
+const selectMelhorMao = document.getElementById('selectMelhorMao');
 
 async function carregarDados() {
     try {
         const dadosJogadores = await db.get('rankingJogadores');
         const dadosEtapas = await db.get('rankingEtapas');
         const dadosEtapasKO = await db.get('rankingEtapasKO');
+        const dadosConfig = await db.get('configuracoes');
         
         if (dadosJogadores) {
             jogadores = Object.keys(dadosJogadores).map(key => ({
@@ -1559,10 +1815,16 @@ async function carregarDados() {
             etapasKO = dadosEtapasKO;
         }
         
+        if (dadosConfig) {
+            reiDaMesa = dadosConfig.reiDaMesa || null;
+            melhorMao = dadosConfig.melhorMao || null;
+        }
+        
         statusIndicator.textContent = '✅ Conectado';
         statusIndicator.classList.add('connected');
         
         calcularRankings();
+        atualizarSelectsEspeciais();
         
     } catch (e) {
         console.error('Erro ao carregar dados:', e);
@@ -1597,6 +1859,7 @@ btnAcessarAdmin.onclick = () => {
         renderizarSeletorEtapasKO();
         renderizarPlayersPoints('geral');
         renderizarAdminJogadores();
+        atualizarSelectsEspeciais();
         
         setTimeout(() => {
             alert('🔓 Modo Administrador ATIVADO!\n\nVocê agora pode gerenciar jogadores e pontuações.');
@@ -1697,10 +1960,93 @@ btnAdicionarJogador.onclick = async () => {
         if (modoAdmin) {
             renderizarPlayersPoints(adminTipo);
             renderizarAdminJogadores();
+            atualizarSelectsEspeciais();
         }
         
     } catch (e) {
         alert('❌ Erro ao adicionar jogador: ' + e.message);
+    }
+};
+
+// Atualizar selects especiais
+function atualizarSelectsEspeciais() {
+    // Limpar selects
+    selectReiDaMesa.innerHTML = '<option value="">Selecione o Rei da Mesa</option>';
+    selectMelhorMao.innerHTML = '<option value="">Selecione a Melhor Mão</option>';
+    
+    // Ordenar jogadores alfabeticamente
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
+        a.nome.localeCompare(b.nome)
+    );
+    
+    // Preencher selects
+    jogadoresOrdenados.forEach(jogador => {
+        const optionRei = document.createElement('option');
+        optionRei.value = jogador.id;
+        optionRei.textContent = jogador.nome;
+        if (jogador.id === reiDaMesa) {
+            optionRei.selected = true;
+        }
+        selectReiDaMesa.appendChild(optionRei);
+        
+        const optionMao = document.createElement('option');
+        optionMao.value = jogador.id;
+        optionMao.textContent = jogador.nome;
+        if (jogador.id === melhorMao) {
+            optionMao.selected = true;
+        }
+        selectMelhorMao.appendChild(optionMao);
+    });
+}
+
+// Funções para salvar configurações especiais
+window.salvarReiDaMesa = async function() {
+    const jogadorId = selectReiDaMesa.value;
+    
+    if (!jogadorId) {
+        alert('Selecione um jogador para ser o Rei da Mesa!');
+        return;
+    }
+    
+    try {
+        await db.set('configuracoes/reiDaMesa', jogadorId);
+        reiDaMesa = jogadorId;
+        
+        const jogadorSelecionado = jogadores.find(j => j.id === jogadorId);
+        alert(`✅ Rei da Mesa definido como: ${jogadorSelecionado.nome}`);
+        
+        // Atualizar ranking se estiver na view geral
+        if (viewAtual === 'rankingGeral') {
+            atualizarRankingGeral();
+        }
+        
+    } catch (e) {
+        alert('❌ Erro ao salvar Rei da Mesa: ' + e.message);
+    }
+};
+
+window.salvarMelhorMao = async function() {
+    const jogadorId = selectMelhorMao.value;
+    
+    if (!jogadorId) {
+        alert('Selecione um jogador com a melhor mão!');
+        return;
+    }
+    
+    try {
+        await db.set('configuracoes/melhorMao', jogadorId);
+        melhorMao = jogadorId;
+        
+        const jogadorSelecionado = jogadores.find(j => j.id === jogadorId);
+        alert(`✅ Melhor mão definida para: ${jogadorSelecionado.nome}`);
+        
+        // Atualizar ranking se estiver na view geral
+        if (viewAtual === 'rankingGeral') {
+            atualizarRankingGeral();
+        }
+        
+    } catch (e) {
+        alert('❌ Erro ao salvar Melhor Mão: ' + e.message);
     }
 };
 
@@ -1728,7 +2074,9 @@ function calcularRankingGeral() {
             ...jogador,
             totalPontos: totalPontos,
             participacoes: participacoes,
-            melhoresPontuacoes: melhoresPontuacoes
+            melhoresPontuacoes: melhoresPontuacoes,
+            isReiDaMesa: jogador.id === reiDaMesa,
+            isMelhorMao: jogador.id === melhorMao
         };
     });
     
@@ -1824,6 +2172,15 @@ function atualizarRankingGeral() {
         const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
         const diffClass = rank === 1 ? 'leader' : '';
         
+        // Gerar ícones especiais
+        let iconesHTML = '';
+        if (jogador.isReiDaMesa) {
+            iconesHTML += '<span class="player-icon crown-icon" title="Rei da Mesa">👑</span>';
+        }
+        if (jogador.isMelhorMao) {
+            iconesHTML += '<span class="player-icon card-icon" title="Melhor mão da etapa">🃏</span>';
+        }
+        
         // Gerar células de etapas
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
@@ -1859,6 +2216,9 @@ function atualizarRankingGeral() {
                          alt="${jogador.nome}"
                          onerror="this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('${jogador.nome}') + '&background=0a150a&color=d4a121&bold=true'">
                     <div class="player-name">${jogador.nome}</div>
+                    <div class="player-icons">
+                        ${iconesHTML}
+                    </div>
                 </div>
             </td>
             <td class="points-cell">
@@ -2158,6 +2518,14 @@ function renderizarAdminJogadores() {
         const posicaoKO = (rankingKO.findIndex(j => j.id === jogador.id) + 1) || '-';
         const totalPontosKO = rankingKO.find(j => j.id === jogador.id)?.totalPontosKO || 0;
         
+        let icones = '';
+        if (jogador.id === reiDaMesa) {
+            icones += ' 👑';
+        }
+        if (jogador.id === melhorMao) {
+            icones += ' 🃏';
+        }
+        
         html += `
             <div style="background: var(--bg-row); padding: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border);">
                 <div style="display: flex; align-items: center; gap: 8px;">
@@ -2165,7 +2533,7 @@ function renderizarAdminJogadores() {
                          style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--primary);"
                          alt="${jogador.nome}">
                     <div>
-                        <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}</div>
+                        <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}${icones}</div>
                         <div style="display: flex; gap: 8px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
                             <span>📊 Geral: #${posicaoGeral} (${totalPontosGeral} pts)</span>
                             <span>🥊 KO: #${posicaoKO} (${totalPontosKO} pts)</span>
@@ -2197,12 +2565,23 @@ window.removerJogador = async function(id, nome) {
             await db.remove(`rankingEtapasKO/${i}/${id}`);
         }
         
+        // Se o jogador removido era o rei da mesa ou melhor mão, limpar essas configurações
+        if (id === reiDaMesa) {
+            await db.set('configuracoes/reiDaMesa', null);
+            reiDaMesa = null;
+        }
+        if (id === melhorMao) {
+            await db.set('configuracoes/melhorMao', null);
+            melhorMao = null;
+        }
+        
         alert('✅ Jogador removido com sucesso!');
         
         await carregarDados();
         if (modoAdmin) {
             renderizarPlayersPoints(adminTipo);
             renderizarAdminJogadores();
+            atualizarSelectsEspeciais();
         }
         
     } catch (e) {
@@ -2215,7 +2594,7 @@ btnExportarCSV.onclick = function() {
     const ranking = calcularRankingGeral();
     const rankingKOCalc = calcularRankingKO();
     
-    let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações (Geral),Diferença para Líder (Geral),Pontos KO,Participações KO,Posição KO';
+    let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações (Geral),Diferença para Líder (Geral),Rei da Mesa,Melhor Mão,Pontos KO,Participações KO,Posição KO';
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         csv += `,Etapa ${i} Geral`;
@@ -2233,8 +2612,10 @@ btnExportarCSV.onclick = function() {
         const pontosKO = jogadorKO?.totalPontosKO || 0;
         const participacoesKO = jogadorKO?.participacoesKO || 0;
         const posicaoKO = jogadorKO?.posicaoAtualKO || '-';
+        const isReiDaMesa = jogador.id === reiDaMesa ? 'SIM' : 'NÃO';
+        const isMelhorMao = jogador.id === melhorMao ? 'SIM' : 'NÃO';
         
-        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferencaGeral},${pontosKO},${participacoesKO},${posicaoKO}`;
+        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferencaGeral},${isReiDaMesa},${isMelhorMao},${pontosKO},${participacoesKO},${posicaoKO}`;
         
         // Pontuações gerais
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
@@ -2289,4 +2670,3 @@ senhaAdmin.addEventListener('keypress', (e) => {
 </script>
 </body>
 </html>
-
