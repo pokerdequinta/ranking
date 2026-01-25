@@ -6,7 +6,1284 @@
 <title>Ranking - Poker de Quinta</title>
 
 <style>
-/* ... (todo o CSS permanece igual) ... */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+:root {
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+    --primary: #d4a121;
+    --primary-dark: #b38a1c;
+    --bg-dark: #0a150a;
+    --bg-card: #0f1f0f;
+    --bg-row: #122012;
+    --bg-row-alt: #0f1a0f;
+    --top10-row-odd: rgba(212, 161, 33, 0.15);
+    --top10-row-even: rgba(212, 161, 33, 0.10);
+    --success: #4CAF50;
+    --danger: #FF4757;
+    --text: #ffffff;
+    --text-muted: #aaaaaa;
+    --border: #1a2a1a;
+    --border-light: #152015;
+    --ko-color: #FF6B6B;
+    --ko-color-dark: #FF4757;
+    --crown-gold: #FFD700;
+    --card-red: #FF4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Logo e Cabeçalho */
+.logo-container {
+    text-align: center;
+    padding: 12px;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo-container img {
+    max-width: 220px;
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(212, 161, 33, 0.2));
+}
+
+.header {
+    text-align: center;
+    padding: 16px 12px;
+    margin-bottom: 12px;
+}
+
+.header h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    color: var(--primary);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.header .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 8px;
+}
+
+/* Botões de Visualização */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.view-btn {
+    padding: 8px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.view-btn:hover {
+    background: rgba(212, 161, 33, 0.05);
+    border-color: var(--primary);
+}
+
+.view-btn.active {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+}
+
+.view-btn.ko {
+    color: var(--ko-color);
+}
+
+.view-btn.ko:hover {
+    background: rgba(255, 107, 107, 0.05);
+    border-color: var(--ko-color);
+}
+
+.view-btn.ko.active {
+    background: var(--ko-color);
+    color: #000;
+    border-color: var(--ko-color);
+}
+
+/* SEÇÃO RANKING */
+.ranking-section {
+    background: var(--bg-card);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.section-header {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-row);
+}
+
+.section-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.3rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.section-header.ko h2 {
+    color: var(--ko-color);
+}
+
+.g10-badge {
+    background: linear-gradient(135deg, var(--gold), var(--primary));
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 6px;
+}
+
+.g10-badge.ko {
+    background: linear-gradient(135deg, var(--ko-color), #FF8E8E);
+}
+
+/* LEGENDAS ESPECIAIS */
+.legendas-especiais {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    padding: 8px 15px;
+    background: rgba(212, 161, 33, 0.05);
+    border-top: 1px solid var(--border);
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.legenda-icone {
+    font-size: 1rem;
+}
+
+.legenda-crown {
+    color: var(--crown-gold);
+}
+
+.legenda-card {
+    color: var(--card-red);
+}
+
+/* TABELA DE RANKING */
+.ranking-container {
+    overflow-x: auto;
+    padding: 0;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.85rem;
+}
+
+.ranking-table thead {
+    background: linear-gradient(180deg, #1a3d1a 0%, #163016 100%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.ranking-table.ko thead {
+    background: linear-gradient(180deg, #3d1a1a 0%, #301616 100%);
+}
+
+.ranking-table th {
+    padding: 10px 8px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--primary);
+    white-space: nowrap;
+}
+
+.ranking-table.ko th {
+    color: var(--ko-color);
+    border-bottom: 2px solid var(--ko-color);
+}
+
+.ranking-table th:first-child {
+    padding-left: 15px;
+}
+
+.ranking-table th:last-child {
+    padding-right: 15px;
+}
+
+/* CABEÇALHO DAS ETAPAS - NÚMEROS 1-12 */
+.ranking-table th:nth-child(n+5) {
+    text-align: center;
+    min-width: 32px;
+    padding: 10px 2px;
+    font-family: 'Anton', sans-serif;
+    font-size: 0.8rem;
+}
+
+/* LINHAS DO RANKING */
+.ranking-row {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-light);
+    height: 36px;
+}
+
+/* TOP 10 - CORES FORTES INTERCALADAS COM DESTAQUE MÁXIMO */
+.ranking-row.top10 {
+    position: relative;
+}
+
+.ranking-row.top10:nth-child(odd) {
+    background: var(--top10-row-odd);
+}
+
+.ranking-row.top10:nth-child(even) {
+    background: var(--top10-row-even);
+}
+
+.ranking-row.top10:hover {
+    background: rgba(212, 161, 33, 0.2);
+}
+
+.ranking-row.top10.ko:nth-child(odd) {
+    background: rgba(255, 107, 107, 0.15);
+}
+
+.ranking-row.top10.ko:nth-child(even) {
+    background: rgba(255, 107, 107, 0.10);
+}
+
+.ranking-row.top10.ko:hover {
+    background: rgba(255, 107, 107, 0.2);
+}
+
+/* APÓS O 10º - CORES NORMAIS */
+.ranking-row.other:nth-child(odd) {
+    background: var(--bg-row);
+}
+
+.ranking-row.other:nth-child(even) {
+    background: var(--bg-row-alt);
+}
+
+.ranking-row.other:hover {
+    background: rgba(212, 161, 33, 0.03);
+}
+
+.ranking-row.other.ko:hover {
+    background: rgba(255, 107, 107, 0.03);
+}
+
+/* DESTAQUES POR POSIÇÃO COM BORDAS E CORES FORTES */
+.ranking-row.pos-1 {
+    border-left: 4px solid var(--gold) !important;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.08) 100%) !important;
+}
+
+.ranking-row.pos-2 {
+    border-left: 4px solid var(--silver) !important;
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.08) 100%) !important;
+}
+
+.ranking-row.pos-3 {
+    border-left: 4px solid var(--bronze) !important;
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.08) 100%) !important;
+}
+
+.ranking-row.pos-4 {
+    border-left: 4px solid #4CAF50 !important;
+    background: linear-gradient(90deg, rgba(76, 175, 80, 0.15) 0%, rgba(76, 175, 80, 0.05) 100%) !important;
+}
+
+.ranking-row.pos-5 {
+    border-left: 4px solid #4CAF50 !important;
+    background: linear-gradient(90deg, rgba(76, 175, 80, 0.12) 0%, rgba(76, 175, 80, 0.04) 100%) !important;
+}
+
+.ranking-row.pos-6,
+.ranking-row.pos-7,
+.ranking-row.pos-8,
+.ranking-row.pos-9,
+.ranking-row.pos-10 {
+    border-left: 4px solid #4CAF50 !important;
+}
+
+/* CÉLULAS DA TABELA */
+.ranking-table td {
+    padding: 6px 8px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.ranking-table td:first-child {
+    padding-left: 15px;
+}
+
+.ranking-table td:last-child {
+    padding-right: 15px;
+}
+
+/* NÚMERO DO RANKING */
+.rank-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rank-number {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid var(--border);
+}
+
+.ranking-row.top10 .rank-number {
+    background: rgba(212, 161, 33, 0.2);
+    border-color: rgba(212, 161, 33, 0.4);
+}
+
+.ranking-row.top10.ko .rank-number {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.4);
+    color: var(--ko-color);
+}
+
+/* JOGADOR */
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.player-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--primary);
+    background: var(--bg-dark);
+}
+
+/* ÍCONES ESPECIAIS */
+.player-icons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.player-icon {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crown-icon {
+    color: var(--crown-gold);
+    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+    animation: crownGlow 2s ease-in-out infinite;
+}
+
+@keyframes crownGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.card-icon {
+    color: var(--card-red);
+    filter: drop-shadow(0 0 2px rgba(255, 68, 68, 0.5));
+}
+
+/* PONTUAÇÃO COM BORDA */
+.points-cell {
+    text-align: center;
+}
+
+.points {
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 15px;
+    background: rgba(212, 161, 33, 0.08);
+    border: 1px solid rgba(212, 161, 33, 0.2);
+    min-width: 70px;
+}
+
+.points.pos-1 { 
+    color: var(--gold);
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+}
+.points.pos-2 { 
+    color: var(--silver);
+    background: rgba(192, 192, 192, 0.2);
+    border: 1px solid rgba(192, 192, 192, 0.4);
+}
+.points.pos-3 { 
+    color: var(--bronze);
+    background: rgba(205, 127, 50, 0.2);
+    border: 1px solid rgba(205, 127, 50, 0.4);
+}
+
+.points.ko {
+    color: var(--ko-color);
+    background: rgba(255, 107, 107, 0.08);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.points.ko.pos-1 { 
+    color: var(--gold);
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+}
+.points.ko.pos-2 { 
+    color: var(--silver);
+    background: rgba(192, 192, 192, 0.2);
+    border: 1px solid rgba(192, 192, 192, 0.4);
+}
+.points.ko.pos-3 { 
+    color: var(--bronze);
+    background: rgba(205, 127, 50, 0.2);
+    border: 1px solid rgba(205, 127, 50, 0.4);
+}
+
+.ranking-row.top10 .points:not(.pos-1):not(.pos-2):not(.pos-3) {
+    background: rgba(212, 161, 33, 0.15);
+    border: 1px solid rgba(212, 161, 33, 0.3);
+}
+
+.ranking-row.top10.ko .points.ko:not(.pos-1):not(.pos-2):not(.pos-3) {
+    background: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+/* DIFERENÇA PARA O LÍDER - VERMELHA */
+.diff-cell {
+    text-align: center;
+}
+
+.diff {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #FF4757;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.diff.leader {
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* ETAPAS */
+.etapa-pill {
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    min-width: 28px;
+    text-align: center;
+    background: var(--bg-dark);
+    color: var(--text);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.etapa-pill.present {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+}
+
+.etapa-pill.present.ko {
+    background: linear-gradient(135deg, var(--ko-color), var(--ko-color-dark));
+}
+
+.etapa-pill.absent {
+    background: rgba(255, 71, 87, 0.15);
+    color: #FF4757;
+    border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.etapa-pill.empty {
+    opacity: 0.2;
+    background: transparent;
+}
+
+/* PAINEL ADMINISTRATIVO */
+.admin-section {
+    background: var(--bg-card);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.admin-header {
+    padding: 12px 15px;
+    background: linear-gradient(135deg, #1a1a1a, #222);
+    border-bottom: 1px solid #8b0000;
+}
+
+.admin-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.3rem;
+    color: #8b0000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* CONFIGURAÇÕES ESPECIAIS */
+.config-especial {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+}
+
+.config-especial h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.config-especial .config-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .config-especial .config-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.config-item {
+    background: var(--bg-row);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.config-item h4 {
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.config-item.crown h4 {
+    color: var(--crown-gold);
+}
+
+.config-item.card h4 {
+    color: var(--card-red);
+}
+
+/* SISTEMA DE PONTUAÇÃO */
+.points-system {
+    display: grid;
+    gap: 12px;
+    padding: 12px;
+}
+
+.stage-selector {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stage-btn {
+    padding: 6px 12px;
+    background: var(--bg-row);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.stage-btn:hover {
+    border-color: var(--primary);
+    background: rgba(212, 161, 33, 0.05);
+}
+
+.stage-btn.active {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+}
+
+.stage-btn.ko {
+    border-color: var(--ko-color);
+}
+
+.stage-btn.ko:hover {
+    border-color: var(--ko-color);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.stage-btn.ko.active {
+    background: var(--ko-color);
+    color: #000;
+    border-color: var(--ko-color);
+}
+
+/* Etapa Atual */
+.etapa-atual {
+    text-align: center;
+    margin: 8px 0;
+    padding: 8px;
+    background: var(--bg-row);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+.etapa-atual .numero {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 0 4px;
+}
+
+.etapa-atual.ko .numero {
+    color: var(--ko-color);
+}
+
+/* LISTA DE JOGADORES PARA PONTUAÇÃO - ORDEM ALFABÉTICA */
+.players-points-list {
+    margin-top: 12px;
+}
+
+.points-list-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg-row);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--primary);
+}
+
+.points-list-header.ko {
+    color: var(--ko-color);
+}
+
+.points-list-items {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.point-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-light);
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.point-item:nth-child(odd) {
+    background: var(--bg-row);
+}
+
+.point-item:nth-child(even) {
+    background: var(--bg-row-alt);
+}
+
+.point-item:hover {
+    background: rgba(212, 161, 33, 0.03);
+}
+
+.point-item.ko:hover {
+    background: rgba(255, 107, 107, 0.03);
+}
+
+.player-info-admin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-info-admin .player-avatar {
+    width: 26px;
+    height: 26px;
+}
+
+.points-input-admin {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.points-input-admin input {
+    width: 80px;
+    padding: 6px 8px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.points-input-admin input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.points-input-admin input.NJ {
+    color: #FF4757;
+    border-color: #FF4757;
+}
+
+.points-input-admin.ko input:focus {
+    border-color: var(--ko-color);
+}
+
+.quick-actions {
+    display: flex;
+    gap: 3px;
+    margin-left: 5px;
+}
+
+.quick-action-btn {
+    padding: 4px 8px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-action-btn:hover {
+    background: var(--primary);
+    color: #000;
+}
+
+.quick-action-btn.ko:hover {
+    background: var(--ko-color);
+}
+
+/* ADMIN ACTIONS */
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 12px;
+    background: var(--bg-row);
+    border-radius: 6px;
+}
+
+.admin-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 120px;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.save-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.save-btn:hover {
+    background: #45a049;
+}
+
+.save-btn.ko {
+    background: var(--ko-color);
+}
+
+.save-btn.ko:hover {
+    background: var(--ko-color-dark);
+}
+
+.clear-btn {
+    background: #FF4757;
+    color: white;
+}
+
+.clear-btn:hover {
+    background: #ff3742;
+}
+
+/* GERENCIAMENTO DE JOGADORES */
+.players-management {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 12px;
+    border: 1px solid var(--border);
+}
+
+.add-player-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    margin-bottom: 12px;
+    background: var(--bg-row);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.form-group input {
+    padding: 8px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* STATUS INDICATOR */
+.status-indicator {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 1000;
+    background: rgba(26, 61, 26, 0.9);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(5px);
+}
+
+.status-indicator.connected {
+    background: rgba(76, 175, 80, 0.9);
+    border-color: #4CAF50;
+}
+
+/* ADMIN TOGGLE BUTTON - MUITO ESCONDIDO */
+.admin-toggle-btn {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(212, 161, 33, 0.05);
+    border: 1px solid rgba(212, 161, 33, 0.08);
+    color: rgba(212, 161, 33, 0.2);
+    font-size: 0.8rem;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.25;
+    box-shadow: none;
+}
+
+.admin-toggle-btn:hover {
+    background: rgba(212, 161, 33, 0.15);
+    border-color: rgba(212, 161, 33, 0.25);
+    color: rgba(212, 161, 33, 0.5);
+    opacity: 0.5;
+    transform: scale(1.1);
+}
+
+.admin-toggle-btn.active {
+    background: rgba(76, 175, 80, 0.8);
+    border-color: #4CAF50;
+    color: white;
+    opacity: 0.9;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    padding: 15px;
+    width: 90%;
+    max-width: 300px;
+    animation: modalSlideIn 0.2s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+/* BOTÃO EXPORTAR CSV */
+.export-btn {
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* PAINEL ADMIN KO */
+.admin-ko-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background: var(--bg-row);
+    border-radius: 4px;
+}
+
+.admin-ko-toggle-btn {
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-ko-toggle-btn:hover {
+    border-color: var(--primary);
+    background: rgba(212, 161, 33, 0.05);
+}
+
+.admin-ko-toggle-btn.active {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+}
+
+.admin-ko-toggle-btn.ko {
+    border-color: var(--ko-color);
+    color: var(--ko-color);
+}
+
+.admin-ko-toggle-btn.ko:hover {
+    border-color: var(--ko-color);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.admin-ko-toggle-btn.ko.active {
+    background: var(--ko-color);
+    color: #000;
+    border-color: var(--ko-color);
+}
+
+/* SELECT DE JOGADORES PARA CONFIGURAÇÕES ESPECIAIS */
+.player-select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.player-select {
+    width: 100%;
+    padding: 8px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.player-select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.player-select.crown:focus {
+    border-color: var(--crown-gold);
+}
+
+.player-select.card:focus {
+    border-color: var(--card-red);
+}
+
+.save-config-btn {
+    width: 100%;
+    padding: 8px;
+    background: var(--primary);
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.save-config-btn:hover {
+    background: var(--primary-dark);
+}
+
+.save-config-btn.crown {
+    background: var(--crown-gold);
+    color: #000;
+}
+
+.save-config-btn.crown:hover {
+    background: #e6c200;
+}
+
+.save-config-btn.card {
+    background: var(--card-red);
+    color: white;
+}
+
+.save-config-btn.card:hover {
+    background: #ff2a2a;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .ranking-table th,
+    .ranking-table td {
+        padding: 6px 4px;
+    }
+    
+    .rank-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+    }
+    
+    .player-avatar {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .points {
+        padding: 3px 8px;
+        font-size: 0.9rem;
+        min-width: 60px;
+    }
+    
+    .ranking-table th:nth-child(n+5) {
+        min-width: 28px;
+        font-size: 0.7rem;
+        padding: 10px 1px;
+    }
+    
+    .add-player-form {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .admin-btn {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .admin-toggle-btn {
+        bottom: 6px;
+        right: 6px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+    
+    .legendas-especiais {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stage-selector {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .stage-btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        min-width: auto;
+    }
+    
+    .points-input-admin input {
+        width: 70px;
+    }
+    
+    .etapa-pill {
+        min-width: 24px;
+        font-size: 0.65rem;
+        padding: 1px 4px;
+    }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-row);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
 </style>
 </head>
 
@@ -793,29 +2070,9 @@ function calcularRankingGeral() {
         const melhoresPontuacoes = pontuacoes.sort((a, b) => b - a).slice(0, 10);
         const totalPontos = melhoresPontuacoes.reduce((sum, p) => sum + p, 0);
         
-        // Calcular pontuação KO
-        const pontuacoesKO = [];
-        let participacoesKO = 0;
-        
-        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            const score = etapasKO[i]?.[jogador.id];
-            if (score !== undefined && score !== null && score !== 'NJ') {
-                const pontos = parseInt(score);
-                if (!isNaN(pontos) && pontos > 0) {
-                    pontuacoesKO.push(pontos);
-                    participacoesKO++;
-                }
-            }
-        }
-        
-        const melhoresPontuacoesKO = pontuacoesKO.sort((a, b) => b - a).slice(0, 10);
-        const totalPontosKO = melhoresPontuacoesKO.reduce((sum, p) => sum + p, 0);
-        
         return {
             ...jogador,
             totalPontos: totalPontos,
-            totalPontosKO: totalPontosKO,
-            totalPontosCombinado: totalPontos + totalPontosKO, // Nova propriedade: soma geral + KO
             participacoes: participacoes,
             melhoresPontuacoes: melhoresPontuacoes,
             isReiDaMesa: jogador.id === reiDaMesa,
@@ -824,7 +2081,6 @@ function calcularRankingGeral() {
     });
     
     rankingCalculado.sort((a, b) => {
-        if (b.totalPontosCombinado !== a.totalPontosCombinado) return b.totalPontosCombinado - a.totalPontosCombinado;
         if (b.totalPontos !== a.totalPontos) return b.totalPontos - a.totalPontos;
         if (b.participacoes !== a.participacoes) return b.participacoes - a.participacoes;
         return a.nome.localeCompare(b.nome);
@@ -905,7 +2161,7 @@ function atualizarRankingGeral() {
         return;
     }
     
-    const primeiroColocadoPontos = rankingAtual[0]?.totalPontosCombinado || 0;
+    const primeiroColocadoPontos = rankingAtual[0]?.totalPontos || 0;
     
     tbody.innerHTML = '';
     
@@ -913,7 +2169,7 @@ function atualizarRankingGeral() {
         const rank = index + 1;
         const isTop10 = rank <= 10;
         
-        const diferencaPontos = primeiroColocadoPontos - jogador.totalPontosCombinado;
+        const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
         const diffClass = rank === 1 ? 'leader' : '';
         
         // Gerar ícones especiais
@@ -925,51 +2181,24 @@ function atualizarRankingGeral() {
             iconesHTML += '<span class="player-icon card-icon" title="Melhor mão da etapa">🃏</span>';
         }
         
-        // Gerar células de etapas (mostrando geral em cima e KO embaixo)
+        // Gerar células de etapas
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            const scoreGeral = etapas[i]?.[jogador.id];
-            const scoreKO = etapasKO[i]?.[jogador.id];
+            const score = etapas[i]?.[jogador.id];
+            let etapaClass = 'empty';
+            let etapaText = '-';
             
-            let etapaClassGeral = 'empty';
-            let etapaTextGeral = '-';
-            let etapaClassKO = 'empty';
-            let etapaTextKO = '-';
-            
-            // Processar pontuação geral
-            if (scoreGeral !== undefined && scoreGeral !== null) {
-                if (scoreGeral === 'NJ') {
-                    etapaClassGeral = 'absent';
-                    etapaTextGeral = 'NJ';
-                } else if (parseInt(scoreGeral) > 0) {
-                    etapaClassGeral = 'present';
-                    etapaTextGeral = scoreGeral;
+            if (score !== undefined && score !== null) {
+                if (score === 'NJ') {
+                    etapaClass = 'absent';
+                    etapaText = 'NJ';
+                } else if (parseInt(score) > 0) {
+                    etapaClass = 'present';
+                    etapaText = score;
                 }
             }
             
-            // Processar pontuação KO
-            if (scoreKO !== undefined && scoreKO !== null) {
-                if (scoreKO === 'NJ') {
-                    etapaClassKO = 'absent';
-                    etapaTextKO = 'NJ';
-                } else if (parseInt(scoreKO) > 0) {
-                    etapaClassKO = 'present ko';
-                    etapaTextKO = scoreKO;
-                }
-            }
-            
-            etapasHTML += `
-                <td>
-                    <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                        <div class="etapa-pill ${etapaClassGeral}" style="font-size: 0.7rem; padding: 1px 4px;">
-                            ${etapaTextGeral}
-                        </div>
-                        <div class="etapa-pill ${etapaClassKO}" style="font-size: 0.6rem; padding: 1px 3px; background: ${etapaClassKO.includes('present') ? 'rgba(255, 107, 107, 0.2)' : ''}; color: ${etapaClassKO.includes('present') ? 'var(--ko-color)' : 'var(--text-muted)'}; border-color: ${etapaClassKO.includes('present') ? 'var(--ko-color)' : 'var(--border)'};">
-                            ${etapaTextKO}
-                        </div>
-                    </div>
-                </td>
-            `;
+            etapasHTML += `<td><div class="etapa-pill ${etapaClass}">${etapaText}</div></td>`;
         }
         
         const tr = document.createElement('tr');
@@ -993,14 +2222,8 @@ function atualizarRankingGeral() {
                 </div>
             </td>
             <td class="points-cell">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                    <div class="points pos-${rank <= 3 ? rank : ''}" style="font-size: 1rem; padding: 4px 10px;">
-                        ${jogador.totalPontosCombinado}
-                    </div>
-                    <div style="font-size: 0.7rem; color: var(--text-muted); display: flex; gap: 4px;">
-                        <span>G: ${jogador.totalPontos}</span>
-                        <span>KO: ${jogador.totalPontosKO}</span>
-                    </div>
+                <div class="points pos-${rank <= 3 ? rank : ''}">
+                    ${jogador.totalPontos}
                 </div>
             </td>
             <td class="diff-cell">
@@ -1292,9 +2515,8 @@ function renderizarAdminJogadores() {
     jogadoresOrdenados.forEach(jogador => {
         const posicaoGeral = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
         const totalPontosGeral = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
-        const totalPontosCombinado = rankingAtual.find(j => j.id === jogador.id)?.totalPontosCombinado || 0;
-        const totalPontosKO = rankingAtual.find(j => j.id === jogador.id)?.totalPontosKO || 0;
         const posicaoKO = (rankingKO.findIndex(j => j.id === jogador.id) + 1) || '-';
+        const totalPontosKO = rankingKO.find(j => j.id === jogador.id)?.totalPontosKO || 0;
         
         let icones = '';
         if (jogador.id === reiDaMesa) {
@@ -1313,7 +2535,8 @@ function renderizarAdminJogadores() {
                     <div>
                         <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}${icones}</div>
                         <div style="display: flex; gap: 8px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
-                            <span>📊 Geral: #${posicaoGeral} (${totalPontosCombinado} pts = ${totalPontosGeral}G + ${totalPontosKO}KO)</span>
+                            <span>📊 Geral: #${posicaoGeral} (${totalPontosGeral} pts)</span>
+                            <span>🥊 KO: #${posicaoKO} (${totalPontosKO} pts)</span>
                         </div>
                     </div>
                 </div>
@@ -1371,7 +2594,7 @@ btnExportarCSV.onclick = function() {
     const ranking = calcularRankingGeral();
     const rankingKOCalc = calcularRankingKO();
     
-    let csv = 'Posição,Jogador,Pontos Totais (Geral + KO),Pontos Geral,Pontos KO,Participações (Geral),Diferença para Líder (Total),Rei da Mesa,Melhor Mão,Participações KO,Posição KO';
+    let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações (Geral),Diferença para Líder (Geral),Rei da Mesa,Melhor Mão,Pontos KO,Participações KO,Posição KO';
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         csv += `,Etapa ${i} Geral`;
@@ -1381,10 +2604,10 @@ btnExportarCSV.onclick = function() {
     }
     csv += '\n';
     
-    const primeiroPontos = ranking[0]?.totalPontosCombinado || 0;
+    const primeiroPontos = ranking[0]?.totalPontos || 0;
     
     ranking.forEach(jogador => {
-        const diferencaTotal = primeiroPontos - jogador.totalPontosCombinado;
+        const diferencaGeral = primeiroPontos - jogador.totalPontos;
         const jogadorKO = rankingKOCalc.find(j => j.id === jogador.id);
         const pontosKO = jogadorKO?.totalPontosKO || 0;
         const participacoesKO = jogadorKO?.participacoesKO || 0;
@@ -1392,7 +2615,7 @@ btnExportarCSV.onclick = function() {
         const isReiDaMesa = jogador.id === reiDaMesa ? 'SIM' : 'NÃO';
         const isMelhorMao = jogador.id === melhorMao ? 'SIM' : 'NÃO';
         
-        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontosCombinado},${jogador.totalPontos},${jogador.totalPontosKO},${jogador.participacoes},${diferencaTotal},${isReiDaMesa},${isMelhorMao},${participacoesKO},${posicaoKO}`;
+        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${diferencaGeral},${isReiDaMesa},${isMelhorMao},${pontosKO},${participacoesKO},${posicaoKO}`;
         
         // Pontuações gerais
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
@@ -1447,3 +2670,5 @@ senhaAdmin.addEventListener('keypress', (e) => {
 </script>
 </body>
 </html>
+
+
