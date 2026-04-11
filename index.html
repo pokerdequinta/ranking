@@ -33,6 +33,7 @@
     --card-red: #FF4444;
     --glove-color: #FF8C00;
     --champion-color: #FFD700;
+    --negative-color: #FF4757;
 }
 
 * {
@@ -49,7 +50,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Logo e Cabeçalho */
 .logo-container {
     text-align: center;
     padding: 12px;
@@ -84,14 +84,12 @@ body {
     font-weight: 300;
 }
 
-/* Container Principal */
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 8px;
 }
 
-/* Botões de Visualização */
 .view-toggle {
     display: flex;
     justify-content: center;
@@ -141,7 +139,6 @@ body {
     border-color: var(--ko-color);
 }
 
-/* SEÇÃO RANKING */
 .ranking-section {
     background: var(--bg-card);
     border-radius: 6px;
@@ -186,7 +183,6 @@ body {
     background: linear-gradient(135deg, var(--ko-color), #FF8E8E);
 }
 
-/* LEGENDAS ESPECIAIS */
 .legendas-especiais {
     display: flex;
     gap: 15px;
@@ -205,27 +201,12 @@ body {
     color: var(--text-muted);
 }
 
-.legenda-icone {
-    font-size: 1rem;
-}
+.legenda-icone { font-size: 1rem; }
+.legenda-crown { color: var(--crown-gold); }
+.legenda-card { color: var(--card-red); }
+.legenda-trophy { color: var(--champion-color); }
+.legenda-glove { color: var(--glove-color); }
 
-.legenda-crown {
-    color: var(--crown-gold);
-}
-
-.legenda-card {
-    color: var(--card-red);
-}
-
-.legenda-trophy {
-    color: var(--champion-color);
-}
-
-.legenda-glove {
-    color: var(--glove-color);
-}
-
-/* TABELA DE RANKING */
 .ranking-container {
     overflow-x: auto;
     padding: 0;
@@ -267,15 +248,9 @@ body {
     border-bottom: 2px solid var(--ko-color);
 }
 
-.ranking-table th:first-child {
-    padding-left: 15px;
-}
+.ranking-table th:first-child { padding-left: 15px; }
+.ranking-table th:last-child { padding-right: 15px; }
 
-.ranking-table th:last-child {
-    padding-right: 15px;
-}
-
-/* CABEÇALHO DAS ETAPAS - NÚMEROS 1-12 */
 .ranking-table th:nth-child(n+5) {
     text-align: center;
     min-width: 32px;
@@ -284,85 +259,43 @@ body {
     font-size: 0.8rem;
 }
 
-/* LINHAS DO RANKING */
 .ranking-row {
     transition: all 0.2s ease;
     border-bottom: 1px solid var(--border-light);
     height: 36px;
 }
 
-/* TOP 10 - CORES FORTES INTERCALADAS COM DESTAQUE MÁXIMO */
-.ranking-row.top10 {
-    position: relative;
-}
+.ranking-row.top10:nth-child(odd) { background: var(--top10-row-odd); }
+.ranking-row.top10:nth-child(even) { background: var(--top10-row-even); }
+.ranking-row.top10:hover { background: rgba(212, 161, 33, 0.2); }
+.ranking-row.top10.ko:nth-child(odd) { background: rgba(255, 107, 107, 0.15); }
+.ranking-row.top10.ko:nth-child(even) { background: rgba(255, 107, 107, 0.10); }
+.ranking-row.top10.ko:hover { background: rgba(255, 107, 107, 0.2); }
+.ranking-row.other:nth-child(odd) { background: var(--bg-row); }
+.ranking-row.other:nth-child(even) { background: var(--bg-row-alt); }
+.ranking-row.other:hover { background: rgba(212, 161, 33, 0.03); }
+.ranking-row.other.ko:hover { background: rgba(255, 107, 107, 0.03); }
 
-.ranking-row.top10:nth-child(odd) {
-    background: var(--top10-row-odd);
-}
-
-.ranking-row.top10:nth-child(even) {
-    background: var(--top10-row-even);
-}
-
-.ranking-row.top10:hover {
-    background: rgba(212, 161, 33, 0.2);
-}
-
-.ranking-row.top10.ko:nth-child(odd) {
-    background: rgba(255, 107, 107, 0.15);
-}
-
-.ranking-row.top10.ko:nth-child(even) {
-    background: rgba(255, 107, 107, 0.10);
-}
-
-.ranking-row.top10.ko:hover {
-    background: rgba(255, 107, 107, 0.2);
-}
-
-/* APÓS O 10º - CORES NORMAIS */
-.ranking-row.other:nth-child(odd) {
-    background: var(--bg-row);
-}
-
-.ranking-row.other:nth-child(even) {
-    background: var(--bg-row-alt);
-}
-
-.ranking-row.other:hover {
-    background: rgba(212, 161, 33, 0.03);
-}
-
-.ranking-row.other.ko:hover {
-    background: rgba(255, 107, 107, 0.03);
-}
-
-/* DESTAQUES POR POSIÇÃO COM BORDAS E CORES FORTES */
 .ranking-row.pos-1 {
     border-left: 4px solid var(--gold) !important;
     background: linear-gradient(90deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.08) 100%) !important;
 }
-
 .ranking-row.pos-2 {
     border-left: 4px solid var(--silver) !important;
     background: linear-gradient(90deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.08) 100%) !important;
 }
-
 .ranking-row.pos-3 {
     border-left: 4px solid var(--bronze) !important;
     background: linear-gradient(90deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.08) 100%) !important;
 }
-
 .ranking-row.pos-4 {
     border-left: 4px solid #4CAF50 !important;
     background: linear-gradient(90deg, rgba(76, 175, 80, 0.15) 0%, rgba(76, 175, 80, 0.05) 100%) !important;
 }
-
 .ranking-row.pos-5 {
     border-left: 4px solid #4CAF50 !important;
     background: linear-gradient(90deg, rgba(76, 175, 80, 0.12) 0%, rgba(76, 175, 80, 0.04) 100%) !important;
 }
-
 .ranking-row.pos-6,
 .ranking-row.pos-7,
 .ranking-row.pos-8,
@@ -371,22 +304,14 @@ body {
     border-left: 4px solid #4CAF50 !important;
 }
 
-/* CÉLULAS DA TABELA */
 .ranking-table td {
     padding: 6px 8px;
     vertical-align: middle;
     border-bottom: 1px solid var(--border-light);
 }
+.ranking-table td:first-child { padding-left: 15px; }
+.ranking-table td:last-child { padding-right: 15px; }
 
-.ranking-table td:first-child {
-    padding-left: 15px;
-}
-
-.ranking-table td:last-child {
-    padding-right: 15px;
-}
-
-/* NÚMERO DO RANKING */
 .rank-cell {
     display: flex;
     align-items: center;
@@ -412,14 +337,12 @@ body {
     background: rgba(212, 161, 33, 0.2);
     border-color: rgba(212, 161, 33, 0.4);
 }
-
 .ranking-row.top10.ko .rank-number {
     background: rgba(255, 107, 107, 0.2);
     border-color: rgba(255, 107, 107, 0.4);
     color: var(--ko-color);
 }
 
-/* JOGADOR */
 .player-info {
     display: flex;
     align-items: center;
@@ -436,7 +359,6 @@ body {
     background: var(--bg-dark);
 }
 
-/* ÍCONES ESPECIAIS */
 .player-icons {
     display: flex;
     align-items: center;
@@ -487,9 +409,16 @@ body {
     margin-left: 2px;
 }
 
-/* PONTUAÇÃO COM BORDA */
+/* Pontuação */
 .points-cell {
     text-align: center;
+}
+
+.points-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
 }
 
 .points {
@@ -503,6 +432,28 @@ body {
     background: rgba(212, 161, 33, 0.08);
     border: 1px solid rgba(212, 161, 33, 0.2);
     min-width: 70px;
+    text-align: center;
+}
+
+/* Pontuação negativa */
+.points.negative {
+    color: var(--negative-color) !important;
+    background: rgba(255, 71, 87, 0.1) !important;
+    border: 1px solid rgba(255, 71, 87, 0.35) !important;
+}
+
+/* Ícone SVG de exclamação para pontuação negativa */
+.negative-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 3px rgba(255, 71, 87, 0.5));
+    animation: negativeAlert 1.8s ease-in-out infinite;
+}
+
+@keyframes negativeAlert {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.65; transform: scale(0.92); }
 }
 
 .points.pos-1 { 
@@ -550,7 +501,7 @@ body {
     border: 1px solid rgba(205, 127, 50, 0.4);
 }
 
-.ranking-row.top10 .points:not(.pos-1):not(.pos-2):not(.pos-3) {
+.ranking-row.top10 .points:not(.pos-1):not(.pos-2):not(.pos-3):not(.negative) {
     background: rgba(212, 161, 33, 0.15);
     border: 1px solid rgba(212, 161, 33, 0.3);
 }
@@ -560,10 +511,7 @@ body {
     border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
-/* DIFERENÇA PARA O LÍDER - VERMELHA */
-.diff-cell {
-    text-align: center;
-}
+.diff-cell { text-align: center; }
 
 .diff {
     font-family: 'Montserrat', sans-serif;
@@ -583,7 +531,6 @@ body {
     border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
-/* ETAPAS */
 .etapa-pill {
     padding: 2px 6px;
     border-radius: 6px;
@@ -606,6 +553,14 @@ body {
     background: linear-gradient(135deg, #4CAF50, #45a049);
     color: white;
     border: none;
+}
+
+/* Etapa com pontuação negativa no ranking */
+.etapa-pill.negative-score {
+    background: rgba(255, 71, 87, 0.15);
+    color: var(--negative-color);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    font-weight: 700;
 }
 
 .etapa-pill.present.ko {
@@ -635,7 +590,7 @@ body {
     border: 1px solid rgba(255, 107, 107, 0.1);
 }
 
-/* PAINEL ADMINISTRATIVO */
+/* PAINEL ADMIN */
 .admin-section {
     background: var(--bg-card);
     border-radius: 6px;
@@ -659,7 +614,6 @@ body {
     gap: 6px;
 }
 
-/* CONFIGURAÇÕES ESPECIAIS */
 .config-especial {
     background: var(--bg-card);
     border-radius: 6px;
@@ -706,19 +660,10 @@ body {
     gap: 6px;
 }
 
-.config-item.crown h4 {
-    color: var(--crown-gold);
-}
+.config-item.crown h4 { color: var(--crown-gold); }
+.config-item.card h4 { color: var(--card-red); }
+.config-item.trophy h4 { color: var(--champion-color); }
 
-.config-item.card h4 {
-    color: var(--card-red);
-}
-
-.config-item.trophy h4 {
-    color: var(--champion-color);
-}
-
-/* SISTEMA DE PONTUAÇÃO */
 .points-system {
     display: grid;
     gap: 12px;
@@ -757,22 +702,17 @@ body {
     border-color: var(--primary);
 }
 
-.stage-btn.ko {
-    border-color: var(--ko-color);
-}
-
+.stage-btn.ko { border-color: var(--ko-color); }
 .stage-btn.ko:hover {
     border-color: var(--ko-color);
     background: rgba(255, 107, 107, 0.05);
 }
-
 .stage-btn.ko.active {
     background: var(--ko-color);
     color: #000;
     border-color: var(--ko-color);
 }
 
-/* Etapa Atual */
 .etapa-atual {
     text-align: center;
     margin: 8px 0;
@@ -789,14 +729,9 @@ body {
     margin: 0 4px;
 }
 
-.etapa-atual.ko .numero {
-    color: var(--ko-color);
-}
+.etapa-atual.ko .numero { color: var(--ko-color); }
 
-/* LISTA DE JOGADORES PARA PONTUAÇÃO - ORDEM ALFABÉTICA */
-.players-points-list {
-    margin-top: 12px;
-}
+.players-points-list { margin-top: 12px; }
 
 .points-list-header {
     display: grid;
@@ -810,9 +745,7 @@ body {
     color: var(--primary);
 }
 
-.points-list-header.ko {
-    color: var(--ko-color);
-}
+.points-list-header.ko { color: var(--ko-color); }
 
 .points-list-items {
     max-height: 450px;
@@ -829,21 +762,10 @@ body {
     transition: all 0.2s ease;
 }
 
-.point-item:nth-child(odd) {
-    background: var(--bg-row);
-}
-
-.point-item:nth-child(even) {
-    background: var(--bg-row-alt);
-}
-
-.point-item:hover {
-    background: rgba(212, 161, 33, 0.03);
-}
-
-.point-item.ko:hover {
-    background: rgba(255, 107, 107, 0.03);
-}
+.point-item:nth-child(odd) { background: var(--bg-row); }
+.point-item:nth-child(even) { background: var(--bg-row-alt); }
+.point-item:hover { background: rgba(212, 161, 33, 0.03); }
+.point-item.ko:hover { background: rgba(255, 107, 107, 0.03); }
 
 .player-info-admin {
     display: flex;
@@ -875,19 +797,16 @@ body {
     transition: all 0.2s ease;
 }
 
-.points-input-admin input:focus {
-    outline: none;
-    border-color: var(--primary);
+/* Input com valor negativo no admin */
+.points-input-admin input.negative-value {
+    color: var(--negative-color);
+    border-color: rgba(255, 71, 87, 0.5);
+    background: rgba(255, 71, 87, 0.05);
 }
 
-.points-input-admin input.NJ {
-    color: #FF4757;
-    border-color: #FF4757;
-}
-
-.points-input-admin.ko input:focus {
-    border-color: var(--ko-color);
-}
+.points-input-admin input:focus { outline: none; border-color: var(--primary); }
+.points-input-admin input.NJ { color: #FF4757; border-color: #FF4757; }
+.points-input-admin.ko input:focus { border-color: var(--ko-color); }
 
 .quick-actions {
     display: flex;
@@ -906,16 +825,9 @@ body {
     transition: all 0.2s ease;
 }
 
-.quick-action-btn:hover {
-    background: var(--primary);
-    color: #000;
-}
+.quick-action-btn:hover { background: var(--primary); color: #000; }
+.quick-action-btn.ko:hover { background: var(--ko-color); }
 
-.quick-action-btn.ko:hover {
-    background: var(--ko-color);
-}
-
-/* ADMIN ACTIONS */
 .admin-actions {
     display: flex;
     gap: 10px;
@@ -941,33 +853,13 @@ body {
     font-size: 0.8rem;
 }
 
-.save-btn {
-    background: #4CAF50;
-    color: white;
-}
+.save-btn { background: #4CAF50; color: white; }
+.save-btn:hover { background: #45a049; }
+.save-btn.ko { background: var(--ko-color); }
+.save-btn.ko:hover { background: var(--ko-color-dark); }
+.clear-btn { background: #FF4757; color: white; }
+.clear-btn:hover { background: #ff3742; }
 
-.save-btn:hover {
-    background: #45a049;
-}
-
-.save-btn.ko {
-    background: var(--ko-color);
-}
-
-.save-btn.ko:hover {
-    background: var(--ko-color-dark);
-}
-
-.clear-btn {
-    background: #FF4757;
-    color: white;
-}
-
-.clear-btn:hover {
-    background: #ff3742;
-}
-
-/* GERENCIAMENTO DE JOGADORES */
 .players-management {
     background: var(--bg-card);
     border-radius: 6px;
@@ -1009,12 +901,8 @@ body {
     transition: all 0.2s ease;
 }
 
-.form-group input:focus {
-    outline: none;
-    border-color: var(--primary);
-}
+.form-group input:focus { outline: none; border-color: var(--primary); }
 
-/* STATUS INDICATOR */
 .status-indicator {
     position: fixed;
     top: 8px;
@@ -1034,7 +922,6 @@ body {
     border-color: #4CAF50;
 }
 
-/* ADMIN TOGGLE BUTTON - MUITO ESCONDIDO */
 .admin-toggle-btn {
     position: fixed;
     bottom: 8px;
@@ -1071,7 +958,6 @@ body {
     opacity: 0.9;
 }
 
-/* MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -1083,9 +969,7 @@ body {
     z-index: 2000;
 }
 
-.modal.active {
-    display: flex;
-}
+.modal.active { display: flex; }
 
 .modal-content {
     background: var(--bg-card);
@@ -1098,14 +982,8 @@ body {
 }
 
 @keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .modal-buttons {
@@ -1114,13 +992,8 @@ body {
     margin-top: 12px;
 }
 
-/* BOTÃO EXPORTAR CSV */
-.export-btn {
-    margin-top: 12px;
-    text-align: center;
-}
+.export-btn { margin-top: 12px; text-align: center; }
 
-/* PAINEL ADMIN KO */
 .admin-ko-toggle {
     display: flex;
     justify-content: center;
@@ -1153,23 +1026,17 @@ body {
     border-color: var(--primary);
 }
 
-.admin-ko-toggle-btn.ko {
-    border-color: var(--ko-color);
-    color: var(--ko-color);
-}
-
+.admin-ko-toggle-btn.ko { border-color: var(--ko-color); color: var(--ko-color); }
 .admin-ko-toggle-btn.ko:hover {
     border-color: var(--ko-color);
     background: rgba(255, 107, 107, 0.05);
 }
-
 .admin-ko-toggle-btn.ko.active {
     background: var(--ko-color);
     color: #000;
     border-color: var(--ko-color);
 }
 
-/* SELECT DE JOGADORES PARA CONFIGURAÇÕES ESPECIAIS */
 .player-select-container {
     display: flex;
     flex-direction: column;
@@ -1187,22 +1054,10 @@ body {
     cursor: pointer;
 }
 
-.player-select:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-.player-select.crown:focus {
-    border-color: var(--crown-gold);
-}
-
-.player-select.card:focus {
-    border-color: var(--card-red);
-}
-
-.player-select.trophy:focus {
-    border-color: var(--champion-color);
-}
+.player-select:focus { outline: none; border-color: var(--primary); }
+.player-select.crown:focus { border-color: var(--crown-gold); }
+.player-select.card:focus { border-color: var(--card-red); }
+.player-select.trophy:focus { border-color: var(--champion-color); }
 
 .save-config-btn {
     width: 100%;
@@ -1220,142 +1075,39 @@ body {
     gap: 6px;
 }
 
-.save-config-btn:hover {
-    background: var(--primary-dark);
-}
+.save-config-btn:hover { background: var(--primary-dark); }
+.save-config-btn.crown { background: var(--crown-gold); color: #000; }
+.save-config-btn.crown:hover { background: #e6c200; }
+.save-config-btn.card { background: var(--card-red); color: white; }
+.save-config-btn.card:hover { background: #ff2a2a; }
+.save-config-btn.trophy { background: var(--champion-color); color: #000; }
+.save-config-btn.trophy:hover { background: #e6c200; }
 
-.save-config-btn.crown {
-    background: var(--crown-gold);
-    color: #000;
-}
-
-.save-config-btn.crown:hover {
-    background: #e6c200;
-}
-
-.save-config-btn.card {
-    background: var(--card-red);
-    color: white;
-}
-
-.save-config-btn.card:hover {
-    background: #ff2a2a;
-}
-
-.save-config-btn.trophy {
-    background: var(--champion-color);
-    color: #000;
-}
-
-.save-config-btn.trophy:hover {
-    background: #e6c200;
-}
-
-/* RESPONSIVIDADE */
 @media (max-width: 768px) {
-    .header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .ranking-table th,
-    .ranking-table td {
-        padding: 6px 4px;
-    }
-    
-    .rank-number {
-        width: 24px;
-        height: 24px;
-        font-size: 0.75rem;
-    }
-    
-    .player-avatar {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .points {
-        padding: 3px 8px;
-        font-size: 0.9rem;
-        min-width: 60px;
-    }
-    
-    .ranking-table th:nth-child(n+5) {
-        min-width: 28px;
-        font-size: 0.7rem;
-        padding: 10px 1px;
-    }
-    
-    .add-player-form {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-    
-    .admin-actions {
-        flex-direction: column;
-        gap: 6px;
-    }
-    
-    .admin-btn {
-        width: 100%;
-        min-width: auto;
-    }
-    
-    .admin-toggle-btn {
-        bottom: 6px;
-        right: 6px;
-        width: 28px;
-        height: 28px;
-        font-size: 0.7rem;
-    }
-    
-    .legendas-especiais {
-        flex-direction: column;
-        gap: 8px;
-    }
+    .header h1 { font-size: 1.5rem; }
+    .ranking-table th, .ranking-table td { padding: 6px 4px; }
+    .rank-number { width: 24px; height: 24px; font-size: 0.75rem; }
+    .player-avatar { width: 24px; height: 24px; }
+    .points { padding: 3px 8px; font-size: 0.9rem; min-width: 60px; }
+    .ranking-table th:nth-child(n+5) { min-width: 28px; font-size: 0.7rem; padding: 10px 1px; }
+    .add-player-form { grid-template-columns: 1fr; gap: 8px; }
+    .admin-actions { flex-direction: column; gap: 6px; }
+    .admin-btn { width: 100%; min-width: auto; }
+    .admin-toggle-btn { bottom: 6px; right: 6px; width: 28px; height: 28px; font-size: 0.7rem; }
+    .legendas-especiais { flex-direction: column; gap: 8px; }
 }
 
 @media (max-width: 480px) {
-    .stage-selector {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
-    
-    .stage-btn {
-        padding: 5px 8px;
-        font-size: 0.75rem;
-        min-width: auto;
-    }
-    
-    .points-input-admin input {
-        width: 70px;
-    }
-    
-    .etapa-pill {
-        min-width: 24px;
-        font-size: 0.65rem;
-        padding: 1px 4px;
-    }
+    .stage-selector { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stage-btn { padding: 5px 8px; font-size: 0.75rem; min-width: auto; }
+    .points-input-admin input { width: 70px; }
+    .etapa-pill { min-width: 24px; font-size: 0.65rem; padding: 1px 4px; }
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-row);
-    border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-row); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
 </style>
 </head>
 
@@ -1396,7 +1148,6 @@ body {
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
                     Atualizado após a Última Etapa Jogada.
                 </div>
-                <!-- LEGENDAS ESPECIAIS -->
                 <div class="legendas-especiais">
                     <div class="legenda-item">
                         <span class="legenda-icone legenda-crown">👑</span>
@@ -1410,6 +1161,14 @@ body {
                         <span class="legenda-icone legenda-trophy">🏆</span>
                         <span>Campeão da etapa</span>
                     </div>
+                    <div class="legenda-item">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0">
+                            <circle cx="7" cy="7" r="6.5" fill="rgba(255,71,87,0.15)" stroke="#FF4757" stroke-width="1"/>
+                            <rect x="6.3" y="3.5" width="1.4" height="4.5" rx="0.7" fill="#FF4757"/>
+                            <circle cx="7" cy="10" r="0.8" fill="#FF4757"/>
+                        </svg>
+                        <span>Pontuação negativa (penalidade)</span>
+                    </div>
                 </div>
             </div>
             
@@ -1421,18 +1180,8 @@ body {
                             <th>JOGADOR</th>
                             <th style="width: 90px; text-align: center;">PONTOS</th>
                             <th style="width: 90px; text-align: center;">DIF. LÍDER</th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                            <th>9</th>
-                            <th>10</th>
-                            <th>11</th>
-                            <th>12</th>
+                            <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+                            <th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
                         </tr>
                     </thead>
                     <tbody id="rankingTableBody">
@@ -1451,7 +1200,7 @@ body {
         </div>
     </div>
 
-    <!-- VIEW RANKING KO (Inicialmente oculta) -->
+    <!-- VIEW RANKING KO -->
     <div id="viewRankingKO" style="display: none;">
         <div class="ranking-section">
             <div class="section-header ko">
@@ -1462,7 +1211,6 @@ body {
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
                     Ranking baseado nas pontuações de KO.
                 </div>
-                <!-- LEGENDA DO RANKING KO - APENAS ÍCONE DA LUVA -->
                 <div class="legendas-especiais">
                     <div class="legenda-item">
                         <span class="legenda-icone legenda-glove">🥊</span>
@@ -1479,18 +1227,8 @@ body {
                             <th>JOGADOR</th>
                             <th style="width: 90px; text-align: center;">PONTOS KO</th>
                             <th style="width: 90px; text-align: center;">DIF. LÍDER</th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                            <th>9</th>
-                            <th>10</th>
-                            <th>11</th>
-                            <th>12</th>
+                            <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+                            <th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
                         </tr>
                     </thead>
                     <tbody id="rankingTableBodyKO">
@@ -1509,9 +1247,8 @@ body {
         </div>
     </div>
 
-    <!-- VIEW ADMIN (Inicialmente oculta) -->
+    <!-- VIEW ADMIN -->
     <div id="viewAdmin" style="display: none;">
-        <!-- Botões para alternar entre Geral e KO no Admin -->
         <div class="admin-ko-toggle">
             <button class="admin-ko-toggle-btn active" id="btnAdminGeral">
                 <span>📊</span>
@@ -1523,23 +1260,17 @@ body {
             </button>
         </div>
 
-        <!-- CONFIGURAÇÕES ESPECIAIS -->
         <div class="config-especial">
             <h3>⚙️ CONFIGURAÇÕES ESPECIAIS</h3>
             <div class="config-container">
-                <!-- CONFIGURAÇÃO REI DA MESA -->
                 <div class="config-item crown">
-                    <h4>
-                        <span class="crown-icon">👑</span>
-                        <span>REI DA MESA</span>
-                    </h4>
+                    <h4><span class="crown-icon">👑</span><span>REI DA MESA</span></h4>
                     <div class="player-select-container">
                         <select class="player-select crown" id="selectReiDaMesa">
                             <option value="">Selecione o Rei da Mesa</option>
                         </select>
                         <button class="save-config-btn crown" onclick="salvarReiDaMesa()">
-                            <span>💾</span>
-                            <span>Salvar Rei da Mesa</span>
+                            <span>💾</span><span>Salvar Rei da Mesa</span>
                         </button>
                         <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">
                             O Rei da Mesa aparecerá com uma coroa 👑 ao lado do nome
@@ -1547,19 +1278,14 @@ body {
                     </div>
                 </div>
 
-                <!-- CONFIGURAÇÃO MELHOR MÃO -->
                 <div class="config-item card">
-                    <h4>
-                        <span class="card-icon">🃏</span>
-                        <span>MELHOR MÃO DA ETAPA</span>
-                    </h4>
+                    <h4><span class="card-icon">🃏</span><span>MELHOR MÃO DA ETAPA</span></h4>
                     <div class="player-select-container">
                         <select class="player-select card" id="selectMelhorMao">
                             <option value="">Selecione a Melhor Mão</option>
                         </select>
                         <button class="save-config-btn card" onclick="salvarMelhorMao()">
-                            <span>💾</span>
-                            <span>Salvar Melhor Mão</span>
+                            <span>💾</span><span>Salvar Melhor Mão</span>
                         </button>
                         <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">
                             O jogador com a melhor mão aparecerá com uma carta 🃏 ao lado do nome
@@ -1567,19 +1293,12 @@ body {
                     </div>
                 </div>
 
-                <!-- NOVA CONFIGURAÇÃO: CAMPEÃO DE CADA ETAPA -->
                 <div class="config-item trophy" style="grid-column: span 2;">
-                    <h4>
-                        <span class="trophy-icon">🏆</span>
-                        <span>CAMPEÕES POR ETAPA</span>
-                    </h4>
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px;" id="campeoesEtapaContainer">
-                        <!-- Será preenchido dinamicamente -->
-                    </div>
+                    <h4><span class="trophy-icon">🏆</span><span>CAMPEÕES POR ETAPA</span></h4>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px;" id="campeoesEtapaContainer"></div>
                     <div style="margin-top: 15px; text-align: center;">
                         <button class="save-config-btn trophy" onclick="salvarCampeoesEtapa()">
-                            <span>💾</span>
-                            <span>Salvar Campeões das Etapas</span>
+                            <span>💾</span><span>Salvar Campeões das Etapas</span>
                         </button>
                         <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">
                             Defina o campeão de cada etapa para aparecer o troféu 🏆 ao lado da pontuação no ranking geral
@@ -1589,128 +1308,94 @@ body {
             </div>
         </div>
 
-        <!-- ADMIN GERAL -->
         <div id="adminGeral">
             <div class="admin-section">
                 <div class="admin-header">
-                    <h2>
-                        <span>📊</span>
-                        <span>PONTUAÇÕES GERAIS</span>
-                    </h2>
+                    <h2><span>📊</span><span>PONTUAÇÕES GERAIS</span></h2>
                     <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">
-                        Gerencie pontuações das etapas (Geral)
+                        Gerencie pontuações das etapas (Geral) — valores negativos são aceitos
                     </div>
                 </div>
 
                 <div class="points-system">
-                    <!-- Seletor de Etapas -->
                     <div style="text-align: center; margin-bottom: 8px;">
-                        <div style="color: var(--primary); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">
-                            SELECIONE A ETAPA:
-                        </div>
+                        <div style="color: var(--primary); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">SELECIONE A ETAPA:</div>
                         <div class="stage-selector" id="etapaSelector"></div>
                     </div>
 
-                    <!-- Etapa Atual -->
                     <div class="etapa-atual">
                         <div style="font-size: 0.9rem; font-weight: 700; color: var(--gold);">
                             ETAPA <span class="numero" id="etapaAtualNumero">1</span>
                         </div>
                         <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">
-                            Atualize as pontuações dos jogadores
+                            Atualize as pontuações dos jogadores (use valores negativos para penalidades)
                         </div>
                     </div>
 
-                    <!-- Lista de Jogadores para Pontuação (ORDEM ALFABÉTICA) -->
                     <div class="players-points-list">
                         <div class="points-list-header">
                             <div>JOGADOR</div>
                             <div>PONTOS</div>
                         </div>
-                        <div class="points-list-items" id="playersPointsList">
-                            <!-- Jogadores serão carregados dinamicamente em ordem alfabética -->
-                        </div>
+                        <div class="points-list-items" id="playersPointsList"></div>
                     </div>
 
-                    <!-- Ações -->
                     <div class="admin-actions">
                         <button class="admin-btn clear-btn" onclick="limparPontuacoes('geral')">
-                            <span>🧹</span>
-                            <span>Limpar Tudo</span>
+                            <span>🧹</span><span>Limpar Tudo</span>
                         </button>
                         <button class="admin-btn save-btn" onclick="salvarEtapa('geral')">
-                            <span>💾</span>
-                            <span>Salvar Etapa</span>
+                            <span>💾</span><span>Salvar Etapa</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ADMIN KO -->
         <div id="adminKO" style="display: none;">
             <div class="admin-section">
                 <div class="admin-header">
-                    <h2>
-                        <span>🥊</span>
-                        <span>PONTUAÇÕES KO</span>
-                    </h2>
-                    <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">
-                        Gerencie pontuações das etapas (KO)
-                    </div>
+                    <h2><span>🥊</span><span>PONTUAÇÕES KO</span></h2>
+                    <div style="color: #aaaaaa; font-size: 0.75rem; margin-top: 3px;">Gerencie pontuações das etapas (KO)</div>
                 </div>
 
                 <div class="points-system">
-                    <!-- Seletor de Etapas KO -->
                     <div style="text-align: center; margin-bottom: 8px;">
-                        <div style="color: var(--ko-color); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">
-                            SELECIONE A ETAPA KO:
-                        </div>
+                        <div style="color: var(--ko-color); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">SELECIONE A ETAPA KO:</div>
                         <div class="stage-selector" id="etapaSelectorKO"></div>
                     </div>
 
-                    <!-- Etapa Atual KO -->
                     <div class="etapa-atual ko">
                         <div style="font-size: 0.9rem; font-weight: 700; color: var(--ko-color);">
                             ETAPA KO <span class="numero" id="etapaAtualNumeroKO">1</span>
                         </div>
-                        <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">
-                            Atualize as pontuações de KO dos jogadores
-                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem; margin-top: 3px;">Atualize as pontuações de KO dos jogadores</div>
                     </div>
 
-                    <!-- Lista de Jogadores para Pontuação KO (ORDEM ALFABÉTICA) -->
                     <div class="players-points-list">
                         <div class="points-list-header ko">
                             <div>JOGADOR</div>
                             <div>PONTOS KO</div>
                         </div>
-                        <div class="points-list-items" id="playersPointsListKO">
-                            <!-- Jogadores serão carregados dinamicamente em ordem alfabética -->
-                        </div>
+                        <div class="points-list-items" id="playersPointsListKO"></div>
                     </div>
 
-                    <!-- Ações KO -->
                     <div class="admin-actions">
                         <button class="admin-btn clear-btn" onclick="limparPontuacoes('ko')">
-                            <span>🧹</span>
-                            <span>Limpar Tudo</span>
+                            <span>🧹</span><span>Limpar Tudo</span>
                         </button>
                         <button class="admin-btn save-btn ko" onclick="salvarEtapa('ko')">
-                            <span>💾</span>
-                            <span>Salvar Etapa KO</span>
+                            <span>💾</span><span>Salvar Etapa KO</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Gerenciamento de Jogadores -->
         <div class="players-management">
             <h3 style="color: var(--primary); margin-bottom: 12px; font-family: 'Anton', sans-serif; font-size: 1.2rem;">
                 👥 GERENCIAR JOGADORES
             </h3>
-
             <div class="add-player-form">
                 <div class="form-group">
                     <label>Nome do Jogador</label>
@@ -1722,22 +1407,16 @@ body {
                 </div>
                 <div style="display: flex; align-items: flex-end;">
                     <button class="admin-btn save-btn" id="btnAdicionarJogador" style="height: 36px; font-size: 0.8rem;">
-                        <span>➕</span>
-                        <span>Adicionar</span>
+                        <span>➕</span><span>Adicionar</span>
                     </button>
                 </div>
             </div>
-
-            <div id="listaJogadoresAdmin">
-                <!-- Lista de jogadores será carregada aqui -->
-            </div>
+            <div id="listaJogadoresAdmin"></div>
         </div>
         
-        <!-- Botão de Exportação CSV -->
         <div class="export-btn">
             <button class="admin-btn save-btn" id="btnExportarCSV" style="width: 100%; max-width: 220px; margin: 0 auto; font-size: 0.8rem;">
-                <span>📊</span>
-                <span>Exportar Ranking CSV</span>
+                <span>📊</span><span>Exportar Ranking CSV</span>
             </button>
         </div>
     </div>
@@ -1748,8 +1427,7 @@ body {
 <div class="modal" id="modalAdmin">
     <div class="modal-content">
         <h2 style="color: #8b0000; font-size: 1.1rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-            <span>🔐</span>
-            <span>Acesso Administrativo</span>
+            <span>🔐</span><span>Acesso Administrativo</span>
         </h2>
         <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.8rem;">
             Digite a senha de administrador:
@@ -1758,12 +1436,8 @@ body {
             <input type="password" id="senhaAdmin" placeholder="Digite a senha" style="width: 100%;">
         </div>
         <div class="modal-buttons">
-            <button class="admin-btn clear-btn" id="btnFecharAdmin" style="flex: 1; font-size: 0.8rem;">
-                Cancelar
-            </button>
-            <button class="admin-btn save-btn" id="btnAcessarAdmin" style="flex: 1; font-size: 0.8rem;">
-                Acessar
-            </button>
+            <button class="admin-btn clear-btn" id="btnFecharAdmin" style="flex: 1; font-size: 0.8rem;">Cancelar</button>
+            <button class="admin-btn save-btn" id="btnAcessarAdmin" style="flex: 1; font-size: 0.8rem;">Acessar</button>
         </div>
     </div>
 </div>
@@ -1782,6 +1456,13 @@ const FIREBASE_CONFIG = {
 const TOTAL_ETAPAS = 12;
 const SENHA_ADMIN = "poker2026";
 
+// SVG de exclamação vermelho para pontuação negativa
+const NEGATIVE_ICON_SVG = `<svg class="negative-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" title="Pontuação negativa">
+  <circle cx="8" cy="8" r="7.5" fill="rgba(255,71,87,0.15)" stroke="#FF4757" stroke-width="1.2"/>
+  <rect x="7.2" y="4" width="1.6" height="5.2" rx="0.8" fill="#FF4757"/>
+  <circle cx="8" cy="11.5" r="0.9" fill="#FF4757"/>
+</svg>`;
+
 let jogadores = [];
 let etapas = {};
 let etapasKO = {};
@@ -1797,84 +1478,47 @@ let melhorMao = null;
 let campeoesEtapa = {};
 
 class FirebaseDB {
-    constructor(config) {
-        this.dbUrl = config.databaseURL;
-    }
+    constructor(config) { this.dbUrl = config.databaseURL; }
 
     async get(path) {
         try {
             const response = await fetch(`${this.dbUrl}/${path}.json`);
             return await response.json();
-        } catch (error) {
-            console.error('Erro ao buscar dados:', error);
-            return null;
-        }
+        } catch (error) { console.error('Erro ao buscar dados:', error); return null; }
     }
 
     async set(path, data) {
         try {
             const response = await fetch(`${this.dbUrl}/${path}.json`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             return await response.json();
-        } catch (error) {
-            console.error('Erro ao salvar dados:', error);
-            throw error;
-        }
-    }
-
-    async update(path, data) {
-        try {
-            const response = await fetch(`${this.dbUrl}/${path}.json`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            return await response.json();
-        } catch (error) {
-            console.error('Erro ao atualizar dados:', error);
-            throw error;
-        }
+        } catch (error) { console.error('Erro ao salvar dados:', error); throw error; }
     }
 
     async push(path, data) {
         try {
             const response = await fetch(`${this.dbUrl}/${path}.json`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             return await response.json();
-        } catch (error) {
-            console.error('Erro ao adicionar dados:', error);
-            throw error;
-        }
+        } catch (error) { console.error('Erro ao adicionar dados:', error); throw error; }
     }
 
     async remove(path) {
         try {
-            const response = await fetch(`${this.dbUrl}/${path}.json`, {
-                method: 'DELETE'
-            });
+            const response = await fetch(`${this.dbUrl}/${path}.json`, { method: 'DELETE' });
             return await response.json();
-        } catch (error) {
-            console.error('Erro ao remover dados:', error);
-            throw error;
-        }
+        } catch (error) { console.error('Erro ao remover dados:', error); throw error; }
     }
 }
 
 const db = new FirebaseDB(FIREBASE_CONFIG);
 
-// Elementos DOM
 const statusIndicator = document.getElementById('statusIndicator');
 const btnViewRanking = document.getElementById('btnViewRanking');
 const btnViewRankingKO = document.getElementById('btnViewRankingKO');
@@ -1912,23 +1556,13 @@ async function carregarDados() {
                 id: key
             }));
         }
-        
-        if (dadosEtapas) {
-            etapas = dadosEtapas;
-        }
-        
-        if (dadosEtapasKO) {
-            etapasKO = dadosEtapasKO;
-        }
-        
+        if (dadosEtapas) etapas = dadosEtapas;
+        if (dadosEtapasKO) etapasKO = dadosEtapasKO;
         if (dadosConfig) {
             reiDaMesa = dadosConfig.reiDaMesa || null;
             melhorMao = dadosConfig.melhorMao || null;
         }
-        
-        if (dadosCampeoes) {
-            campeoesEtapa = dadosCampeoes;
-        }
+        if (dadosCampeoes) campeoesEtapa = dadosCampeoes;
         
         statusIndicator.textContent = '✅ Conectado';
         statusIndicator.classList.add('connected');
@@ -1943,16 +1577,9 @@ async function carregarDados() {
     }
 }
 
-// Sistema de Autenticação
-btnAdminToggle.onclick = () => {
-    modalAdmin.classList.add('active');
-    senhaAdmin.focus();
-};
-
-btnFecharAdmin.onclick = () => {
-    modalAdmin.classList.remove('active');
-    senhaAdmin.value = '';
-};
+// Auth
+btnAdminToggle.onclick = () => { modalAdmin.classList.add('active'); senhaAdmin.focus(); };
+btnFecharAdmin.onclick = () => { modalAdmin.classList.remove('active'); senhaAdmin.value = ''; };
 
 btnAcessarAdmin.onclick = () => {
     if (senhaAdmin.value === SENHA_ADMIN) {
@@ -1974,9 +1601,8 @@ btnAcessarAdmin.onclick = () => {
         renderizarCampeoesEtapa();
         
         setTimeout(() => {
-            alert('🔓 Modo Administrador ATIVADO!\n\nVocê agora pode gerenciar jogadores, pontuações e campeões de cada etapa.');
+            alert('🔓 Modo Administrador ATIVADO!\n\nVocê agora pode gerenciar jogadores, pontuações e campeões de cada etapa.\n\n💡 Dica: No ranking geral, valores negativos são permitidos para penalidades.');
         }, 300);
-        
     } else {
         alert('❌ Senha incorreta!');
         senhaAdmin.value = '';
@@ -1984,9 +1610,14 @@ btnAcessarAdmin.onclick = () => {
     }
 };
 
-// Alternar entre Rankings
+// Toggles de view
 btnViewRanking.onclick = () => {
-    if (!modoAdmin) {
+    if (modoAdmin) {
+        viewRanking.style.display = 'block';
+        viewRankingKO.style.display = 'none';
+        viewAdmin.style.display = 'none';
+        carregarDados();
+    } else {
         viewAtual = 'rankingGeral';
         btnViewRanking.classList.add('active');
         btnViewRankingKO.classList.remove('active');
@@ -2007,7 +1638,6 @@ btnViewRankingKO.onclick = () => {
     }
 };
 
-// Alternar entre Geral e KO no Admin
 btnAdminGeral.onclick = () => {
     adminTipo = 'geral';
     btnAdminGeral.classList.add('active');
@@ -2026,48 +1656,19 @@ btnAdminKO.onclick = () => {
     renderizarPlayersPoints('ko');
 };
 
-// Voltar para o ranking do admin
-btnViewRanking.onclick = () => {
-    if (modoAdmin) {
-        viewRanking.style.display = 'block';
-        viewRankingKO.style.display = 'none';
-        viewAdmin.style.display = 'none';
-        carregarDados();
-    } else {
-        viewAtual = 'rankingGeral';
-        btnViewRanking.classList.add('active');
-        btnViewRankingKO.classList.remove('active');
-        viewRanking.style.display = 'block';
-        viewRankingKO.style.display = 'none';
-        atualizarRankingGeral();
-    }
-};
-
-// Adicionar novo jogador
 btnAdicionarJogador.onclick = async () => {
     const nome = novoJogadorNome.value.trim();
-    if (!nome) {
-        alert('Digite o nome do jogador!');
-        return;
-    }
-    
+    if (!nome) { alert('Digite o nome do jogador!'); return; }
     const foto = novoJogadorFoto.value.trim();
-    
     try {
-        const novoJogador = {
+        await db.push('rankingJogadores', {
             nome: nome,
             foto: foto || null,
-            previousRank: 0,
             dataCriacao: new Date().toISOString()
-        };
-        
-        await db.push('rankingJogadores', novoJogador);
-        
+        });
         novoJogadorNome.value = '';
         novoJogadorFoto.value = '';
-        
         alert('✅ Jogador adicionado com sucesso!');
-        
         await carregarDados();
         if (modoAdmin) {
             renderizarPlayersPoints(adminTipo);
@@ -2075,228 +1676,146 @@ btnAdicionarJogador.onclick = async () => {
             atualizarSelectsEspeciais();
             renderizarCampeoesEtapa();
         }
-        
-    } catch (e) {
-        alert('❌ Erro ao adicionar jogador: ' + e.message);
-    }
+    } catch (e) { alert('❌ Erro ao adicionar jogador: ' + e.message); }
 };
 
-// Atualizar selects especiais
 function atualizarSelectsEspeciais() {
     selectReiDaMesa.innerHTML = '<option value="">Selecione o Rei da Mesa</option>';
     selectMelhorMao.innerHTML = '<option value="">Selecione a Melhor Mão</option>';
     
-    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
-        a.nome.localeCompare(b.nome)
-    );
-    
-    jogadoresOrdenados.forEach(jogador => {
-        const optionRei = document.createElement('option');
-        optionRei.value = jogador.id;
-        optionRei.textContent = jogador.nome;
-        if (jogador.id === reiDaMesa) {
-            optionRei.selected = true;
-        }
-        selectReiDaMesa.appendChild(optionRei);
+    [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome)).forEach(jogador => {
+        const optRei = document.createElement('option');
+        optRei.value = jogador.id;
+        optRei.textContent = jogador.nome;
+        if (jogador.id === reiDaMesa) optRei.selected = true;
+        selectReiDaMesa.appendChild(optRei);
         
-        const optionMao = document.createElement('option');
-        optionMao.value = jogador.id;
-        optionMao.textContent = jogador.nome;
-        if (jogador.id === melhorMao) {
-            optionMao.selected = true;
-        }
-        selectMelhorMao.appendChild(optionMao);
+        const optMao = document.createElement('option');
+        optMao.value = jogador.id;
+        optMao.textContent = jogador.nome;
+        if (jogador.id === melhorMao) optMao.selected = true;
+        selectMelhorMao.appendChild(optMao);
     });
 }
 
-// Renderizar selects para campeões de cada etapa
 function renderizarCampeoesEtapa() {
     if (!campeoesEtapaContainer) return;
-    
     campeoesEtapaContainer.innerHTML = '';
-    
-    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
-        a.nome.localeCompare(b.nome)
-    );
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome));
     
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const div = document.createElement('div');
-        div.style.backgroundColor = 'var(--bg-dark)';
-        div.style.padding = '8px';
-        div.style.borderRadius = '4px';
-        div.style.border = '1px solid var(--border)';
-        
+        div.style.cssText = 'background:var(--bg-dark);padding:8px;border-radius:4px;border:1px solid var(--border);';
         div.innerHTML = `
-            <div style="font-weight: 700; color: var(--champion-color); margin-bottom: 5px; text-align: center;">
-                ETAPA ${i}
-            </div>
-            <select class="player-select trophy" id="campeaoEtapa_${i}" style="width: 100%;">
+            <div style="font-weight:700;color:var(--champion-color);margin-bottom:5px;text-align:center;">ETAPA ${i}</div>
+            <select class="player-select trophy" id="campeaoEtapa_${i}" style="width:100%;">
                 <option value="">Nenhum</option>
                 ${jogadoresOrdenados.map(j => `<option value="${j.id}" ${campeoesEtapa[i] === j.id ? 'selected' : ''}>${j.nome}</option>`).join('')}
             </select>
         `;
-        
         campeoesEtapaContainer.appendChild(div);
     }
 }
 
-// Funções para salvar configurações especiais
 window.salvarReiDaMesa = async function() {
     const jogadorId = selectReiDaMesa.value;
-    
-    if (!jogadorId) {
-        alert('Selecione um jogador para ser o Rei da Mesa!');
-        return;
-    }
-    
+    if (!jogadorId) { alert('Selecione um jogador para ser o Rei da Mesa!'); return; }
     try {
         await db.set('configuracoes/reiDaMesa', jogadorId);
         reiDaMesa = jogadorId;
-        
-        const jogadorSelecionado = jogadores.find(j => j.id === jogadorId);
-        alert(`✅ Rei da Mesa definido como: ${jogadorSelecionado.nome}`);
-        
-        if (viewAtual === 'rankingGeral') {
-            atualizarRankingGeral();
-        }
-        
-    } catch (e) {
-        alert('❌ Erro ao salvar Rei da Mesa: ' + e.message);
-    }
+        const j = jogadores.find(j => j.id === jogadorId);
+        alert(`✅ Rei da Mesa definido como: ${j.nome}`);
+        if (viewAtual === 'rankingGeral') atualizarRankingGeral();
+    } catch (e) { alert('❌ Erro ao salvar Rei da Mesa: ' + e.message); }
 };
 
 window.salvarMelhorMao = async function() {
     const jogadorId = selectMelhorMao.value;
-    
-    if (!jogadorId) {
-        alert('Selecione um jogador com a melhor mão!');
-        return;
-    }
-    
+    if (!jogadorId) { alert('Selecione um jogador com a melhor mão!'); return; }
     try {
         await db.set('configuracoes/melhorMao', jogadorId);
         melhorMao = jogadorId;
-        
-        const jogadorSelecionado = jogadores.find(j => j.id === jogadorId);
-        alert(`✅ Melhor mão definida para: ${jogadorSelecionado.nome}`);
-        
-        if (viewAtual === 'rankingGeral') {
-            atualizarRankingGeral();
-        }
-        
-    } catch (e) {
-        alert('❌ Erro ao salvar Melhor Mão: ' + e.message);
-    }
+        const j = jogadores.find(j => j.id === jogadorId);
+        alert(`✅ Melhor mão definida para: ${j.nome}`);
+        if (viewAtual === 'rankingGeral') atualizarRankingGeral();
+    } catch (e) { alert('❌ Erro ao salvar Melhor Mão: ' + e.message); }
 };
 
 window.salvarCampeoesEtapa = async function() {
     const novosCampeoes = {};
-    
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const select = document.getElementById(`campeaoEtapa_${i}`);
-        if (select && select.value) {
-            novosCampeoes[i] = select.value;
-        }
+        if (select && select.value) novosCampeoes[i] = select.value;
     }
-    
     try {
         await db.set('campeoesEtapa', novosCampeoes);
         campeoesEtapa = novosCampeoes;
-        
         alert('✅ Campeões das etapas salvos com sucesso!');
-        
-        if (viewAtual === 'rankingGeral') {
-            atualizarRankingGeral();
-        }
-        
-    } catch (e) {
-        alert('❌ Erro ao salvar campeões: ' + e.message);
-    }
+        if (viewAtual === 'rankingGeral') atualizarRankingGeral();
+    } catch (e) { alert('❌ Erro ao salvar campeões: ' + e.message); }
 };
 
-// Função para contar quantas vezes o jogador terminou em primeiro lugar no ranking geral
 function contarPrimeirosLugares(jogadorId) {
     let count = 0;
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-        if (campeoesEtapa[i] === jogadorId) {
-            count++;
-        }
+        if (campeoesEtapa[i] === jogadorId) count++;
     }
     return count;
 }
 
-// Função para calcular total de KO acumulados
 function calcularTotalKO(jogadorId) {
     let totalKO = 0;
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const score = etapasKO[i]?.[jogadorId];
         if (score !== undefined && score !== null && score !== 'NJ') {
             const pontos = parseInt(score);
-            if (!isNaN(pontos)) {
-                totalKO += pontos;
-            }
+            if (!isNaN(pontos)) totalKO += pontos;
         }
     }
     return totalKO;
 }
 
-// Função para encontrar a maior pontuação KO de cada etapa
 function encontrarMaiorKOEtapa(etapaNum) {
     const etapa = etapasKO[etapaNum];
     if (!etapa) return { max: 0, jogadores: [] };
-    
     let maxPontos = 0;
     let jogadoresComMax = [];
-    
     Object.entries(etapa).forEach(([id, pontos]) => {
         if (pontos !== 'NJ' && pontos !== null) {
             const pontosNum = parseInt(pontos);
             if (!isNaN(pontosNum)) {
-                if (pontosNum > maxPontos) {
-                    maxPontos = pontosNum;
-                    jogadoresComMax = [id];
-                } else if (pontosNum === maxPontos && maxPontos > 0) {
-                    jogadoresComMax.push(id);
-                }
+                if (pontosNum > maxPontos) { maxPontos = pontosNum; jogadoresComMax = [id]; }
+                else if (pontosNum === maxPontos && maxPontos > 0) { jogadoresComMax.push(id); }
             }
         }
     });
-    
     return { max: maxPontos, jogadores: jogadoresComMax };
 }
 
-// Função para contar primeiros lugares no ranking KO
 function contarPrimeirosLugaresKO(jogadorId) {
     let count = 0;
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const etapa = etapasKO[i];
         if (!etapa) continue;
-        
         let maxPontos = -1;
         let vencedores = [];
-        
         Object.entries(etapa).forEach(([id, pontos]) => {
             if (pontos === 'NJ' || pontos === null) return;
-            
             const pontosNum = parseInt(pontos);
             if (!isNaN(pontosNum) && pontosNum > 0) {
-                if (pontosNum > maxPontos) {
-                    maxPontos = pontosNum;
-                    vencedores = [id];
-                } else if (pontosNum === maxPontos) {
-                    vencedores.push(id);
-                }
+                if (pontosNum > maxPontos) { maxPontos = pontosNum; vencedores = [id]; }
+                else if (pontosNum === maxPontos) { vencedores.push(id); }
             }
         });
-        
-        if (maxPontos > 0 && vencedores.includes(jogadorId)) {
-            count++;
-        }
+        if (maxPontos > 0 && vencedores.includes(jogadorId)) count++;
     }
     return count;
 }
 
-// Funções de Ranking Geral
+// =============================================
+// CALCULAR RANKING GERAL
+// Suporta valores negativos (penalidades)
+// =============================================
 function calcularRankingGeral() {
     const rankingCalculado = jogadores.map(jogador => {
         const pontuacoes = [];
@@ -2306,13 +1825,16 @@ function calcularRankingGeral() {
             const score = etapas[i]?.[jogador.id];
             if (score !== undefined && score !== null && score !== 'NJ') {
                 const pontos = parseInt(score);
-                if (!isNaN(pontos) && pontos > 0) {
+                if (!isNaN(pontos)) {
+                    // Aceita qualquer valor numérico, incluindo negativos
                     pontuacoes.push(pontos);
                     participacoes++;
                 }
             }
         }
         
+        // Ordena do maior para menor e pega os 10 melhores
+        // Valores negativos ficam no fim e só entram no G-10 se não houver pontuações positivas suficientes
         const melhoresPontuacoes = pontuacoes.sort((a, b) => b - a).slice(0, 10);
         const totalPontos = melhoresPontuacoes.reduce((sum, p) => sum + p, 0);
         
@@ -2339,47 +1861,28 @@ function calcularRankingGeral() {
         return a.nome.localeCompare(b.nome);
     });
     
-    rankingCalculado.forEach((jogador, index) => {
-        jogador.posicaoAtual = index + 1;
-    });
-    
+    rankingCalculado.forEach((jogador, index) => { jogador.posicaoAtual = index + 1; });
     rankingAtual = rankingCalculado;
     return rankingCalculado;
 }
 
-// Funções de Ranking KO - CORRIGIDA
 function calcularRankingKO() {
     const rankingCalculado = jogadores.map(jogador => {
         const pontuacoesKO = [];
         let participacoesKO = 0;
-        let totalPontosKO = 0;
         
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapasKO[i]?.[jogador.id];
-            
-            if (score === undefined || score === null) {
-                continue;
-            }
-            
-            if (score === 'NJ') {
-                continue;
-            }
-            
+            if (score === undefined || score === null || score === 'NJ') continue;
             const pontosNum = parseInt(score);
             if (!isNaN(pontosNum)) {
-                if (pontosNum > 0) {
-                    pontuacoesKO.push(pontosNum);
-                    totalPontosKO += pontosNum;
-                    participacoesKO++;
-                } else if (pontosNum === 0) {
-                    participacoesKO++;
-                }
+                if (pontosNum > 0) { pontuacoesKO.push(pontosNum); participacoesKO++; }
+                else if (pontosNum === 0) { participacoesKO++; }
             }
         }
         
         const melhoresPontuacoesKO = [...pontuacoesKO].sort((a, b) => b - a).slice(0, 10);
-        totalPontosKO = melhoresPontuacoesKO.reduce((sum, p) => sum + p, 0);
-        
+        const totalPontosKO = melhoresPontuacoesKO.reduce((sum, p) => sum + p, 0);
         const primeirosLugaresKO = contarPrimeirosLugaresKO(jogador.id);
         
         return {
@@ -2398,10 +1901,7 @@ function calcularRankingKO() {
         return a.nome.localeCompare(b.nome);
     });
     
-    rankingCalculado.forEach((jogador, index) => {
-        jogador.posicaoAtualKO = index + 1;
-    });
-    
+    rankingCalculado.forEach((jogador, index) => { jogador.posicaoAtualKO = index + 1; });
     rankingKO = rankingCalculado;
     return rankingCalculado;
 }
@@ -2409,47 +1909,41 @@ function calcularRankingKO() {
 function calcularRankings() {
     calcularRankingGeral();
     calcularRankingKO();
-    
-    if (viewAtual === 'rankingGeral') {
-        atualizarRankingGeral();
-    } else {
-        atualizarRankingKO();
-    }
+    if (viewAtual === 'rankingGeral') atualizarRankingGeral();
+    else atualizarRankingKO();
 }
 
+// =============================================
+// RENDERIZAR RANKING GERAL
+// Ícone SVG de exclamação quando totalPontos < 0
+// =============================================
 function atualizarRankingGeral() {
     const tbody = document.getElementById('rankingTableBody');
     
     if (rankingAtual.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
-                    Nenhum jogador cadastrado
-                </td>
-            </tr>
-        `;
+        tbody.innerHTML = `<tr><td colspan="16" style="text-align:center;padding:25px;color:var(--text-muted);">Nenhum jogador cadastrado</td></tr>`;
         return;
     }
     
     const primeiroColocadoPontos = rankingAtual[0]?.totalPontos || 0;
-    
     tbody.innerHTML = '';
     
     rankingAtual.forEach((jogador, index) => {
         const rank = index + 1;
         const isTop10 = rank <= 10;
-        
+        const isNegative = jogador.totalPontos < 0;
         const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
         const diffClass = rank === 1 ? 'leader' : '';
         
         let iconesHTML = '';
-        if (jogador.isReiDaMesa) {
-            iconesHTML += '<span class="player-icon crown-icon" title="Rei da Mesa">👑</span>';
-        }
-        if (jogador.isMelhorMao) {
-            iconesHTML += '<span class="player-icon card-icon" title="Melhor mão da etapa">🃏</span>';
-        }
+        if (jogador.isReiDaMesa) iconesHTML += '<span class="player-icon crown-icon" title="Rei da Mesa">👑</span>';
+        if (jogador.isMelhorMao) iconesHTML += '<span class="player-icon card-icon" title="Melhor mão da etapa">🃏</span>';
         
+        // Classe e ícone de pontuação negativa
+        const negativeClass = isNegative ? ' negative' : '';
+        const negativeIconHTML = isNegative ? NEGATIVE_ICON_SVG : '';
+        
+        // Células das etapas
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapas[i]?.[jogador.id];
@@ -2461,9 +1955,21 @@ function atualizarRankingGeral() {
                 if (score === 'NJ') {
                     etapaClass = 'absent';
                     etapaText = 'NJ';
-                } else if (parseInt(score) > 0) {
-                    etapaClass = 'present';
-                    etapaText = score;
+                } else {
+                    const pontosNum = parseInt(score);
+                    if (!isNaN(pontosNum)) {
+                        if (pontosNum < 0) {
+                            // Pontuação negativa na etapa — estilo especial
+                            etapaClass = 'negative-score';
+                            etapaText = pontosNum;
+                        } else if (pontosNum > 0) {
+                            etapaClass = 'present';
+                            etapaText = pontosNum;
+                        } else {
+                            etapaClass = 'present';
+                            etapaText = '0';
+                        }
+                    }
                 }
             }
             
@@ -2484,19 +1990,19 @@ function atualizarRankingGeral() {
             </td>
             <td>
                 <div class="player-info">
-                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
-                         class="player-avatar"
-                         alt="${jogador.nome}"
-                         onerror="this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('${jogador.nome}') + '&background=0a150a&color=d4a121&bold=true'">
+                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}"
+                         class="player-avatar" alt="${jogador.nome}"
+                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(jogador.nome)}&background=0a150a&color=d4a121&bold=true'">
                     <div class="player-name">${jogador.nome}</div>
-                    <div class="player-icons">
-                        ${iconesHTML}
-                    </div>
+                    <div class="player-icons">${iconesHTML}</div>
                 </div>
             </td>
             <td class="points-cell">
-                <div class="points pos-${rank <= 3 ? rank : ''}">
-                    ${jogador.totalPontos}
+                <div class="points-wrapper">
+                    ${negativeIconHTML}
+                    <div class="points${negativeClass} pos-${rank <= 3 && !isNegative ? rank : ''}">
+                        ${jogador.totalPontos}
+                    </div>
                 </div>
             </td>
             <td class="diff-cell">
@@ -2515,33 +2021,23 @@ function atualizarRankingKO() {
     const tbody = document.getElementById('rankingTableBodyKO');
     
     if (rankingKO.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="16" style="text-align: center; padding: 25px; color: var(--text-muted);">
-                    Nenhum jogador cadastrado
-                </td>
-            </tr>
-        `;
+        tbody.innerHTML = `<tr><td colspan="16" style="text-align:center;padding:25px;color:var(--text-muted);">Nenhum jogador cadastrado</td></tr>`;
         return;
     }
     
     const primeiroColocadoPontosKO = rankingKO[0]?.totalPontosKO || 0;
-    
     tbody.innerHTML = '';
+    
+    const etapasComRegistro = new Set();
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
+        if (etapasKO[i] && Object.keys(etapasKO[i]).length > 0) etapasComRegistro.add(i);
+    }
     
     rankingKO.forEach((jogador, index) => {
         const rank = index + 1;
         const isTop10 = rank <= 10;
-        
         const diferencaPontos = primeiroColocadoPontosKO - jogador.totalPontosKO;
         const diffClass = rank === 1 ? 'leader' : '';
-        
-        const etapasComRegistro = new Set();
-        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            if (etapasKO[i] && Object.keys(etapasKO[i]).length > 0) {
-                etapasComRegistro.add(i);
-            }
-        }
         
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
@@ -2552,34 +2048,24 @@ function atualizarRankingKO() {
             
             if (score !== undefined && score !== null) {
                 if (score === 'NJ') {
-                    etapaClass = 'absent';
-                    etapaText = 'NJ';
+                    etapaClass = 'absent'; etapaText = 'NJ';
                 } else {
                     const pontosNum = parseInt(score);
                     if (!isNaN(pontosNum)) {
                         if (pontosNum > 0) {
-                            etapaClass = 'present ko';
-                            etapaText = pontosNum;
-                            
+                            etapaClass = 'present ko'; etapaText = pontosNum;
                             const { max, jogadores } = encontrarMaiorKOEtapa(i);
                             if (max > 0 && jogadores.includes(jogador.id)) {
                                 etapaClass += ' highlight';
-                                iconeExtra = ' <span class="glove-icon" title="Maior pontuação KO da etapa">🥊</span>';
+                                iconeExtra = ' <span class="glove-icon" title="Maior KO da etapa">🥊</span>';
                             }
                         } else if (pontosNum === 0) {
-                            etapaClass = 'zero-ko';
-                            etapaText = '0';
+                            etapaClass = 'zero-ko'; etapaText = '0';
                         }
                     }
                 }
-            } else {
-                if (etapasComRegistro.has(i)) {
-                    etapaClass = 'absent';
-                    etapaText = 'NJ';
-                } else {
-                    etapaClass = 'empty';
-                    etapaText = '-';
-                }
+            } else if (etapasComRegistro.has(i)) {
+                etapaClass = 'absent'; etapaText = 'NJ';
             }
             
             etapasHTML += `<td><div class="etapa-pill ${etapaClass}">${etapaText}${iconeExtra}</div></td>`;
@@ -2587,50 +2073,37 @@ function atualizarRankingKO() {
         
         const tr = document.createElement('tr');
         tr.className = `ranking-row ${isTop10 ? 'top10 ko' : 'other'} pos-${isTop10 ? rank : ''}`;
-        
         tr.innerHTML = `
-            <td>
-                <div class="rank-cell">
-                    <div class="rank-number">${rank}</div>
-                </div>
-            </td>
+            <td><div class="rank-cell"><div class="rank-number">${rank}</div></div></td>
             <td>
                 <div class="player-info">
-                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
-                         class="player-avatar"
-                         alt="${jogador.nome}"
-                         onerror="this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('${jogador.nome}') + '&background=0a150a&color=d4a121&bold=true'">
+                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}"
+                         class="player-avatar" alt="${jogador.nome}"
+                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(jogador.nome)}&background=0a150a&color=d4a121&bold=true'">
                     <div class="player-name">${jogador.nome}</div>
                 </div>
             </td>
             <td class="points-cell">
-                <div class="points ko pos-${rank <= 3 ? rank : ''}">
-                    ${jogador.totalPontosKO}
-                </div>
+                <div class="points ko pos-${rank <= 3 ? rank : ''}">${jogador.totalPontosKO}</div>
             </td>
             <td class="diff-cell">
-                <div class="diff ${diffClass}">
-                    ${rank === 1 ? '—' : `-${diferencaPontos}`}
-                </div>
+                <div class="diff ${diffClass}">${rank === 1 ? '—' : `-${diferencaPontos}`}</div>
             </td>
             ${etapasHTML}
         `;
-        
         tbody.appendChild(tr);
     });
 }
 
-// Sistema de Gerenciamento de Etapas (Admin)
+// =============================================
+// ADMIN - SELETOR DE ETAPAS E PONTUAÇÕES
+// =============================================
 function renderizarSeletorEtapas() {
     const container = document.getElementById('etapaSelector');
     container.innerHTML = '';
-    
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const btn = document.createElement('button');
-        btn.className = 'stage-btn';
-        if (i === etapaAtualSelecionada) {
-            btn.classList.add('active');
-        }
+        btn.className = `stage-btn${i === etapaAtualSelecionada ? ' active' : ''}`;
         btn.textContent = `E${i}`;
         btn.onclick = () => {
             etapaAtualSelecionada = i;
@@ -2645,13 +2118,9 @@ function renderizarSeletorEtapas() {
 function renderizarSeletorEtapasKO() {
     const container = document.getElementById('etapaSelectorKO');
     container.innerHTML = '';
-    
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const btn = document.createElement('button');
-        btn.className = 'stage-btn ko';
-        if (i === etapaAtualSelecionadaKO) {
-            btn.classList.add('active');
-        }
+        btn.className = `stage-btn ko${i === etapaAtualSelecionadaKO ? ' active' : ''}`;
         btn.textContent = `K${i}`;
         btn.onclick = () => {
             etapaAtualSelecionadaKO = i;
@@ -2663,68 +2132,88 @@ function renderizarSeletorEtapasKO() {
     }
 }
 
+// =============================================
+// RENDERIZAR INPUTS DE PONTUAÇÃO
+// Geral: aceita "-" para números negativos
+// KO: somente positivos (comportamento original)
+// =============================================
 function renderizarPlayersPoints(tipo) {
-    const container = tipo === 'geral' ? 
-        document.getElementById('playersPointsList') : 
+    const container = tipo === 'geral' ?
+        document.getElementById('playersPointsList') :
         document.getElementById('playersPointsListKO');
-    
     if (!container) return;
-    
     container.innerHTML = '';
     
-    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
-        a.nome.localeCompare(b.nome)
-    );
-    
-    jogadoresOrdenados.forEach(jogador => {
-        const scoreAtual = tipo === 'geral' ? 
-            etapas[etapaAtualSelecionada]?.[jogador.id] || '' :
-            etapasKO[etapaAtualSelecionadaKO]?.[jogador.id] || '';
+    [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome)).forEach(jogador => {
+        const scoreAtual = tipo === 'geral' ?
+            (etapas[etapaAtualSelecionada]?.[jogador.id] ?? '') :
+            (etapasKO[etapaAtualSelecionadaKO]?.[jogador.id] ?? '');
+        
+        const isNegativeVal = typeof scoreAtual === 'number' ? scoreAtual < 0 : String(scoreAtual).startsWith('-');
+        const negativeInputClass = isNegativeVal ? ' negative-value' : '';
         
         const item = document.createElement('div');
         item.className = `point-item ${tipo === 'ko' ? 'ko' : ''}`;
         item.innerHTML = `
             <div class="player-info-admin">
-                <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
-                     class="player-avatar"
-                     alt="${jogador.nome}">
-                <div style="font-weight: 600; font-size: 0.8rem;">${jogador.nome}</div>
+                <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}"
+                     class="player-avatar" alt="${jogador.nome}">
+                <div style="font-weight:600;font-size:0.8rem;">${jogador.nome}</div>
             </div>
             <div class="points-input-admin ${tipo === 'ko' ? 'ko' : ''}">
-                <input type="text" 
+                <input type="text"
                        id="${tipo}_score_${tipo === 'geral' ? etapaAtualSelecionada : etapaAtualSelecionadaKO}_${jogador.id}"
                        value="${scoreAtual}"
-                       placeholder="Pts ou NJ"
-                       oninput="formatarInputPontos(this, '${tipo}')">
+                       placeholder="${tipo === 'geral' ? 'Pts, -Pts ou NJ' : 'Pts ou NJ'}"
+                       oninput="formatarInputPontos(this, '${tipo}')"
+                       class="${negativeInputClass}">
                 <div class="quick-actions">
                     <button class="quick-action-btn ${tipo === 'ko' ? 'ko' : ''}" onclick="setPontuacao('${jogador.id}', 'NJ', '${tipo}')">NJ</button>
                 </div>
             </div>
         `;
-        
         container.appendChild(item);
     });
 }
 
-// Funções auxiliares para o sistema de pontuação
+// =============================================
+// FORMATAR INPUT DE PONTOS
+// Geral: permite números negativos (ex: -10)
+// KO: apenas positivos (comportamento original)
+// =============================================
 window.formatarInputPontos = function(input, tipo) {
     let valor = input.value.trim().toUpperCase();
     
     if (valor === 'NJ') {
         input.value = 'NJ';
         input.classList.add('NJ');
-    } else {
-        valor = valor.replace(/[^0-9]/g, '');
-        input.value = valor;
-        input.classList.remove('NJ');
+        input.classList.remove('negative-value');
+        return;
     }
     
-    if (tipo === 'ko') {
-        if (input.value === 'NJ') {
-            input.style.borderColor = '#FF4757';
-        } else {
-            input.style.borderColor = 'var(--ko-color)';
+    input.classList.remove('NJ');
+    
+    if (tipo === 'geral') {
+        // Permite sinal de menos no início seguido de dígitos
+        valor = valor.replace(/[^0-9\-]/g, '');
+        // Garante que o '-' só apareça no início
+        if (valor.indexOf('-') > 0) {
+            valor = valor.replace(/-/g, '');
         }
+        input.value = valor;
+        
+        const numVal = parseInt(valor);
+        if (!isNaN(numVal) && numVal < 0) {
+            input.classList.add('negative-value');
+        } else {
+            input.classList.remove('negative-value');
+        }
+    } else {
+        // KO: apenas números positivos
+        valor = valor.replace(/[^0-9]/g, '');
+        input.value = valor;
+        input.classList.remove('negative-value');
+        input.style.borderColor = 'var(--ko-color)';
     }
 };
 
@@ -2744,15 +2233,17 @@ window.limparPontuacoes = function(tipo) {
             const input = document.getElementById(`${tipo}_score_${etapa}_${jogador.id}`);
             if (input) {
                 input.value = '';
-                input.classList.remove('NJ');
-                if (tipo === 'ko') {
-                    input.style.borderColor = 'var(--border)';
-                }
+                input.classList.remove('NJ', 'negative-value');
+                if (tipo === 'ko') input.style.borderColor = 'var(--border)';
             }
         });
     }
 };
 
+// =============================================
+// SALVAR ETAPA
+// Preserva valores negativos no ranking geral
+// =============================================
 window.salvarEtapa = async function(tipo) {
     try {
         const novosScores = {};
@@ -2764,7 +2255,13 @@ window.salvarEtapa = async function(tipo) {
             if (input) {
                 const valor = input.value.trim().toUpperCase();
                 if (valor) {
-                    novosScores[jogador.id] = valor === 'NJ' ? 'NJ' : parseInt(valor) || 0;
+                    if (valor === 'NJ') {
+                        novosScores[jogador.id] = 'NJ';
+                    } else {
+                        // parseInt suporta valores negativos nativamente (ex: "-10" → -10)
+                        const parsed = parseInt(valor);
+                        novosScores[jogador.id] = isNaN(parsed) ? 0 : parsed;
+                    }
                     temAlteracoes = true;
                 } else {
                     novosScores[jogador.id] = null;
@@ -2773,121 +2270,85 @@ window.salvarEtapa = async function(tipo) {
         });
         
         if (!temAlteracoes) {
-            if (!confirm(`Nenhuma pontuação ${tipo === 'geral' ? 'geral' : 'KO'} foi alterada. Deseja salvar mesmo assim?`)) {
-                return;
-            }
+            if (!confirm(`Nenhuma pontuação foi alterada. Deseja salvar mesmo assim?`)) return;
         }
         
-        const caminho = tipo === 'geral' ? 
-            `rankingEtapas/${etapaAtualSelecionada}` : 
+        const caminho = tipo === 'geral' ?
+            `rankingEtapas/${etapaAtualSelecionada}` :
             `rankingEtapasKO/${etapaAtualSelecionadaKO}`;
         
         await db.set(caminho, novosScores);
         alert(`✅ Etapa ${tipo === 'geral' ? 'geral' : 'KO'} salva com sucesso!`);
-        
         await carregarDados();
         
     } catch (e) {
-        alert(`❌ Erro ao salvar etapa ${tipo === 'geral' ? 'geral' : 'KO'}: ` + e.message);
+        alert(`❌ Erro ao salvar etapa: ` + e.message);
     }
 };
 
-// Gerenciamento de Jogadores (Admin)
+// Gerenciamento de Jogadores
 function renderizarAdminJogadores() {
     const container = document.getElementById('listaJogadoresAdmin');
-    
     if (!container) return;
     
     if (jogadores.length === 0) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 15px; color: var(--text-muted); background: var(--bg-row); border-radius: 4px;">
-                Nenhum jogador cadastrado
-            </div>
-        `;
+        container.innerHTML = `<div style="text-align:center;padding:15px;color:var(--text-muted);background:var(--bg-row);border-radius:4px;">Nenhum jogador cadastrado</div>`;
         return;
     }
     
-    const jogadoresOrdenados = [...jogadores].sort((a, b) => 
-        a.nome.localeCompare(b.nome)
-    );
-    
-    let html = `
-        <div style="display: grid; gap: 6px; margin-top: 12px;">
-    `;
+    const jogadoresOrdenados = [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome));
+    let html = '<div style="display:grid;gap:6px;margin-top:12px;">';
     
     jogadoresOrdenados.forEach(jogador => {
-        const posicaoGeral = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
-        const totalPontosGeral = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
-        const posicaoKO = (rankingKO.findIndex(j => j.id === jogador.id) + 1) || '-';
-        const totalPontosKO = rankingKO.find(j => j.id === jogador.id)?.totalPontosKO || 0;
-        
+        const posGeral = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
+        const ptsGeral = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
+        const posKO = (rankingKO.findIndex(j => j.id === jogador.id) + 1) || '-';
+        const ptsKO = rankingKO.find(j => j.id === jogador.id)?.totalPontosKO || 0;
         let icones = '';
-        if (jogador.id === reiDaMesa) {
-            icones += ' 👑';
-        }
-        if (jogador.id === melhorMao) {
-            icones += ' 🃏';
-        }
+        if (jogador.id === reiDaMesa) icones += ' 👑';
+        if (jogador.id === melhorMao) icones += ' 🃏';
+        const negStyle = ptsGeral < 0 ? 'color:var(--negative-color)' : '';
         
         html += `
-            <div style="background: var(--bg-row); padding: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border);">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}" 
-                         style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--primary);"
-                         alt="${jogador.nome}">
+            <div style="background:var(--bg-row);padding:10px;border-radius:4px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <img src="${jogador.foto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(jogador.nome) + '&background=0a150a&color=d4a121&bold=true'}"
+                         style="width:30px;height:30px;border-radius:50%;border:1px solid var(--primary);" alt="${jogador.nome}">
                     <div>
-                        <div style="font-weight: 600; font-size: 0.85rem;">${jogador.nome}${icones}</div>
-                        <div style="display: flex; gap: 8px; font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">
-                            <span>📊 Geral: #${posicaoGeral} (${totalPontosGeral} pts)</span>
-                            <span>🥊 KO: #${posicaoKO} (${totalPontosKO} pts)</span>
+                        <div style="font-weight:600;font-size:0.85rem;">${jogador.nome}${icones}</div>
+                        <div style="display:flex;gap:8px;font-size:0.7rem;color:var(--text-muted);margin-top:2px;">
+                            <span style="${negStyle}">📊 Geral: #${posGeral} (${ptsGeral} pts)</span>
+                            <span>🥊 KO: #${posKO} (${ptsKO} pts)</span>
                         </div>
                     </div>
                 </div>
-                <button onclick="removerJogador('${jogador.id}', '${jogador.nome.replace(/'/g, "\\'")}')" 
-                        style="background: #FF4757; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.75rem;">
-                    🗑️
-                </button>
+                <button onclick="removerJogador('${jogador.id}', '${jogador.nome.replace(/'/g, "\\'")}'")"
+                        style="background:#FF4757;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer;font-weight:600;font-size:0.75rem;">🗑️</button>
             </div>
         `;
     });
     
-    html += `</div>`;
+    html += '</div>';
     container.innerHTML = html;
 }
 
 window.removerJogador = async function(id, nome) {
-    if (!confirm(`Tem certeza que deseja remover o jogador "${nome}"?\n\nEsta ação não pode ser desfeita!`)) {
-        return;
-    }
-    
+    if (!confirm(`Tem certeza que deseja remover o jogador "${nome}"?\n\nEsta ação não pode ser desfeita!`)) return;
     try {
         await db.remove(`rankingJogadores/${id}`);
-        
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             await db.remove(`rankingEtapas/${i}/${id}`);
             await db.remove(`rankingEtapasKO/${i}/${id}`);
         }
-        
-        if (id === reiDaMesa) {
-            await db.set('configuracoes/reiDaMesa', null);
-            reiDaMesa = null;
-        }
-        if (id === melhorMao) {
-            await db.set('configuracoes/melhorMao', null);
-            melhorMao = null;
-        }
-        
+        if (id === reiDaMesa) { await db.set('configuracoes/reiDaMesa', null); reiDaMesa = null; }
+        if (id === melhorMao) { await db.set('configuracoes/melhorMao', null); melhorMao = null; }
         const campeoesAtualizados = {};
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            if (campeoesEtapa[i] !== id) {
-                campeoesAtualizados[i] = campeoesEtapa[i];
-            }
+            if (campeoesEtapa[i] !== id) campeoesAtualizados[i] = campeoesEtapa[i];
         }
         await db.set('campeoesEtapa', campeoesAtualizados);
         campeoesEtapa = campeoesAtualizados;
-        
         alert('✅ Jogador removido com sucesso!');
-        
         await carregarDados();
         if (modoAdmin) {
             renderizarPlayersPoints(adminTipo);
@@ -2895,50 +2356,25 @@ window.removerJogador = async function(id, nome) {
             atualizarSelectsEspeciais();
             renderizarCampeoesEtapa();
         }
-        
-    } catch (e) {
-        alert('❌ Erro ao remover jogador: ' + e.message);
-    }
+    } catch (e) { alert('❌ Erro ao remover jogador: ' + e.message); }
 };
 
-// Exportar CSV
 btnExportarCSV.onclick = function() {
     const ranking = calcularRankingGeral();
     const rankingKOCalc = calcularRankingKO();
     
     let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações (Geral),1º Lugares,Total KO,Diferença para Líder (Geral),Rei da Mesa,Melhor Mão,Pontos KO,Participações KO,1º Lugares KO,Posição KO';
-    
-    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-        csv += `,Etapa ${i} Geral`;
-    }
-    for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-        csv += `,Etapa ${i} KO`;
-    }
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,Etapa ${i} Geral`;
+    for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,Etapa ${i} KO`;
     csv += '\n';
     
     const primeiroPontos = ranking[0]?.totalPontos || 0;
-    
     ranking.forEach(jogador => {
-        const diferencaGeral = primeiroPontos - jogador.totalPontos;
-        const jogadorKO = rankingKOCalc.find(j => j.id === jogador.id);
-        const pontosKO = jogadorKO?.totalPontosKO || 0;
-        const participacoesKO = jogadorKO?.participacoesKO || 0;
-        const primeirosLugaresKO = jogadorKO?.primeirosLugaresKO || 0;
-        const posicaoKO = jogadorKO?.posicaoAtualKO || '-';
-        const isReiDaMesa = jogador.id === reiDaMesa ? 'SIM' : 'NÃO';
-        const isMelhorMao = jogador.id === melhorMao ? 'SIM' : 'NÃO';
-        
-        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${jogador.primeirosLugares},${jogador.totalKO},${diferencaGeral},${isReiDaMesa},${isMelhorMao},${pontosKO},${participacoesKO},${primeirosLugaresKO},${posicaoKO}`;
-        
-        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            const score = etapas[i]?.[jogador.id] || '-';
-            csv += `,"${score}"`;
-        }
-        
-        for (let i = 1; i <= TOTAL_ETAPAS; i++) {
-            const score = etapasKO[i]?.[jogador.id] || '-';
-            csv += `,"${score}"`;
-        }
+        const diff = primeiroPontos - jogador.totalPontos;
+        const jKO = rankingKOCalc.find(j => j.id === jogador.id);
+        csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${jogador.primeirosLugares},${jogador.totalKO},${diff},${jogador.id === reiDaMesa ? 'SIM' : 'NÃO'},${jogador.id === melhorMao ? 'SIM' : 'NÃO'},${jKO?.totalPontosKO || 0},${jKO?.participacoesKO || 0},${jKO?.primeirosLugaresKO || 0},${jKO?.posicaoAtualKO || '-'}`;
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,"${etapas[i]?.[jogador.id] || '-'}"`;
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,"${etapasKO[i]?.[jogador.id] || '-'}"`;
         csv += '\n';
     });
     
@@ -2949,11 +2385,9 @@ btnExportarCSV.onclick = function() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
     alert('📊 Ranking completo exportado com sucesso!');
 };
 
-// Event Listeners
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalAdmin.classList.contains('active')) {
         modalAdmin.classList.remove('active');
@@ -2968,17 +2402,11 @@ modalAdmin.addEventListener('click', (e) => {
     }
 });
 
-// Inicializar aplicação
-document.addEventListener('DOMContentLoaded', () => {
-    carregarDados();
+senhaAdmin.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') btnAcessarAdmin.click();
 });
 
-senhaAdmin.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        btnAcessarAdmin.click();
-    }
-});
+document.addEventListener('DOMContentLoaded', () => { carregarDados(); });
 </script>
 </body>
 </html>
-
