@@ -20,12 +20,12 @@
     --bg-row-alt: #0f1a0f;
     --top10-row-odd: rgba(212, 161, 33, 0.15);
     --top10-row-even: rgba(212, 161, 33, 0.10);
-    --success: #4CAF50;
     --danger: #FF4757;
     --text: #ffffff;
     --text-muted: #aaaaaa;
     --border: #1a2a1a;
     --border-light: #152015;
+    --success: #4CAF50;
     --ko-color: #FF6B6B;
     --ko-color-dark: #FF4757;
     --ko-highlight: #FFA500;
@@ -36,11 +36,7 @@
     --negative-color: #FF4757;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -63,11 +59,7 @@ body {
     filter: drop-shadow(0 0 5px rgba(212, 161, 33, 0.2));
 }
 
-.header {
-    text-align: center;
-    padding: 16px 12px;
-    margin-bottom: 12px;
-}
+.header { text-align: center; padding: 16px 12px; margin-bottom: 12px; }
 
 .header h1 {
     font-family: 'Anton', sans-serif;
@@ -78,24 +70,11 @@ body {
     text-transform: uppercase;
 }
 
-.header .subtitle {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    font-weight: 300;
-}
+.header .subtitle { font-size: 0.85rem; opacity: 0.7; font-weight: 300; }
 
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 8px;
-}
+.container { max-width: 1400px; margin: 0 auto; padding: 0 8px; }
 
-.view-toggle {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
+.view-toggle { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
 
 .view-btn {
     padding: 8px 20px;
@@ -113,31 +92,11 @@ body {
     gap: 5px;
 }
 
-.view-btn:hover {
-    background: rgba(212, 161, 33, 0.05);
-    border-color: var(--primary);
-}
-
-.view-btn.active {
-    background: var(--primary);
-    color: #000;
-    border-color: var(--primary);
-}
-
-.view-btn.ko {
-    color: var(--ko-color);
-}
-
-.view-btn.ko:hover {
-    background: rgba(255, 107, 107, 0.05);
-    border-color: var(--ko-color);
-}
-
-.view-btn.ko.active {
-    background: var(--ko-color);
-    color: #000;
-    border-color: var(--ko-color);
-}
+.view-btn:hover { background: rgba(212, 161, 33, 0.05); border-color: var(--primary); }
+.view-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
+.view-btn.ko { color: var(--ko-color); }
+.view-btn.ko:hover { background: rgba(255, 107, 107, 0.05); border-color: var(--ko-color); }
+.view-btn.ko.active { background: var(--ko-color); color: #000; border-color: var(--ko-color); }
 
 .ranking-section {
     background: var(--bg-card);
@@ -147,11 +106,7 @@ body {
     margin-bottom: 12px;
 }
 
-.section-header {
-    padding: 12px 15px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-row);
-}
+.section-header { padding: 12px 15px; border-bottom: 1px solid var(--border); background: var(--bg-row); }
 
 .section-header h2 {
     font-family: 'Anton', sans-serif;
@@ -162,9 +117,7 @@ body {
     gap: 6px;
 }
 
-.section-header.ko h2 {
-    color: var(--ko-color);
-}
+.section-header.ko h2 { color: var(--ko-color); }
 
 .g10-badge {
     background: linear-gradient(135deg, var(--gold), var(--primary));
@@ -179,9 +132,7 @@ body {
     margin-left: 6px;
 }
 
-.g10-badge.ko {
-    background: linear-gradient(135deg, var(--ko-color), #FF8E8E);
-}
+.g10-badge.ko { background: linear-gradient(135deg, var(--ko-color), #FF8E8E); }
 
 .legendas-especiais {
     display: flex;
@@ -193,31 +144,16 @@ body {
     border-top: 1px solid var(--border);
 }
 
-.legenda-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-
+.legenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-muted); }
 .legenda-icone { font-size: 1rem; }
 .legenda-crown { color: var(--crown-gold); }
 .legenda-card { color: var(--card-red); }
 .legenda-trophy { color: var(--champion-color); }
 .legenda-glove { color: var(--glove-color); }
 
-.ranking-container {
-    overflow-x: auto;
-    padding: 0;
-}
+.ranking-container { overflow-x: auto; padding: 0; }
 
-.ranking-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-size: 0.85rem;
-}
+.ranking-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.85rem; }
 
 .ranking-table thead {
     background: linear-gradient(180deg, #1a3d1a 0%, #163016 100%);
@@ -226,9 +162,7 @@ body {
     z-index: 10;
 }
 
-.ranking-table.ko thead {
-    background: linear-gradient(180deg, #3d1a1a 0%, #301616 100%);
-}
+.ranking-table.ko thead { background: linear-gradient(180deg, #3d1a1a 0%, #301616 100%); }
 
 .ranking-table th {
     padding: 10px 8px;
@@ -243,10 +177,7 @@ body {
     white-space: nowrap;
 }
 
-.ranking-table.ko th {
-    color: var(--ko-color);
-    border-bottom: 2px solid var(--ko-color);
-}
+.ranking-table.ko th { color: var(--ko-color); border-bottom: 2px solid var(--ko-color); }
 
 .ranking-table th:first-child { padding-left: 15px; }
 .ranking-table th:last-child { padding-right: 15px; }
@@ -259,11 +190,7 @@ body {
     font-size: 0.8rem;
 }
 
-.ranking-row {
-    transition: all 0.2s ease;
-    border-bottom: 1px solid var(--border-light);
-    height: 36px;
-}
+.ranking-row { transition: all 0.2s ease; border-bottom: 1px solid var(--border-light); height: 36px; }
 
 .ranking-row.top10:nth-child(odd) { background: var(--top10-row-odd); }
 .ranking-row.top10:nth-child(even) { background: var(--top10-row-even); }
@@ -300,23 +227,13 @@ body {
 .ranking-row.pos-7,
 .ranking-row.pos-8,
 .ranking-row.pos-9,
-.ranking-row.pos-10 {
-    border-left: 4px solid #4CAF50 !important;
-}
+.ranking-row.pos-10 { border-left: 4px solid #4CAF50 !important; }
 
-.ranking-table td {
-    padding: 6px 8px;
-    vertical-align: middle;
-    border-bottom: 1px solid var(--border-light);
-}
+.ranking-table td { padding: 6px 8px; vertical-align: middle; border-bottom: 1px solid var(--border-light); }
 .ranking-table td:first-child { padding-left: 15px; }
 .ranking-table td:last-child { padding-right: 15px; }
 
-.rank-cell {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+.rank-cell { display: flex; align-items: center; gap: 8px; }
 
 .rank-number {
     width: 26px;
@@ -333,22 +250,14 @@ body {
     border: 1px solid var(--border);
 }
 
-.ranking-row.top10 .rank-number {
-    background: rgba(212, 161, 33, 0.2);
-    border-color: rgba(212, 161, 33, 0.4);
-}
+.ranking-row.top10 .rank-number { background: rgba(212, 161, 33, 0.2); border-color: rgba(212, 161, 33, 0.4); }
 .ranking-row.top10.ko .rank-number {
     background: rgba(255, 107, 107, 0.2);
     border-color: rgba(255, 107, 107, 0.4);
     color: var(--ko-color);
 }
 
-.player-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-}
+.player-info { display: flex; align-items: center; gap: 8px; position: relative; }
 
 .player-avatar {
     width: 28px;
@@ -359,19 +268,8 @@ body {
     background: var(--bg-dark);
 }
 
-.player-icons {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: 4px;
-}
-
-.player-icon {
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+.player-icons { display: flex; align-items: center; gap: 4px; margin-left: 4px; }
+.player-icon { font-size: 1rem; display: flex; align-items: center; justify-content: center; }
 
 .crown-icon {
     color: var(--crown-gold);
@@ -379,15 +277,9 @@ body {
     animation: crownGlow 2s ease-in-out infinite;
 }
 
-@keyframes crownGlow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
+@keyframes crownGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
-.card-icon {
-    color: var(--card-red);
-    filter: drop-shadow(0 0 2px rgba(255, 68, 68, 0.5));
-}
+.card-icon { color: var(--card-red); filter: drop-shadow(0 0 2px rgba(255, 68, 68, 0.5)); }
 
 .trophy-icon {
     color: var(--gold);
@@ -397,29 +289,13 @@ body {
     animation: trophyGlow 2s ease-in-out infinite;
 }
 
-@keyframes trophyGlow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
+@keyframes trophyGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
 
-.glove-icon {
-    color: var(--glove-color);
-    filter: drop-shadow(0 0 3px rgba(255, 140, 0, 0.5));
-    font-size: 0.9rem;
-    margin-left: 2px;
-}
+.glove-icon { color: var(--glove-color); filter: drop-shadow(0 0 3px rgba(255, 140, 0, 0.5)); font-size: 0.9rem; margin-left: 2px; }
 
 /* Pontuação */
-.points-cell {
-    text-align: center;
-}
-
-.points-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-}
+.points-cell { text-align: center; }
+.points-wrapper { display: inline-flex; align-items: center; gap: 5px; justify-content: center; }
 
 .points {
     font-family: 'Anton', sans-serif;
@@ -435,14 +311,12 @@ body {
     text-align: center;
 }
 
-/* Pontuação negativa */
 .points.negative {
     color: var(--negative-color) !important;
     background: rgba(255, 71, 87, 0.1) !important;
     border: 1px solid rgba(255, 71, 87, 0.35) !important;
 }
 
-/* Ícone SVG de exclamação para pontuação negativa */
 .negative-icon {
     display: inline-flex;
     align-items: center;
@@ -456,50 +330,20 @@ body {
     50% { opacity: 0.65; transform: scale(0.92); }
 }
 
-.points.pos-1 { 
-    color: var(--gold);
-    background: rgba(255, 215, 0, 0.2);
-    border: 1px solid rgba(255, 215, 0, 0.4);
-}
-.points.pos-2 { 
-    color: var(--silver);
-    background: rgba(192, 192, 192, 0.2);
-    border: 1px solid rgba(192, 192, 192, 0.4);
-}
-.points.pos-3 { 
-    color: var(--bronze);
-    background: rgba(205, 127, 50, 0.2);
-    border: 1px solid rgba(205, 127, 50, 0.4);
-}
+.points.pos-1 { color: var(--gold); background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.4); }
+.points.pos-2 { color: var(--silver); background: rgba(192, 192, 192, 0.2); border: 1px solid rgba(192, 192, 192, 0.4); }
+.points.pos-3 { color: var(--bronze); background: rgba(205, 127, 50, 0.2); border: 1px solid rgba(205, 127, 50, 0.4); }
 
-.points.ko {
-    color: var(--ko-color);
-    background: rgba(255, 107, 107, 0.08);
-    border: 1px solid rgba(255, 107, 107, 0.2);
-}
-
+.points.ko { color: var(--ko-color); background: rgba(255, 107, 107, 0.08); border: 1px solid rgba(255, 107, 107, 0.2); }
 .points.ko.highlight {
     color: var(--ko-highlight);
     background: rgba(255, 165, 0, 0.2);
     border: 1px solid rgba(255, 165, 0, 0.4);
     font-weight: 800;
 }
-
-.points.ko.pos-1 { 
-    color: var(--gold);
-    background: rgba(255, 215, 0, 0.2);
-    border: 1px solid rgba(255, 215, 0, 0.4);
-}
-.points.ko.pos-2 { 
-    color: var(--silver);
-    background: rgba(192, 192, 192, 0.2);
-    border: 1px solid rgba(192, 192, 192, 0.4);
-}
-.points.ko.pos-3 { 
-    color: var(--bronze);
-    background: rgba(205, 127, 50, 0.2);
-    border: 1px solid rgba(205, 127, 50, 0.4);
-}
+.points.ko.pos-1 { color: var(--gold); background: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.4); }
+.points.ko.pos-2 { color: var(--silver); background: rgba(192, 192, 192, 0.2); border: 1px solid rgba(192, 192, 192, 0.4); }
+.points.ko.pos-3 { color: var(--bronze); background: rgba(205, 127, 50, 0.2); border: 1px solid rgba(205, 127, 50, 0.4); }
 
 .ranking-row.top10 .points:not(.pos-1):not(.pos-2):not(.pos-3):not(.negative) {
     background: rgba(212, 161, 33, 0.15);
@@ -525,11 +369,7 @@ body {
     border: 1px solid rgba(255, 71, 87, 0.2);
 }
 
-.diff.leader {
-    color: #4CAF50;
-    background: rgba(76, 175, 80, 0.15);
-    border: 1px solid rgba(76, 175, 80, 0.3);
-}
+.diff.leader { color: #4CAF50; background: rgba(76, 175, 80, 0.15); border: 1px solid rgba(76, 175, 80, 0.3); }
 
 .etapa-pill {
     padding: 2px 6px;
@@ -549,13 +389,8 @@ body {
     gap: 2px;
 }
 
-.etapa-pill.present {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
-    border: none;
-}
+.etapa-pill.present { background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; }
 
-/* Etapa com pontuação negativa no ranking */
 .etapa-pill.negative-score {
     background: rgba(255, 71, 87, 0.15);
     color: var(--negative-color);
@@ -563,32 +398,11 @@ body {
     font-weight: 700;
 }
 
-.etapa-pill.present.ko {
-    background: linear-gradient(135deg, var(--ko-color), var(--ko-color-dark));
-}
-
-.etapa-pill.present.ko.highlight {
-    background: linear-gradient(135deg, var(--ko-highlight), #FF8C00);
-    color: #000;
-    font-weight: 700;
-}
-
-.etapa-pill.absent {
-    background: rgba(255, 71, 87, 0.15);
-    color: #FF4757;
-    border: 1px solid rgba(255, 71, 87, 0.2);
-}
-
-.etapa-pill.empty {
-    opacity: 0.2;
-    background: transparent;
-}
-
-.etapa-pill.zero-ko {
-    color: var(--text-muted);
-    background: rgba(255, 107, 107, 0.05);
-    border: 1px solid rgba(255, 107, 107, 0.1);
-}
+.etapa-pill.present.ko { background: linear-gradient(135deg, var(--ko-color), var(--ko-color-dark)); }
+.etapa-pill.present.ko.highlight { background: linear-gradient(135deg, var(--ko-highlight), #FF8C00); color: #000; font-weight: 700; }
+.etapa-pill.absent { background: rgba(255, 71, 87, 0.15); color: #FF4757; border: 1px solid rgba(255, 71, 87, 0.2); }
+.etapa-pill.empty { opacity: 0.2; background: transparent; }
+.etapa-pill.zero-ko { color: var(--text-muted); background: rgba(255, 107, 107, 0.05); border: 1px solid rgba(255, 107, 107, 0.1); }
 
 /* PAINEL ADMIN */
 .admin-section {
@@ -599,11 +413,7 @@ body {
     margin-bottom: 12px;
 }
 
-.admin-header {
-    padding: 12px 15px;
-    background: linear-gradient(135deg, #1a1a1a, #222);
-    border-bottom: 1px solid #8b0000;
-}
+.admin-header { padding: 12px 15px; background: linear-gradient(135deg, #1a1a1a, #222); border-bottom: 1px solid #8b0000; }
 
 .admin-header h2 {
     font-family: 'Anton', sans-serif;
@@ -632,50 +442,22 @@ body {
     gap: 6px;
 }
 
-.config-especial .config-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
+.config-especial .config-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
 @media (max-width: 768px) {
-    .config-especial .config-container {
-        grid-template-columns: 1fr;
-    }
+    .config-especial .config-container { grid-template-columns: 1fr; }
 }
 
-.config-item {
-    background: var(--bg-row);
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-}
+.config-item { background: var(--bg-row); padding: 12px; border-radius: 6px; border: 1px solid var(--border); }
 
-.config-item h4 {
-    color: var(--primary);
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
+.config-item h4 { color: var(--primary); font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
 .config-item.crown h4 { color: var(--crown-gold); }
 .config-item.card h4 { color: var(--card-red); }
 .config-item.trophy h4 { color: var(--champion-color); }
 
-.points-system {
-    display: grid;
-    gap: 12px;
-    padding: 12px;
-}
+.points-system { display: grid; gap: 12px; padding: 12px; }
 
-.stage-selector {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+.stage-selector { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
 
 .stage-btn {
     padding: 6px 12px;
@@ -691,27 +473,11 @@ body {
     font-size: 0.8rem;
 }
 
-.stage-btn:hover {
-    border-color: var(--primary);
-    background: rgba(212, 161, 33, 0.05);
-}
-
-.stage-btn.active {
-    background: var(--primary);
-    color: #000;
-    border-color: var(--primary);
-}
-
+.stage-btn:hover { border-color: var(--primary); background: rgba(212, 161, 33, 0.05); }
+.stage-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
 .stage-btn.ko { border-color: var(--ko-color); }
-.stage-btn.ko:hover {
-    border-color: var(--ko-color);
-    background: rgba(255, 107, 107, 0.05);
-}
-.stage-btn.ko.active {
-    background: var(--ko-color);
-    color: #000;
-    border-color: var(--ko-color);
-}
+.stage-btn.ko:hover { border-color: var(--ko-color); background: rgba(255, 107, 107, 0.05); }
+.stage-btn.ko.active { background: var(--ko-color); color: #000; border-color: var(--ko-color); }
 
 .etapa-atual {
     text-align: center;
@@ -722,13 +488,7 @@ body {
     border: 1px solid var(--border);
 }
 
-.etapa-atual .numero {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin: 0 4px;
-}
-
+.etapa-atual .numero { font-size: 1rem; font-weight: 700; color: var(--gold); margin: 0 4px; }
 .etapa-atual.ko .numero { color: var(--ko-color); }
 
 .players-points-list { margin-top: 12px; }
@@ -747,10 +507,7 @@ body {
 
 .points-list-header.ko { color: var(--ko-color); }
 
-.points-list-items {
-    max-height: 450px;
-    overflow-y: auto;
-}
+.points-list-items { max-height: 450px; overflow-y: auto; }
 
 .point-item {
     display: grid;
@@ -767,22 +524,10 @@ body {
 .point-item:hover { background: rgba(212, 161, 33, 0.03); }
 .point-item.ko:hover { background: rgba(255, 107, 107, 0.03); }
 
-.player-info-admin {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+.player-info-admin { display: flex; align-items: center; gap: 8px; }
+.player-info-admin .player-avatar { width: 26px; height: 26px; }
 
-.player-info-admin .player-avatar {
-    width: 26px;
-    height: 26px;
-}
-
-.points-input-admin {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
+.points-input-admin { display: flex; align-items: center; gap: 5px; }
 
 .points-input-admin input {
     width: 80px;
@@ -797,7 +542,6 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Input com valor negativo no admin */
 .points-input-admin input.negative-value {
     color: var(--negative-color);
     border-color: rgba(255, 71, 87, 0.5);
@@ -808,11 +552,7 @@ body {
 .points-input-admin input.NJ { color: #FF4757; border-color: #FF4757; }
 .points-input-admin.ko input:focus { border-color: var(--ko-color); }
 
-.quick-actions {
-    display: flex;
-    gap: 3px;
-    margin-left: 5px;
-}
+.quick-actions { display: flex; gap: 3px; margin-left: 5px; }
 
 .quick-action-btn {
     padding: 4px 8px;
@@ -879,17 +619,8 @@ body {
     border: 1px solid var(--border);
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.form-group label {
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 0.8rem;
-}
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group label { color: var(--primary); font-weight: 600; font-size: 0.8rem; }
 
 .form-group input {
     padding: 8px;
@@ -917,10 +648,7 @@ body {
     backdrop-filter: blur(5px);
 }
 
-.status-indicator.connected {
-    background: rgba(76, 175, 80, 0.9);
-    border-color: #4CAF50;
-}
+.status-indicator.connected { background: rgba(76, 175, 80, 0.9); border-color: #4CAF50; }
 
 .admin-toggle-btn {
     position: fixed;
@@ -986,12 +714,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.modal-buttons {
-    display: flex;
-    gap: 6px;
-    margin-top: 12px;
-}
-
+.modal-buttons { display: flex; gap: 6px; margin-top: 12px; }
 .export-btn { margin-top: 12px; text-align: center; }
 
 .admin-ko-toggle {
@@ -1015,33 +738,13 @@ body {
     transition: all 0.2s ease;
 }
 
-.admin-ko-toggle-btn:hover {
-    border-color: var(--primary);
-    background: rgba(212, 161, 33, 0.05);
-}
-
-.admin-ko-toggle-btn.active {
-    background: var(--primary);
-    color: #000;
-    border-color: var(--primary);
-}
-
+.admin-ko-toggle-btn:hover { border-color: var(--primary); background: rgba(212, 161, 33, 0.05); }
+.admin-ko-toggle-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
 .admin-ko-toggle-btn.ko { border-color: var(--ko-color); color: var(--ko-color); }
-.admin-ko-toggle-btn.ko:hover {
-    border-color: var(--ko-color);
-    background: rgba(255, 107, 107, 0.05);
-}
-.admin-ko-toggle-btn.ko.active {
-    background: var(--ko-color);
-    color: #000;
-    border-color: var(--ko-color);
-}
+.admin-ko-toggle-btn.ko:hover { border-color: var(--ko-color); background: rgba(255, 107, 107, 0.05); }
+.admin-ko-toggle-btn.ko.active { background: var(--ko-color); color: #000; border-color: var(--ko-color); }
 
-.player-select-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+.player-select-container { display: flex; flex-direction: column; gap: 8px; }
 
 .player-select {
     width: 100%;
@@ -1143,7 +846,7 @@ body {
             <div class="section-header">
                 <h2>
                     <span>CLASSIFICAÇÃO GERAL</span>
-                    <span class="g10-badge">🏆 G - 10</span>
+                    <span class="g10-badge">🏆 TOTAL</span>
                 </h2>
                 <div style="color: var(--text-muted); font-size: 0.75rem;">
                     Atualizado após a Última Etapa Jogada.
@@ -1171,7 +874,7 @@ body {
                     </div>
                 </div>
             </div>
-            
+
             <div class="ranking-container">
                 <table class="ranking-table" id="rankingTable">
                     <thead id="rankingTableHead">
@@ -1218,7 +921,7 @@ body {
                     </div>
                 </div>
             </div>
-            
+
             <div class="ranking-container">
                 <table class="ranking-table ko" id="rankingTableKO">
                     <thead id="rankingTableHeadKO">
@@ -1413,7 +1116,7 @@ body {
             </div>
             <div id="listaJogadoresAdmin"></div>
         </div>
-        
+
         <div class="export-btn">
             <button class="admin-btn save-btn" id="btnExportarCSV" style="width: 100%; max-width: 220px; margin: 0 auto; font-size: 0.8rem;">
                 <span>📊</span><span>Exportar Ranking CSV</span>
@@ -1549,7 +1252,7 @@ async function carregarDados() {
         const dadosEtapasKO = await db.get('rankingEtapasKO');
         const dadosConfig = await db.get('configuracoes');
         const dadosCampeoes = await db.get('campeoesEtapa');
-        
+
         if (dadosJogadores) {
             jogadores = Object.keys(dadosJogadores).map(key => ({
                 ...dadosJogadores[key],
@@ -1563,14 +1266,14 @@ async function carregarDados() {
             melhorMao = dadosConfig.melhorMao || null;
         }
         if (dadosCampeoes) campeoesEtapa = dadosCampeoes;
-        
+
         statusIndicator.textContent = '✅ Conectado';
         statusIndicator.classList.add('connected');
-        
+
         calcularRankings();
         atualizarSelectsEspeciais();
         renderizarCampeoesEtapa();
-        
+
     } catch (e) {
         console.error('Erro ao carregar dados:', e);
         statusIndicator.textContent = '❌ Erro de conexão';
@@ -1588,18 +1291,18 @@ btnAcessarAdmin.onclick = () => {
         btnAdminToggle.classList.add('active');
         btnAdminToggle.innerHTML = '✅';
         senhaAdmin.value = '';
-        
+
         viewRanking.style.display = 'none';
         viewRankingKO.style.display = 'none';
         viewAdmin.style.display = 'block';
-        
+
         renderizarSeletorEtapas();
         renderizarSeletorEtapasKO();
         renderizarPlayersPoints('geral');
         renderizarAdminJogadores();
         atualizarSelectsEspeciais();
         renderizarCampeoesEtapa();
-        
+
         setTimeout(() => {
             alert('🔓 Modo Administrador ATIVADO!\n\nVocê agora pode gerenciar jogadores, pontuações e campeões de cada etapa.\n\n💡 Dica: No ranking geral, valores negativos são permitidos para penalidades.');
         }, 300);
@@ -1682,14 +1385,14 @@ btnAdicionarJogador.onclick = async () => {
 function atualizarSelectsEspeciais() {
     selectReiDaMesa.innerHTML = '<option value="">Selecione o Rei da Mesa</option>';
     selectMelhorMao.innerHTML = '<option value="">Selecione a Melhor Mão</option>';
-    
+
     [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome)).forEach(jogador => {
         const optRei = document.createElement('option');
         optRei.value = jogador.id;
         optRei.textContent = jogador.nome;
         if (jogador.id === reiDaMesa) optRei.selected = true;
         selectReiDaMesa.appendChild(optRei);
-        
+
         const optMao = document.createElement('option');
         optMao.value = jogador.id;
         optMao.textContent = jogador.nome;
@@ -1702,7 +1405,7 @@ function renderizarCampeoesEtapa() {
     if (!campeoesEtapaContainer) return;
     campeoesEtapaContainer.innerHTML = '';
     const jogadoresOrdenados = [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome));
-    
+
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         const div = document.createElement('div');
         div.style.cssText = 'background:var(--bg-dark);padding:8px;border-radius:4px;border:1px solid var(--border);';
@@ -1814,33 +1517,31 @@ function contarPrimeirosLugaresKO(jogadorId) {
 
 // =============================================
 // CALCULAR RANKING GERAL
-// Suporta valores negativos (penalidades)
+// Soma TODAS as etapas da temporada (inclui negativos)
 // =============================================
 function calcularRankingGeral() {
     const rankingCalculado = jogadores.map(jogador => {
         const pontuacoes = [];
         let participacoes = 0;
-        
+
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapas[i]?.[jogador.id];
             if (score !== undefined && score !== null && score !== 'NJ') {
                 const pontos = parseInt(score);
                 if (!isNaN(pontos)) {
-                    // Aceita qualquer valor numérico, incluindo negativos
                     pontuacoes.push(pontos);
                     participacoes++;
                 }
             }
         }
-        
-        // Ordena do maior para menor e pega os 10 melhores
-        // Valores negativos ficam no fim e só entram no G-10 se não houver pontuações positivas suficientes
-        const melhoresPontuacoes = pontuacoes.sort((a, b) => b - a).slice(0, 10);
-        const totalPontos = melhoresPontuacoes.reduce((sum, p) => sum + p, 0);
-        
+
+        // Soma de todas as etapas da temporada
+        const melhoresPontuacoes = [...pontuacoes].sort((a, b) => b - a);
+        const totalPontos = pontuacoes.reduce((sum, p) => sum + p, 0);
+
         const primeirosLugares = contarPrimeirosLugares(jogador.id);
         const totalKO = calcularTotalKO(jogador.id);
-        
+
         return {
             ...jogador,
             totalPontos: totalPontos,
@@ -1852,7 +1553,7 @@ function calcularRankingGeral() {
             isMelhorMao: jogador.id === melhorMao
         };
     });
-    
+
     rankingCalculado.sort((a, b) => {
         if (b.totalPontos !== a.totalPontos) return b.totalPontos - a.totalPontos;
         if (b.participacoes !== a.participacoes) return b.participacoes - a.participacoes;
@@ -1860,7 +1561,7 @@ function calcularRankingGeral() {
         if (b.totalKO !== a.totalKO) return b.totalKO - a.totalKO;
         return a.nome.localeCompare(b.nome);
     });
-    
+
     rankingCalculado.forEach((jogador, index) => { jogador.posicaoAtual = index + 1; });
     rankingAtual = rankingCalculado;
     return rankingCalculado;
@@ -1870,7 +1571,7 @@ function calcularRankingKO() {
     const rankingCalculado = jogadores.map(jogador => {
         const pontuacoesKO = [];
         let participacoesKO = 0;
-        
+
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapasKO[i]?.[jogador.id];
             if (score === undefined || score === null || score === 'NJ') continue;
@@ -1880,11 +1581,12 @@ function calcularRankingKO() {
                 else if (pontosNum === 0) { participacoesKO++; }
             }
         }
-        
-        const melhoresPontuacoesKO = [...pontuacoesKO].sort((a, b) => b - a).slice(0, 10);
-        const totalPontosKO = melhoresPontuacoesKO.reduce((sum, p) => sum + p, 0);
+
+        // Soma de todas as etapas KO da temporada
+        const melhoresPontuacoesKO = [...pontuacoesKO].sort((a, b) => b - a);
+        const totalPontosKO = pontuacoesKO.reduce((sum, p) => sum + p, 0);
         const primeirosLugaresKO = contarPrimeirosLugaresKO(jogador.id);
-        
+
         return {
             ...jogador,
             totalPontosKO: totalPontosKO,
@@ -1893,14 +1595,14 @@ function calcularRankingKO() {
             melhoresPontuacoesKO: melhoresPontuacoesKO
         };
     });
-    
+
     rankingCalculado.sort((a, b) => {
         if (b.totalPontosKO !== a.totalPontosKO) return b.totalPontosKO - a.totalPontosKO;
         if (b.participacoesKO !== a.participacoesKO) return b.participacoesKO - a.participacoesKO;
         if (b.primeirosLugaresKO !== a.primeirosLugaresKO) return b.primeirosLugaresKO - a.primeirosLugaresKO;
         return a.nome.localeCompare(b.nome);
     });
-    
+
     rankingCalculado.forEach((jogador, index) => { jogador.posicaoAtualKO = index + 1; });
     rankingKO = rankingCalculado;
     return rankingCalculado;
@@ -1915,42 +1617,39 @@ function calcularRankings() {
 
 // =============================================
 // RENDERIZAR RANKING GERAL
-// Ícone SVG de exclamação quando totalPontos < 0
 // =============================================
 function atualizarRankingGeral() {
     const tbody = document.getElementById('rankingTableBody');
-    
+
     if (rankingAtual.length === 0) {
         tbody.innerHTML = `<tr><td colspan="16" style="text-align:center;padding:25px;color:var(--text-muted);">Nenhum jogador cadastrado</td></tr>`;
         return;
     }
-    
+
     const primeiroColocadoPontos = rankingAtual[0]?.totalPontos || 0;
     tbody.innerHTML = '';
-    
+
     rankingAtual.forEach((jogador, index) => {
         const rank = index + 1;
         const isTop10 = rank <= 10;
         const isNegative = jogador.totalPontos < 0;
         const diferencaPontos = primeiroColocadoPontos - jogador.totalPontos;
         const diffClass = rank === 1 ? 'leader' : '';
-        
+
         let iconesHTML = '';
         if (jogador.isReiDaMesa) iconesHTML += '<span class="player-icon crown-icon" title="Rei da Mesa">👑</span>';
         if (jogador.isMelhorMao) iconesHTML += '<span class="player-icon card-icon" title="Melhor mão da etapa">🃏</span>';
-        
-        // Classe e ícone de pontuação negativa
+
         const negativeClass = isNegative ? ' negative' : '';
         const negativeIconHTML = isNegative ? NEGATIVE_ICON_SVG : '';
-        
-        // Células das etapas
+
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapas[i]?.[jogador.id];
             let etapaClass = 'empty';
             let etapaText = '-';
             let iconeExtra = '';
-            
+
             if (score !== undefined && score !== null) {
                 if (score === 'NJ') {
                     etapaClass = 'absent';
@@ -1959,7 +1658,6 @@ function atualizarRankingGeral() {
                     const pontosNum = parseInt(score);
                     if (!isNaN(pontosNum)) {
                         if (pontosNum < 0) {
-                            // Pontuação negativa na etapa — estilo especial
                             etapaClass = 'negative-score';
                             etapaText = pontosNum;
                         } else if (pontosNum > 0) {
@@ -1972,14 +1670,14 @@ function atualizarRankingGeral() {
                     }
                 }
             }
-            
+
             if (campeoesEtapa[i] === jogador.id) {
                 iconeExtra = ' <span class="trophy-icon" title="Campeão da etapa">🏆</span>';
             }
-            
+
             etapasHTML += `<td><div class="etapa-pill ${etapaClass}">${etapaText}${iconeExtra}</div></td>`;
         }
-        
+
         const tr = document.createElement('tr');
         tr.className = `ranking-row ${isTop10 ? 'top10' : 'other'} pos-${isTop10 ? rank : ''}`;
         tr.innerHTML = `
@@ -2012,40 +1710,40 @@ function atualizarRankingGeral() {
             </td>
             ${etapasHTML}
         `;
-        
+
         tbody.appendChild(tr);
     });
 }
 
 function atualizarRankingKO() {
     const tbody = document.getElementById('rankingTableBodyKO');
-    
+
     if (rankingKO.length === 0) {
         tbody.innerHTML = `<tr><td colspan="16" style="text-align:center;padding:25px;color:var(--text-muted);">Nenhum jogador cadastrado</td></tr>`;
         return;
     }
-    
+
     const primeiroColocadoPontosKO = rankingKO[0]?.totalPontosKO || 0;
     tbody.innerHTML = '';
-    
+
     const etapasComRegistro = new Set();
     for (let i = 1; i <= TOTAL_ETAPAS; i++) {
         if (etapasKO[i] && Object.keys(etapasKO[i]).length > 0) etapasComRegistro.add(i);
     }
-    
+
     rankingKO.forEach((jogador, index) => {
         const rank = index + 1;
         const isTop10 = rank <= 10;
         const diferencaPontos = primeiroColocadoPontosKO - jogador.totalPontosKO;
         const diffClass = rank === 1 ? 'leader' : '';
-        
+
         let etapasHTML = '';
         for (let i = 1; i <= TOTAL_ETAPAS; i++) {
             const score = etapasKO[i]?.[jogador.id];
             let etapaClass = 'empty';
             let etapaText = '-';
             let iconeExtra = '';
-            
+
             if (score !== undefined && score !== null) {
                 if (score === 'NJ') {
                     etapaClass = 'absent'; etapaText = 'NJ';
@@ -2067,10 +1765,10 @@ function atualizarRankingKO() {
             } else if (etapasComRegistro.has(i)) {
                 etapaClass = 'absent'; etapaText = 'NJ';
             }
-            
+
             etapasHTML += `<td><div class="etapa-pill ${etapaClass}">${etapaText}${iconeExtra}</div></td>`;
         }
-        
+
         const tr = document.createElement('tr');
         tr.className = `ranking-row ${isTop10 ? 'top10 ko' : 'other'} pos-${isTop10 ? rank : ''}`;
         tr.innerHTML = `
@@ -2135,7 +1833,7 @@ function renderizarSeletorEtapasKO() {
 // =============================================
 // RENDERIZAR INPUTS DE PONTUAÇÃO
 // Geral: aceita "-" para números negativos
-// KO: somente positivos (comportamento original)
+// KO: somente positivos
 // =============================================
 function renderizarPlayersPoints(tipo) {
     const container = tipo === 'geral' ?
@@ -2143,15 +1841,15 @@ function renderizarPlayersPoints(tipo) {
         document.getElementById('playersPointsListKO');
     if (!container) return;
     container.innerHTML = '';
-    
+
     [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome)).forEach(jogador => {
         const scoreAtual = tipo === 'geral' ?
             (etapas[etapaAtualSelecionada]?.[jogador.id] ?? '') :
             (etapasKO[etapaAtualSelecionadaKO]?.[jogador.id] ?? '');
-        
+
         const isNegativeVal = typeof scoreAtual === 'number' ? scoreAtual < 0 : String(scoreAtual).startsWith('-');
         const negativeInputClass = isNegativeVal ? ' negative-value' : '';
-        
+
         const item = document.createElement('div');
         item.className = `point-item ${tipo === 'ko' ? 'ko' : ''}`;
         item.innerHTML = `
@@ -2178,30 +1876,26 @@ function renderizarPlayersPoints(tipo) {
 
 // =============================================
 // FORMATAR INPUT DE PONTOS
-// Geral: permite números negativos (ex: -10)
-// KO: apenas positivos (comportamento original)
 // =============================================
 window.formatarInputPontos = function(input, tipo) {
     let valor = input.value.trim().toUpperCase();
-    
+
     if (valor === 'NJ') {
         input.value = 'NJ';
         input.classList.add('NJ');
         input.classList.remove('negative-value');
         return;
     }
-    
+
     input.classList.remove('NJ');
-    
+
     if (tipo === 'geral') {
-        // Permite sinal de menos no início seguido de dígitos
         valor = valor.replace(/[^0-9\-]/g, '');
-        // Garante que o '-' só apareça no início
         if (valor.indexOf('-') > 0) {
             valor = valor.replace(/-/g, '');
         }
         input.value = valor;
-        
+
         const numVal = parseInt(valor);
         if (!isNaN(numVal) && numVal < 0) {
             input.classList.add('negative-value');
@@ -2209,7 +1903,6 @@ window.formatarInputPontos = function(input, tipo) {
             input.classList.remove('negative-value');
         }
     } else {
-        // KO: apenas números positivos
         valor = valor.replace(/[^0-9]/g, '');
         input.value = valor;
         input.classList.remove('negative-value');
@@ -2242,13 +1935,12 @@ window.limparPontuacoes = function(tipo) {
 
 // =============================================
 // SALVAR ETAPA
-// Preserva valores negativos no ranking geral
 // =============================================
 window.salvarEtapa = async function(tipo) {
     try {
         const novosScores = {};
         let temAlteracoes = false;
-        
+
         jogadores.forEach(jogador => {
             const etapa = tipo === 'geral' ? etapaAtualSelecionada : etapaAtualSelecionadaKO;
             const input = document.getElementById(`${tipo}_score_${etapa}_${jogador.id}`);
@@ -2258,7 +1950,6 @@ window.salvarEtapa = async function(tipo) {
                     if (valor === 'NJ') {
                         novosScores[jogador.id] = 'NJ';
                     } else {
-                        // parseInt suporta valores negativos nativamente (ex: "-10" → -10)
                         const parsed = parseInt(valor);
                         novosScores[jogador.id] = isNaN(parsed) ? 0 : parsed;
                     }
@@ -2268,19 +1959,19 @@ window.salvarEtapa = async function(tipo) {
                 }
             }
         });
-        
+
         if (!temAlteracoes) {
             if (!confirm(`Nenhuma pontuação foi alterada. Deseja salvar mesmo assim?`)) return;
         }
-        
+
         const caminho = tipo === 'geral' ?
             `rankingEtapas/${etapaAtualSelecionada}` :
             `rankingEtapasKO/${etapaAtualSelecionadaKO}`;
-        
+
         await db.set(caminho, novosScores);
         alert(`✅ Etapa ${tipo === 'geral' ? 'geral' : 'KO'} salva com sucesso!`);
         await carregarDados();
-        
+
     } catch (e) {
         alert(`❌ Erro ao salvar etapa: ` + e.message);
     }
@@ -2290,15 +1981,15 @@ window.salvarEtapa = async function(tipo) {
 function renderizarAdminJogadores() {
     const container = document.getElementById('listaJogadoresAdmin');
     if (!container) return;
-    
+
     if (jogadores.length === 0) {
         container.innerHTML = `<div style="text-align:center;padding:15px;color:var(--text-muted);background:var(--bg-row);border-radius:4px;">Nenhum jogador cadastrado</div>`;
         return;
     }
-    
+
     const jogadoresOrdenados = [...jogadores].sort((a, b) => a.nome.localeCompare(b.nome));
     let html = '<div style="display:grid;gap:6px;margin-top:12px;">';
-    
+
     jogadoresOrdenados.forEach(jogador => {
         const posGeral = (rankingAtual.findIndex(j => j.id === jogador.id) + 1) || '-';
         const ptsGeral = rankingAtual.find(j => j.id === jogador.id)?.totalPontos || 0;
@@ -2308,7 +1999,7 @@ function renderizarAdminJogadores() {
         if (jogador.id === reiDaMesa) icones += ' 👑';
         if (jogador.id === melhorMao) icones += ' 🃏';
         const negStyle = ptsGeral < 0 ? 'color:var(--negative-color)' : '';
-        
+
         html += `
             <div style="background:var(--bg-row);padding:10px;border-radius:4px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);">
                 <div style="display:flex;align-items:center;gap:8px;">
@@ -2322,12 +2013,12 @@ function renderizarAdminJogadores() {
                         </div>
                     </div>
                 </div>
-                <button onclick="removerJogador('${jogador.id}', '${jogador.nome.replace(/'/g, "\\'")}'")"
+                <button onclick="removerJogador('${jogador.id}', '${jogador.nome.replace(/'/g, "\\'")}')"
                         style="background:#FF4757;color:white;border:none;padding:5px 10px;border-radius:3px;cursor:pointer;font-weight:600;font-size:0.75rem;">🗑️</button>
             </div>
         `;
     });
-    
+
     html += '</div>';
     container.innerHTML = html;
 }
@@ -2362,22 +2053,22 @@ window.removerJogador = async function(id, nome) {
 btnExportarCSV.onclick = function() {
     const ranking = calcularRankingGeral();
     const rankingKOCalc = calcularRankingKO();
-    
+
     let csv = 'Posição,Jogador,Pontos Totais (Geral),Participações (Geral),1º Lugares,Total KO,Diferença para Líder (Geral),Rei da Mesa,Melhor Mão,Pontos KO,Participações KO,1º Lugares KO,Posição KO';
     for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,Etapa ${i} Geral`;
     for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,Etapa ${i} KO`;
     csv += '\n';
-    
+
     const primeiroPontos = ranking[0]?.totalPontos || 0;
     ranking.forEach(jogador => {
         const diff = primeiroPontos - jogador.totalPontos;
         const jKO = rankingKOCalc.find(j => j.id === jogador.id);
         csv += `${jogador.posicaoAtual},"${jogador.nome}",${jogador.totalPontos},${jogador.participacoes},${jogador.primeirosLugares},${jogador.totalKO},${diff},${jogador.id === reiDaMesa ? 'SIM' : 'NÃO'},${jogador.id === melhorMao ? 'SIM' : 'NÃO'},${jKO?.totalPontosKO || 0},${jKO?.participacoesKO || 0},${jKO?.primeirosLugaresKO || 0},${jKO?.posicaoAtualKO || '-'}`;
-        for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,"${etapas[i]?.[jogador.id] || '-'}"`;
-        for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,"${etapasKO[i]?.[jogador.id] || '-'}"`;
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,"${etapas[i]?.[jogador.id] ?? '-'}"`;
+        for (let i = 1; i <= TOTAL_ETAPAS; i++) csv += `,"${etapasKO[i]?.[jogador.id] ?? '-'}"`;
         csv += '\n';
     });
-    
+
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
